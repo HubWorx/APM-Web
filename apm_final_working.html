@@ -195,8 +195,8 @@
             <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
                 <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border-4 border-red-200">
                     <h3 class="text-lg sm:text-xl font-bold text-red-800 mb-4">Traditional</h3>
-                    <div class="h-[250px] sm:h-[300px]">
-                        <canvas id="chart2" role="img" aria-label="Bar chart comparing traditional approach ROCE improvement by tier"></canvas>
+                    <div class="h-[250px] sm:h-[300px] relative">
+                        <canvas id="chart2" class="w-full h-full" role="img" aria-label="Bar chart comparing traditional approach ROCE improvement by tier"></canvas>
                     </div>
                     <div class="text-center mt-4">
                         <div class="text-xl sm:text-2xl font-bold text-red-600" id="display-comp-trad">+5.7%</div>
@@ -205,8 +205,8 @@
                 </div>
                 <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border-4 border-green-200">
                     <h3 class="text-lg sm:text-xl font-bold text-green-800 mb-4">Health-Centric</h3>
-                    <div class="h-[250px] sm:h-[300px]">
-                        <canvas id="chart3" role="img" aria-label="Bar chart comparing health-centric approach ROCE improvement by tier"></canvas>
+                    <div class="h-[250px] sm:h-[300px] relative">
+                        <canvas id="chart3" class="w-full h-full" role="img" aria-label="Bar chart comparing health-centric approach ROCE improvement by tier"></canvas>
                     </div>
                     <div class="text-center mt-4">
                         <div class="text-xl sm:text-2xl font-bold text-green-600" id="display-comp-health">+12.2%</div>
@@ -487,6 +487,9 @@
                 if (data.health) datasets.push({ label:'Equipment Health', data:data.health, backgroundColor:'#10b981', stack:'stack' });
                 if (data.predictive) datasets.push({ label:'Predictive Maintenance', data:data.predictive, backgroundColor:'#3b82f6', stack:'stack' });
 
+                // Determine configuration based on chart
+                const isChart1 = canvasId === 'chart1';
+
                 charts[canvasId] = new Chart(canvas, {
                     type: 'bar',
                     data: {
@@ -495,13 +498,25 @@
                     },
                     options: {
                         responsive: true,
-                        maintainAspectRatio: canvasId === 'chart1',
+                        maintainAspectRatio: isChart1,
                         scales: {
-                            y: { stacked: true, beginAtZero: true, title: { display: true, text: 'ROCE Improvement (%)' } },
-                            x: { stacked: true }
+                            y: {
+                                stacked: true,
+                                beginAtZero: true,
+                                title: { display: true, text: 'ROCE Improvement (%)' },
+                                ticks: { font: { size: 10 } }
+                            },
+                            x: {
+                                stacked: true,
+                                ticks: { font: { size: 10 } }
+                            }
                         },
                         plugins: {
-                            legend: { display: showLegend, position: 'bottom' }
+                            legend: {
+                                display: showLegend,
+                                position: 'bottom',
+                                labels: { font: { size: 10 }, boxWidth: 12 }
+                            }
                         }
                     }
                 });
