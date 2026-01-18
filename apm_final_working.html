@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate the ROI of AI-powered Asset Performance Management (APM) solutions. Compare traditional vs. health-centric approaches for Oil & Gas and Power Generation industries.">
+    <meta property="og:title" content="AI-Powered APM Value Calculator">
+    <meta property="og:description" content="Calculate the ROI of AI-powered Asset Performance Management solutions for your industry.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <title>AI-Powered APM Value Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-D6PdX5n8pBNiHwvPW8p7GUvZXh6pK2t6s3keVE0Lq/5bO7bV/OWqL0FmqCsXxbKU" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-50">
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-blue-600 focus:text-white">Skip to main content</a>
+    <nav class="bg-white shadow-lg sticky top-0 z-50" role="navigation" aria-label="Main navigation">
         <div class="max-w-7xl mx-auto px-4 py-4 text-center">
             <span class="text-2xl font-bold text-gray-800">AI-Powered APM Value Calculator</span>
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto px-4 py-12">
+    <main id="main-content" class="max-w-7xl mx-auto px-4 py-12">
         <!-- Step 1: Industry Selection -->
         <div id="step1">
             <div class="text-center mb-12">
@@ -22,11 +28,11 @@
                 <p class="text-xl text-gray-600">Choose your industry to begin</p>
             </div>
             <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <button id="btn-oilgas" class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <button id="btn-oilgas" class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all" aria-label="Select Oil & Gas industry for ROCE analysis">
                     <h3 class="text-2xl font-bold mb-2">Oil & Gas</h3>
                     <p class="text-sm">ROCE analysis for upstream, midstream, downstream</p>
                 </button>
-                <button id="btn-powergen" class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <button id="btn-powergen" class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all" aria-label="Select Power Generation industry for availability analysis">
                     <h3 class="text-2xl font-bold mb-2">Power Generation</h3>
                     <p class="text-sm">Availability and O&M cost per MWh analysis</p>
                 </button>
@@ -44,7 +50,7 @@
                     <p class="text-yellow-800"><strong>The Old Way:</strong> Framework-first, technology-last</p>
                 </div>
                 <div class="mb-6">
-                    <canvas id="chart1" height="300"></canvas>
+                    <canvas id="chart1" height="300" role="img" aria-label="Bar chart showing traditional ISO 55000 ROCE improvement across three tiers over 4-5 years"></canvas>
                 </div>
                 <div class="grid grid-cols-3 gap-4 my-6">
                     <div class="bg-red-50 rounded-lg p-4 text-center">
@@ -131,20 +137,20 @@
                 <div class="bg-white rounded-xl p-6">
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label class="block text-sm font-bold mb-2">Revenue ($M)</label>
-                            <input type="number" id="input-rev" placeholder="1000" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label for="input-rev" class="block text-sm font-bold mb-2">Revenue ($M)</label>
+                            <input type="number" id="input-rev" placeholder="1000" min="0" step="0.1" required aria-required="true" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2">Capital ($M)</label>
-                            <input type="number" id="input-cap" placeholder="500" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label for="input-cap" class="block text-sm font-bold mb-2">Capital ($M)</label>
+                            <input type="number" id="input-cap" placeholder="500" min="0" step="0.1" required aria-required="true" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2">Profit ($M)</label>
-                            <input type="number" id="input-prof" placeholder="100" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label for="input-prof" class="block text-sm font-bold mb-2">Profit ($M)</label>
+                            <input type="number" id="input-prof" placeholder="100" min="0" step="0.1" required aria-required="true" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2">Maintenance ($M)</label>
-                            <input type="number" id="input-maint" placeholder="50" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label for="input-maint" class="block text-sm font-bold mb-2">Maintenance ($M)</label>
+                            <input type="number" id="input-maint" placeholder="50" min="0" step="0.1" required aria-required="true" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
                         </div>
                     </div>
                     <div class="text-center">
@@ -202,8 +208,8 @@
             <div class="grid lg:grid-cols-2 gap-8 mb-8">
                 <div class="bg-white rounded-2xl shadow-xl p-6 border-4 border-red-200">
                     <h3 class="text-xl font-bold text-red-800 mb-4">Traditional</h3>
-                    <div style="height: 300px;">
-                        <canvas id="chart2"></canvas>
+                    <div class="h-[300px]">
+                        <canvas id="chart2" role="img" aria-label="Bar chart comparing traditional approach ROCE improvement by tier"></canvas>
                     </div>
                     <div class="text-center mt-4">
                         <div class="text-2xl font-bold text-red-600" id="display-comp-trad">+5.7%</div>
@@ -212,8 +218,8 @@
                 </div>
                 <div class="bg-white rounded-2xl shadow-xl p-6 border-4 border-green-200">
                     <h3 class="text-xl font-bold text-green-800 mb-4">Health-Centric</h3>
-                    <div style="height: 300px;">
-                        <canvas id="chart3"></canvas>
+                    <div class="h-[300px]">
+                        <canvas id="chart3" role="img" aria-label="Bar chart comparing health-centric approach ROCE improvement by tier"></canvas>
                     </div>
                     <div class="text-center mt-4">
                         <div class="text-2xl font-bold text-green-600" id="display-comp-health">+12.2%</div>
@@ -225,7 +231,7 @@
             <!-- Case Studies -->
             <h3 class="text-3xl font-bold text-center mb-6">Proven Results</h3>
             <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
+                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
                     <div class="bg-blue-100 rounded p-3 mb-4">
                         <h4 class="font-bold">OQ (Oman)</h4>
                         <p class="text-xs">GE Vernova APM</p>
@@ -233,7 +239,7 @@
                     <div class="text-3xl font-bold text-green-600">$59M</div>
                     <p class="text-sm">Saved</p>
                 </a>
-                <a href="https://www.aspentech.com/en/products/apm/aspen-mtell" target="_blank" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
+                <a href="https://www.aspentech.com/en/products/apm/aspen-mtell" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
                     <div class="bg-green-100 rounded p-3 mb-4">
                         <h4 class="font-bold">OCP Ecuador</h4>
                         <p class="text-xs">AspenTech</p>
@@ -241,7 +247,7 @@
                     <div class="text-3xl font-bold text-green-600">+20%</div>
                     <p class="text-sm">Uptime</p>
                 </a>
-                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
+                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
                     <div class="bg-purple-100 rounded p-3 mb-4">
                         <h4 class="font-bold">Total EP</h4>
                         <p class="text-xs">GE Vernova</p>
@@ -257,9 +263,20 @@
                 </button>
             </div>
         </div>
-    </div>
+    </main>
 
     <script>
+        // Constants
+        const MAINTENANCE_SAVINGS = {
+            TRADITIONAL: 0.15,  // 15% maintenance cost savings for traditional approach
+            HEALTH_CENTRIC: 0.30  // 30% maintenance cost savings for health-centric approach
+        };
+
+        const CHART_CONFIG = {
+            HEIGHT: 300,
+            ANIMATION_DELAY: 100
+        };
+
         // Global state
         let currentIndustry = null;
         let charts = {};
@@ -296,8 +313,8 @@
             
             document.getElementById('badge2').innerHTML = badge;
             document.getElementById('display-trad-roce').textContent = '+' + DATA[ind].trad.total + '%';
-            
-            setTimeout(function() { drawChart('chart1', DATA[ind].trad, true); }, 100);
+
+            setTimeout(function() { drawChart('chart1', DATA[ind].trad, true); }, CHART_CONFIG.ANIMATION_DELAY);
             window.scrollTo(0,0);
         }
 
@@ -313,78 +330,103 @@
             
             document.getElementById('display-comp-trad').textContent = '+' + DATA[currentIndustry].trad.total + '%';
             document.getElementById('display-comp-health').textContent = '+' + DATA[currentIndustry].health.total + '%';
-            
+
             setTimeout(function() {
                 drawChart('chart2', DATA[currentIndustry].trad, false);
                 drawChart('chart3', DATA[currentIndustry].health, false);
-            }, 100);
+            }, CHART_CONFIG.ANIMATION_DELAY);
             window.scrollTo(0,0);
         }
 
         function calculate() {
-            const rev = parseFloat(document.getElementById('input-rev').value) || 0;
-            const cap = parseFloat(document.getElementById('input-cap').value) || 0;
-            const prof = parseFloat(document.getElementById('input-prof').value) || 0;
-            const maint = parseFloat(document.getElementById('input-maint').value) || 0;
+            try {
+                const rev = parseFloat(document.getElementById('input-rev').value) || 0;
+                const cap = parseFloat(document.getElementById('input-cap').value) || 0;
+                const prof = parseFloat(document.getElementById('input-prof').value) || 0;
+                const maint = parseFloat(document.getElementById('input-maint').value) || 0;
 
-            if (rev > 0 && cap > 0 && prof > 0 && maint > 0) {
+                // Validation
+                if (rev <= 0 || cap <= 0 || prof <= 0 || maint <= 0) {
+                    alert('Please enter valid positive values for all fields.');
+                    return;
+                }
+
+                if (!currentIndustry || !DATA[currentIndustry]) {
+                    alert('Industry data not available. Please restart.');
+                    return;
+                }
+
                 const tradROCE = DATA[currentIndustry].trad.total;
                 const healthROCE = DATA[currentIndustry].health.total;
 
-                const tp = prof * (tradROCE / 100);
-                const tm = maint * 0.15;
-                const tt = tp + tm;
+                // Calculate traditional approach values
+                const tradProfitGain = prof * (tradROCE / 100);
+                const tradMaintSavings = maint * MAINTENANCE_SAVINGS.TRADITIONAL;
+                const tradTotal = tradProfitGain + tradMaintSavings;
 
-                const hp = prof * (healthROCE / 100);
-                const hm = maint * 0.30;
-                const ht = hp + hm;
+                // Calculate health-centric approach values
+                const healthProfitGain = prof * (healthROCE / 100);
+                const healthMaintSavings = maint * MAINTENANCE_SAVINGS.HEALTH_CENTRIC;
+                const healthTotal = healthProfitGain + healthMaintSavings;
 
-                document.getElementById('out-trad-profit').textContent = '$' + tp.toFixed(1) + 'M';
-                document.getElementById('out-trad-maint').textContent = '$' + tm.toFixed(1) + 'M';
-                document.getElementById('out-trad-total').textContent = '$' + tt.toFixed(1) + 'M';
+                // Update UI
+                document.getElementById('out-trad-profit').textContent = '$' + tradProfitGain.toFixed(1) + 'M';
+                document.getElementById('out-trad-maint').textContent = '$' + tradMaintSavings.toFixed(1) + 'M';
+                document.getElementById('out-trad-total').textContent = '$' + tradTotal.toFixed(1) + 'M';
 
-                document.getElementById('out-health-profit').textContent = '$' + hp.toFixed(1) + 'M';
-                document.getElementById('out-health-maint').textContent = '$' + hm.toFixed(1) + 'M';
-                document.getElementById('out-health-total').textContent = '$' + ht.toFixed(1) + 'M';
+                document.getElementById('out-health-profit').textContent = '$' + healthProfitGain.toFixed(1) + 'M';
+                document.getElementById('out-health-maint').textContent = '$' + healthMaintSavings.toFixed(1) + 'M';
+                document.getElementById('out-health-total').textContent = '$' + healthTotal.toFixed(1) + 'M';
 
-                document.getElementById('out-advantage').textContent = '$' + (ht - tt).toFixed(1) + 'M';
+                document.getElementById('out-advantage').textContent = '$' + (healthTotal - tradTotal).toFixed(1) + 'M';
                 document.getElementById('results').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error calculating results:', error);
+                alert('An error occurred while calculating. Please try again.');
             }
         }
 
         function drawChart(canvasId, data, showLegend) {
-            const canvas = document.getElementById(canvasId);
-            if (!canvas) return;
-            
-            if (charts[canvasId]) {
-                charts[canvasId].destroy();
-            }
-
-            const datasets = [];
-            if (data.strategy) datasets.push({ label:'Asset Strategy', data:data.strategy, backgroundColor:'#ef4444', stack:'stack' });
-            if (data.risk) datasets.push({ label:'Risk & Performance', data:data.risk, backgroundColor:'#f59e0b', stack:'stack' });
-            if (data.planning) datasets.push({ label:'Planning & Optimization', data:data.planning, backgroundColor:'#8b5cf6', stack:'stack' });
-            if (data.health) datasets.push({ label:'Equipment Health', data:data.health, backgroundColor:'#10b981', stack:'stack' });
-            if (data.predictive) datasets.push({ label:'Predictive Maintenance', data:data.predictive, backgroundColor:'#3b82f6', stack:'stack' });
-
-            charts[canvasId] = new Chart(canvas, {
-                type: 'bar',
-                data: {
-                    labels: ['Tier 1', 'Tier 2', 'Tier 3'],
-                    datasets: datasets
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: canvasId === 'chart1',
-                    scales: {
-                        y: { stacked: true, beginAtZero: true, title: { display: true, text: 'ROCE Improvement (%)' } },
-                        x: { stacked: true }
-                    },
-                    plugins: {
-                        legend: { display: showLegend, position: 'bottom' }
-                    }
+            try {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) {
+                    console.warn('Canvas element not found:', canvasId);
+                    return;
                 }
-            });
+
+                // Destroy existing chart if present
+                if (charts[canvasId]) {
+                    charts[canvasId].destroy();
+                }
+
+                const datasets = [];
+                if (data.strategy) datasets.push({ label:'Asset Strategy', data:data.strategy, backgroundColor:'#ef4444', stack:'stack' });
+                if (data.risk) datasets.push({ label:'Risk & Performance', data:data.risk, backgroundColor:'#f59e0b', stack:'stack' });
+                if (data.planning) datasets.push({ label:'Planning & Optimization', data:data.planning, backgroundColor:'#8b5cf6', stack:'stack' });
+                if (data.health) datasets.push({ label:'Equipment Health', data:data.health, backgroundColor:'#10b981', stack:'stack' });
+                if (data.predictive) datasets.push({ label:'Predictive Maintenance', data:data.predictive, backgroundColor:'#3b82f6', stack:'stack' });
+
+                charts[canvasId] = new Chart(canvas, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Tier 1', 'Tier 2', 'Tier 3'],
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: canvasId === 'chart1',
+                        scales: {
+                            y: { stacked: true, beginAtZero: true, title: { display: true, text: 'ROCE Improvement (%)' } },
+                            x: { stacked: true }
+                        },
+                        plugins: {
+                            legend: { display: showLegend, position: 'bottom' }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error drawing chart:', canvasId, error);
+            }
         }
 
         function hideAll() {
