@@ -16,58 +16,63 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-blue-600 focus:text-white">Skip to main content</a>
     <nav class="bg-white shadow-lg sticky top-0 z-50" role="navigation" aria-label="Main navigation">
         <div class="max-w-7xl mx-auto px-4 py-4 text-center">
-            <span class="text-2xl font-bold text-gray-800">AI-Powered APM Value Calculator</span>
+            <span class="text-xl sm:text-2xl font-bold text-gray-800 inline-flex items-center gap-2">
+                <span class="text-2xl sm:text-3xl">📊</span>
+                <span>AI-Powered APM Value Calculator</span>
+            </span>
         </div>
     </nav>
 
     <main id="main-content" class="max-w-7xl mx-auto px-4 py-12">
         <!-- Step 1: Industry Selection -->
         <div id="step1">
-            <div class="text-center mb-12">
-                <h1 class="text-5xl font-bold text-gray-800 mb-4">APM Value Realization Journey</h1>
-                <p class="text-xl text-gray-600">Choose your industry to begin</p>
+            <div class="text-center mb-12 px-4">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">APM Value Realization Journey</h1>
+                <p class="text-lg sm:text-xl text-gray-600">Choose your industry to begin</p>
             </div>
             <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <button id="btn-oilgas" class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all" aria-label="Select Oil & Gas industry for ROCE analysis">
+                <button id="btn-oilgas" class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:scale-105" aria-label="Select Oil & Gas industry for ROCE analysis">
+                    <div class="text-6xl mb-4">🛢️</div>
                     <h3 class="text-2xl font-bold mb-2">Oil & Gas</h3>
-                    <p class="text-sm">ROCE analysis for upstream, midstream, downstream</p>
+                    <p class="text-sm opacity-90">ROCE analysis for upstream, midstream, downstream</p>
                 </button>
-                <button id="btn-powergen" class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all" aria-label="Select Power Generation industry for availability analysis">
+                <button id="btn-powergen" class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:scale-105" aria-label="Select Power Generation industry for availability analysis">
+                    <div class="text-6xl mb-4">⚡</div>
                     <h3 class="text-2xl font-bold mb-2">Power Generation</h3>
-                    <p class="text-sm">Availability and O&M cost per MWh analysis</p>
+                    <p class="text-sm opacity-90">Availability and O&M cost per MWh analysis</p>
                 </button>
             </div>
         </div>
 
         <!-- Step 2: Traditional Approach -->
         <div id="step2" class="hidden">
-            <div class="text-center mb-8">
+            <div class="text-center mb-8 px-4">
                 <div id="badge2" class="mb-4"></div>
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Traditional ISO 55000 Approach</h2>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">Traditional ISO 55000 Approach</h2>
             </div>
-            <div class="bg-white rounded-2xl shadow-2xl p-8 border-4 border-red-200 max-w-5xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 border-4 border-red-200 max-w-5xl mx-auto">
                 <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6">
                     <p class="text-yellow-800"><strong>The Old Way:</strong> Framework-first, technology-last</p>
                 </div>
                 <div class="mb-6">
                     <canvas id="chart1" height="300" role="img" aria-label="Bar chart showing traditional ISO 55000 ROCE improvement across three tiers over 4-5 years"></canvas>
                 </div>
-                <div class="grid grid-cols-3 gap-4 my-6">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
                     <div class="bg-red-50 rounded-lg p-4 text-center">
-                        <div class="text-3xl font-bold text-red-600">4-5 Years</div>
-                        <div class="text-sm">Timeline</div>
+                        <div class="text-2xl sm:text-3xl font-bold text-red-600">4-5 Years</div>
+                        <div class="text-xs sm:text-sm">Timeline</div>
                     </div>
                     <div class="bg-orange-50 rounded-lg p-4 text-center">
-                        <div class="text-3xl font-bold text-orange-600" id="display-trad-roce">+5.7%</div>
-                        <div class="text-sm">ROCE Impact</div>
+                        <div class="text-2xl sm:text-3xl font-bold text-orange-600" id="display-trad-roce">+5.7%</div>
+                        <div class="text-xs sm:text-sm">ROCE Impact</div>
                     </div>
                     <div class="bg-blue-50 rounded-lg p-4 text-center">
-                        <div class="text-3xl font-bold text-blue-600">Minimal</div>
-                        <div class="text-sm">First 2 Years</div>
+                        <div class="text-2xl sm:text-3xl font-bold text-blue-600">Minimal</div>
+                        <div class="text-xs sm:text-sm">First 2 Years</div>
                     </div>
                 </div>
                 <div class="text-center mt-8">
-                    <button id="btn-step3" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-12 py-4 rounded-xl text-xl font-bold shadow-lg">
+                    <button id="btn-step3" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 sm:px-12 py-4 rounded-xl text-lg sm:text-xl font-bold shadow-lg hover:shadow-2xl transition-all">
                         What Changed? →
                     </button>
                 </div>
@@ -76,105 +81,105 @@
 
         <!-- Step 3: Disruptive Technology Companies -->
         <div id="step3" class="hidden">
-            <div class="bg-gradient-to-br from-purple-900 to-cyan-900 rounded-2xl p-12 text-white mb-8">
-                <h2 class="text-5xl font-bold mb-4 text-center">The Disruptors Changing APM</h2>
-                <p class="text-xl text-center text-blue-200 mb-8">New-generation companies leveraging AI, IoT, and cloud to revolutionize asset management</p>
+            <div class="bg-gradient-to-br from-purple-900 to-cyan-900 rounded-2xl p-6 sm:p-12 text-white mb-8">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center">The Disruptors Changing APM</h2>
+                <p class="text-base sm:text-lg md:text-xl text-center text-blue-200 mb-8 px-4">New-generation companies leveraging AI, IoT, and cloud to revolutionize asset management</p>
 
-                <div class="bg-white rounded-xl p-8 text-gray-800 mb-8">
-                    <h3 class="text-3xl font-bold mb-6 text-center text-purple-900">Game-Changing Impact</h3>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-300">
+                <div class="bg-white rounded-xl p-4 sm:p-8 text-gray-800 mb-8">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-purple-900">Game-Changing Impact</h3>
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 border-2 border-blue-300">
                             <div class="flex items-center mb-3">
-                                <h4 class="font-bold text-xl text-blue-900">Databricks</h4>
+                                <h4 class="font-bold text-lg sm:text-xl text-blue-900">Databricks</h4>
                             </div>
-                            <p class="text-sm mb-3 text-gray-700">Unified data lakehouse platform enabling real-time predictive maintenance analytics at scale</p>
+                            <p class="text-xs sm:text-sm mb-3 text-gray-700 leading-relaxed">Unified data lakehouse platform enabling real-time predictive maintenance analytics at scale</p>
                             <div class="bg-blue-100 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-blue-700">10x Faster</div>
+                                <div class="text-xl sm:text-2xl font-bold text-blue-700">10x Faster</div>
                                 <div class="text-xs text-gray-600">Data processing for anomaly detection</div>
                             </div>
                         </div>
 
-                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-300">
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 sm:p-6 border-2 border-green-300">
                             <div class="flex items-center mb-3">
-                                <h4 class="font-bold text-xl text-green-900">Augury</h4>
+                                <h4 class="font-bold text-lg sm:text-xl text-green-900">Augury</h4>
                             </div>
-                            <p class="text-sm mb-3 text-gray-700">AI-powered machine health platform with wireless sensors and edge computing</p>
+                            <p class="text-xs sm:text-sm mb-3 text-gray-700 leading-relaxed">AI-powered machine health platform with wireless sensors and edge computing</p>
                             <div class="bg-green-100 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-green-700">70% Reduction</div>
+                                <div class="text-xl sm:text-2xl font-bold text-green-700">70% Reduction</div>
                                 <div class="text-xs text-gray-600">In unplanned downtime events</div>
                             </div>
                         </div>
 
-                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border-2 border-purple-300">
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-4 sm:p-6 border-2 border-purple-300">
                             <div class="flex items-center mb-3">
-                                <h4 class="font-bold text-xl text-purple-900">Uptake</h4>
+                                <h4 class="font-bold text-lg sm:text-xl text-purple-900">Uptake</h4>
                             </div>
-                            <p class="text-sm mb-3 text-gray-700">Industrial AI platform processing billions of sensor signals for predictive insights</p>
+                            <p class="text-xs sm:text-sm mb-3 text-gray-700 leading-relaxed">Industrial AI platform processing billions of sensor signals for predictive insights</p>
                             <div class="bg-purple-100 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-purple-700">50M Hours</div>
+                                <div class="text-xl sm:text-2xl font-bold text-purple-700">50M Hours</div>
                                 <div class="text-xs text-gray-600">Of prevented downtime across customers</div>
                             </div>
                         </div>
 
-                        <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 border-2 border-orange-300">
+                        <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4 sm:p-6 border-2 border-orange-300">
                             <div class="flex items-center mb-3">
-                                <h4 class="font-bold text-xl text-orange-900">C3 AI</h4>
+                                <h4 class="font-bold text-lg sm:text-xl text-orange-900">C3 AI</h4>
                             </div>
-                            <p class="text-sm mb-3 text-gray-700">Enterprise AI suite with pre-built APM models reducing deployment from years to months</p>
+                            <p class="text-xs sm:text-sm mb-3 text-gray-700 leading-relaxed">Enterprise AI suite with pre-built APM models reducing deployment from years to months</p>
                             <div class="bg-orange-100 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-orange-700">3-6 Months</div>
+                                <div class="text-xl sm:text-2xl font-bold text-orange-700">3-6 Months</div>
                                 <div class="text-xs text-gray-600">Time to value vs. 3-5 years traditional</div>
                             </div>
                         </div>
 
-                        <div class="bg-gradient-to-br from-cyan-50 to-teal-50 rounded-xl p-6 border-2 border-cyan-300">
+                        <div class="bg-gradient-to-br from-cyan-50 to-teal-50 rounded-xl p-4 sm:p-6 border-2 border-cyan-300">
                             <div class="flex items-center mb-3">
-                                <h4 class="font-bold text-xl text-cyan-900">Samsara</h4>
+                                <h4 class="font-bold text-lg sm:text-xl text-cyan-900">Samsara</h4>
                             </div>
-                            <p class="text-sm mb-3 text-gray-700">Connected operations cloud with IoT sensors and AI analytics for mobile assets</p>
+                            <p class="text-xs sm:text-sm mb-3 text-gray-700 leading-relaxed">Connected operations cloud with IoT sensors and AI analytics for mobile assets</p>
                             <div class="bg-cyan-100 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-cyan-700">25% Decrease</div>
+                                <div class="text-xl sm:text-2xl font-bold text-cyan-700">25% Decrease</div>
                                 <div class="text-xs text-gray-600">In equipment maintenance costs</div>
                             </div>
                         </div>
 
-                        <div class="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-6 border-2 border-red-300">
+                        <div class="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-4 sm:p-6 border-2 border-red-300">
                             <div class="flex items-center mb-3">
-                                <h4 class="font-bold text-xl text-red-900">Presenso</h4>
+                                <h4 class="font-bold text-lg sm:text-xl text-red-900">Presenso</h4>
                             </div>
-                            <p class="text-sm mb-3 text-gray-700">Self-learning AI for complex industrial processes with no data science team required</p>
+                            <p class="text-xs sm:text-sm mb-3 text-gray-700 leading-relaxed">Self-learning AI for complex industrial processes with no data science team required</p>
                             <div class="bg-red-100 rounded-lg p-3">
-                                <div class="text-2xl font-bold text-red-700">95% Accuracy</div>
+                                <div class="text-xl sm:text-2xl font-bold text-red-700">95% Accuracy</div>
                                 <div class="text-xs text-gray-600">Failure prediction 30+ days in advance</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 mb-8">
-                    <h3 class="text-2xl font-bold mb-4 text-center">Why These Disruptors Win</h3>
-                    <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-white/20 mb-8">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-center">Why These Disruptors Win</h3>
+                    <div class="grid sm:grid-cols-3 gap-6">
                         <div class="text-center">
                             <div class="text-4xl mb-2">⚡</div>
-                            <h4 class="font-bold mb-2">Rapid Deployment</h4>
-                            <p class="text-sm text-blue-200">Cloud-native platforms deploy in weeks, not years</p>
+                            <h4 class="font-bold mb-2 text-sm sm:text-base">Rapid Deployment</h4>
+                            <p class="text-xs sm:text-sm text-blue-200">Cloud-native platforms deploy in weeks, not years</p>
                         </div>
                         <div class="text-center">
                             <div class="text-4xl mb-2">🎯</div>
-                            <h4 class="font-bold mb-2">AI-First Approach</h4>
-                            <p class="text-sm text-blue-200">Built on machine learning from the ground up</p>
+                            <h4 class="font-bold mb-2 text-sm sm:text-base">AI-First Approach</h4>
+                            <p class="text-xs sm:text-sm text-blue-200">Built on machine learning from the ground up</p>
                         </div>
                         <div class="text-center">
                             <div class="text-4xl mb-2">💰</div>
-                            <h4 class="font-bold mb-2">Pay-as-You-Grow</h4>
-                            <p class="text-sm text-blue-200">Subscription models eliminate massive upfront costs</p>
+                            <h4 class="font-bold mb-2 text-sm sm:text-base">Pay-as-You-Grow</h4>
+                            <p class="text-xs sm:text-sm text-blue-200">Subscription models eliminate massive upfront costs</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <button id="btn-step4" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-12 py-4 rounded-xl text-xl font-bold shadow-lg hover:shadow-2xl transition-all">
-                        Compare the Approaches →
+                    <button id="btn-step4" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 sm:px-12 py-4 rounded-xl text-lg sm:text-xl font-bold shadow-lg hover:shadow-2xl transition-all">
+                        Compare Approaches →
                     </button>
                 </div>
             </div>
@@ -182,37 +187,37 @@
 
         <!-- Step 4: Comparison -->
         <div id="step4" class="hidden">
-            <div class="text-center mb-8">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Compare the Approaches</h2>
+            <div class="text-center mb-8 px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">Compare the Approaches</h2>
             </div>
 
             <!-- Comparison Charts -->
-            <div class="grid lg:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white rounded-2xl shadow-xl p-6 border-4 border-red-200">
-                    <h3 class="text-xl font-bold text-red-800 mb-4">Traditional</h3>
-                    <div class="h-[300px]">
+            <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
+                <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border-4 border-red-200">
+                    <h3 class="text-lg sm:text-xl font-bold text-red-800 mb-4">Traditional</h3>
+                    <div class="h-[250px] sm:h-[300px]">
                         <canvas id="chart2" role="img" aria-label="Bar chart comparing traditional approach ROCE improvement by tier"></canvas>
                     </div>
                     <div class="text-center mt-4">
-                        <div class="text-2xl font-bold text-red-600" id="display-comp-trad">+5.7%</div>
-                        <div class="text-sm">ROCE over 4-5 years</div>
+                        <div class="text-xl sm:text-2xl font-bold text-red-600" id="display-comp-trad">+5.7%</div>
+                        <div class="text-xs sm:text-sm">ROCE over 4-5 years</div>
                     </div>
                 </div>
-                <div class="bg-white rounded-2xl shadow-xl p-6 border-4 border-green-200">
-                    <h3 class="text-xl font-bold text-green-800 mb-4">Health-Centric</h3>
-                    <div class="h-[300px]">
+                <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border-4 border-green-200">
+                    <h3 class="text-lg sm:text-xl font-bold text-green-800 mb-4">Health-Centric</h3>
+                    <div class="h-[250px] sm:h-[300px]">
                         <canvas id="chart3" role="img" aria-label="Bar chart comparing health-centric approach ROCE improvement by tier"></canvas>
                     </div>
                     <div class="text-center mt-4">
-                        <div class="text-2xl font-bold text-green-600" id="display-comp-health">+12.2%</div>
-                        <div class="text-sm">ROCE over 3 years</div>
+                        <div class="text-xl sm:text-2xl font-bold text-green-600" id="display-comp-health">+12.2%</div>
+                        <div class="text-xs sm:text-sm">ROCE over 3 years</div>
                     </div>
                 </div>
             </div>
 
             <!-- Case Studies -->
-            <h3 class="text-3xl font-bold text-center mb-6">Proven Results</h3>
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <h3 class="text-2xl sm:text-3xl font-bold text-center mb-6 px-4">Proven Results</h3>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
                 <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
                     <div class="bg-blue-100 rounded p-3 mb-4">
                         <h4 class="font-bold">OQ (Oman)</h4>
@@ -240,7 +245,7 @@
             </div>
 
             <div class="text-center">
-                <button id="btn-step5" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-12 py-4 rounded-xl text-xl font-bold shadow-lg hover:shadow-2xl transition-all">
+                <button id="btn-step5" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 sm:px-12 py-4 rounded-xl text-lg sm:text-xl font-bold shadow-lg hover:shadow-2xl transition-all">
                     Calculate Your ROI →
                 </button>
             </div>
@@ -248,14 +253,14 @@
 
         <!-- Step 5: ROI Calculator -->
         <div id="step5" class="hidden">
-            <div class="text-center mb-8">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Calculate Your ROI</h2>
-                <p class="text-lg text-gray-600">See the financial impact for your organization</p>
+            <div class="text-center mb-8 px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">Calculate Your ROI</h2>
+                <p class="text-base sm:text-lg text-gray-600">See the financial impact for your organization</p>
             </div>
 
             <!-- Calculator -->
-            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 mb-8 max-w-5xl mx-auto">
-                <h3 class="text-3xl font-bold text-white text-center mb-6">Enter Your Metrics</h3>
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-4 sm:p-8 mb-8 max-w-5xl mx-auto">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white text-center mb-6">Enter Your Metrics</h3>
                 <div class="bg-white rounded-xl p-6">
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
