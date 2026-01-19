@@ -6,11 +6,67 @@
     <title>AI-Powered APM Value Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0d0d0d',
+                        'dark-surface': '#1a1a1a',
+                        'dark-card': '#252525',
+                        'gold': '#d4a017',
+                        'gold-light': '#e6b422',
+                        'gold-dark': '#b8860b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .feature-badge {
+            border: 2px solid #d4a017;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+        .feature-badge:hover {
+            box-shadow: 0 0 25px rgba(212, 160, 23, 0.4);
+            border-color: #e6b422;
+        }
+        .badge-arch {
+            border-radius: 40px 40px 12px 12px;
+        }
+        .badge-pill {
+            border-radius: 50px;
+        }
+        .badge-oval {
+            border-radius: 50%;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 160, 23, 0.5);
+        }
+        .chart-container {
+            background: #1a1a1a;
+            border: 2px solid #d4a017;
+            border-radius: 12px;
+        }
+        input[type="number"] {
+            background: #252525;
+            border: 2px solid #d4a017;
+            color: #e6b422;
+        }
+        input[type="number"]::placeholder {
+            color: #8b7355;
+        }
+        input[type="number"]:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(212, 160, 23, 0.3);
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+<body class="bg-dark-bg min-h-screen">
+    <nav class="bg-dark-surface border-b-2 border-gold sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-4 text-center">
-            <span class="text-2xl font-bold text-gray-800">AI-Powered APM Value Calculator</span>
+            <span class="text-2xl font-bold text-gold glow-text">AI-Powered APM Value Calculator</span>
         </div>
     </nav>
 
@@ -18,17 +74,37 @@
         <!-- Step 1: Industry Selection -->
         <div id="step1">
             <div class="text-center mb-12">
-                <h1 class="text-5xl font-bold text-gray-800 mb-4">APM Value Realization Journey</h1>
-                <p class="text-xl text-gray-600">Choose your industry to begin</p>
+                <h1 class="text-5xl font-bold text-gold glow-text mb-4">APM Value Realization Journey</h1>
+                <p class="text-xl text-gold-light opacity-80">Choose your industry to begin</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <button id="btn-oilgas" class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
-                    <h3 class="text-2xl font-bold mb-2">Oil & Gas</h3>
-                    <p class="text-sm">ROCE analysis for upstream, midstream, downstream</p>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <button id="btn-oilgas" class="feature-badge bg-dark-surface p-8 text-left group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 border-2 border-gold rounded-lg flex items-center justify-center">
+                            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gold">Oil & Gas</h3>
+                            <p class="text-sm text-gold-light opacity-70">UPSTREAM / MIDSTREAM / DOWNSTREAM</p>
+                        </div>
+                    </div>
+                    <p class="text-gold-light opacity-60 text-sm">ROCE analysis for energy sector operations</p>
                 </button>
-                <button id="btn-powergen" class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
-                    <h3 class="text-2xl font-bold mb-2">Power Generation</h3>
-                    <p class="text-sm">Availability and O&M cost per MWh analysis</p>
+                <button id="btn-powergen" class="feature-badge bg-dark-surface p-8 text-left group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 border-2 border-gold rounded-lg flex items-center justify-center">
+                            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gold">Power Generation</h3>
+                            <p class="text-sm text-gold-light opacity-70">AVAILABILITY / O&M COST</p>
+                        </div>
+                    </div>
+                    <p class="text-gold-light opacity-60 text-sm">Availability and O&M cost per MWh analysis</p>
                 </button>
             </div>
         </div>
@@ -37,31 +113,37 @@
         <div id="step2" class="hidden">
             <div class="text-center mb-8">
                 <div id="badge2" class="mb-4"></div>
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Traditional ISO 55000 Approach</h2>
+                <h2 class="text-4xl font-bold text-gold glow-text mb-4">Traditional ISO 55000 Approach</h2>
             </div>
-            <div class="bg-white rounded-2xl shadow-2xl p-8 border-4 border-red-200 max-w-5xl mx-auto">
-                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6">
-                    <p class="text-yellow-800"><strong>The Old Way:</strong> Framework-first, technology-last</p>
+            <div class="feature-badge bg-dark-surface p-8 max-w-5xl mx-auto">
+                <div class="border-l-4 border-gold bg-dark-card p-4 mb-6">
+                    <p class="text-gold"><strong>THE OLD WAY:</strong> Framework-first, technology-last</p>
                 </div>
-                <div class="mb-6">
+                <div class="mb-6 chart-container p-4">
                     <canvas id="chart1" height="300"></canvas>
                 </div>
+
+                <!-- Feature Badges Grid -->
                 <div class="grid grid-cols-3 gap-4 my-6">
-                    <div class="bg-red-50 rounded-lg p-4 text-center">
-                        <div class="text-3xl font-bold text-red-600">4-5 Years</div>
-                        <div class="text-sm">Timeline</div>
+                    <div class="feature-badge bg-dark-card p-6 text-center">
+                        <div class="text-4xl font-bold text-gold glow-text">4-5</div>
+                        <div class="text-sm text-gold-light uppercase tracking-wider">Years</div>
+                        <div class="text-xs text-gold-light opacity-60 mt-1">TIMELINE</div>
                     </div>
-                    <div class="bg-orange-50 rounded-lg p-4 text-center">
-                        <div class="text-3xl font-bold text-orange-600" id="display-trad-roce">+5.7%</div>
-                        <div class="text-sm">ROCE Impact</div>
+                    <div class="feature-badge bg-dark-card p-6 text-center">
+                        <div class="text-4xl font-bold text-gold glow-text" id="display-trad-roce">+5.7%</div>
+                        <div class="text-sm text-gold-light uppercase tracking-wider">ROCE</div>
+                        <div class="text-xs text-gold-light opacity-60 mt-1">IMPACT</div>
                     </div>
-                    <div class="bg-blue-50 rounded-lg p-4 text-center">
-                        <div class="text-3xl font-bold text-blue-600">Minimal</div>
-                        <div class="text-sm">First 2 Years</div>
+                    <div class="feature-badge bg-dark-card p-6 text-center">
+                        <div class="text-4xl font-bold text-gold glow-text">~0</div>
+                        <div class="text-sm text-gold-light uppercase tracking-wider">Value</div>
+                        <div class="text-xs text-gold-light opacity-60 mt-1">FIRST 2 YEARS</div>
                     </div>
                 </div>
+
                 <div class="text-center mt-8">
-                    <button id="btn-step3" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-12 py-4 rounded-xl text-xl font-bold shadow-lg">
+                    <button id="btn-step3" class="feature-badge badge-pill bg-dark-card text-gold px-12 py-4 text-xl font-bold hover:bg-gold hover:text-dark-bg transition-all">
                         What Changed? →
                     </button>
                 </div>
@@ -70,49 +152,71 @@
 
         <!-- Step 3: Technology Disruption -->
         <div id="step3" class="hidden">
-            <div class="bg-gradient-to-br from-purple-900 to-cyan-900 rounded-2xl p-12 text-white mb-8">
-                <h2 class="text-5xl font-bold mb-4 text-center">The Last Decade Changed Everything</h2>
-                <p class="text-xl text-center text-blue-200 mb-8">Technology disruption enabling health-centric APM</p>
-                
+            <div class="feature-badge bg-dark-surface p-12 mb-8">
+                <h2 class="text-5xl font-bold mb-4 text-center text-gold glow-text">The Last Decade Changed Everything</h2>
+                <p class="text-xl text-center text-gold-light opacity-70 mb-8">Technology disruption enabling health-centric APM</p>
+
+                <!-- Technology Feature Badges -->
                 <div class="grid md:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                        <h3 class="text-xl font-bold mb-2">Cloud Computing</h3>
-                        <p class="text-sm text-blue-200">Deploy in days, pay-as-you-grow</p>
+                    <div class="feature-badge bg-dark-card p-6 text-center">
+                        <div class="w-12 h-12 mx-auto mb-3 border-2 border-gold rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-gold mb-1">Cloud</h3>
+                        <p class="text-xs text-gold-light opacity-60">DEPLOY IN DAYS</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                        <h3 class="text-xl font-bold mb-2">Industrial IoT</h3>
-                        <p class="text-sm text-blue-200">90% cost reduction since 2015</p>
+                    <div class="feature-badge bg-dark-card p-6 text-center">
+                        <div class="w-12 h-12 mx-auto mb-3 border-2 border-gold rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-gold mb-1">IoT</h3>
+                        <p class="text-xs text-gold-light opacity-60">90% COST REDUCTION</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                        <h3 class="text-xl font-bold mb-2">AI & ML</h3>
-                        <p class="text-sm text-blue-200">87% prediction accuracy</p>
+                    <div class="feature-badge bg-dark-card p-6 text-center">
+                        <div class="w-12 h-12 mx-auto mb-3 border-2 border-gold rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-gold mb-1">AI & ML</h3>
+                        <p class="text-xs text-gold-light opacity-60">87% ACCURACY</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                        <h3 class="text-xl font-bold mb-2">Big Data</h3>
-                        <p class="text-sm text-blue-200">Real-time insights at scale</p>
+                    <div class="feature-badge bg-dark-card p-6 text-center">
+                        <div class="w-12 h-12 mx-auto mb-3 border-2 border-gold rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-gold mb-1">Big Data</h3>
+                        <p class="text-xs text-gold-light opacity-60">REAL-TIME INSIGHTS</p>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 text-gray-800 mb-8">
-                    <h3 class="text-2xl font-bold mb-4 text-center">Vendor Innovation</h3>
+                <!-- Vendor Innovation -->
+                <div class="feature-badge bg-dark-card p-6 mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-gold">Vendor Innovation</h3>
                     <div class="grid md:grid-cols-3 gap-4">
-                        <div class="border-l-4 border-blue-500 pl-4">
-                            <h4 class="font-bold text-blue-900">GE Vernova</h4>
-                            <p class="text-sm">SmartSignal AI - Zero breakdowns at Total EP</p>
+                        <div class="border-l-4 border-gold pl-4">
+                            <h4 class="font-bold text-gold">GE Vernova</h4>
+                            <p class="text-sm text-gold-light opacity-70">SmartSignal AI - Zero breakdowns at Total EP</p>
                         </div>
-                        <div class="border-l-4 border-green-500 pl-4">
-                            <h4 class="font-bold text-green-900">AspenTech</h4>
-                            <p class="text-sm">Aspen Mtell - OCP Ecuador +20% uptime</p>
+                        <div class="border-l-4 border-gold pl-4">
+                            <h4 class="font-bold text-gold">AspenTech</h4>
+                            <p class="text-sm text-gold-light opacity-70">Aspen Mtell - OCP Ecuador +20% uptime</p>
                         </div>
-                        <div class="border-l-4 border-purple-500 pl-4">
-                            <h4 class="font-bold text-purple-900">IBM Maximo</h4>
-                            <p class="text-sm">87% failure prediction accuracy</p>
+                        <div class="border-l-4 border-gold pl-4">
+                            <h4 class="font-bold text-gold">IBM Maximo</h4>
+                            <p class="text-sm text-gold-light opacity-70">87% failure prediction accuracy</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <button id="btn-step4" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-12 py-4 rounded-xl text-xl font-bold shadow-lg">
+                    <button id="btn-step4" class="feature-badge badge-pill bg-dark-card text-gold px-12 py-4 text-xl font-bold hover:bg-gold hover:text-dark-bg transition-all">
                         See the Health-Centric Approach →
                     </button>
                 </div>
@@ -122,77 +226,77 @@
         <!-- Step 4: Comparison & Calculator -->
         <div id="step4" class="hidden">
             <div class="text-center mb-8">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Compare the Approaches</h2>
+                <h2 class="text-4xl font-bold text-gold glow-text mb-4">Compare the Approaches</h2>
             </div>
 
             <!-- Calculator -->
-            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 mb-8">
-                <h3 class="text-3xl font-bold text-white text-center mb-6">Calculate Your ROI</h3>
-                <div class="bg-white rounded-xl p-6">
+            <div class="feature-badge bg-dark-surface p-8 mb-8">
+                <h3 class="text-3xl font-bold text-gold text-center mb-6 glow-text">Calculate Your ROI</h3>
+                <div class="feature-badge bg-dark-card p-6">
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label class="block text-sm font-bold mb-2">Revenue ($M)</label>
-                            <input type="number" id="input-rev" placeholder="1000" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label class="block text-sm font-bold mb-2 text-gold uppercase tracking-wider">Revenue ($M)</label>
+                            <input type="number" id="input-rev" placeholder="1000" class="w-full px-4 py-3 rounded-lg text-lg">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2">Capital ($M)</label>
-                            <input type="number" id="input-cap" placeholder="500" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label class="block text-sm font-bold mb-2 text-gold uppercase tracking-wider">Capital ($M)</label>
+                            <input type="number" id="input-cap" placeholder="500" class="w-full px-4 py-3 rounded-lg text-lg">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2">Profit ($M)</label>
-                            <input type="number" id="input-prof" placeholder="100" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label class="block text-sm font-bold mb-2 text-gold uppercase tracking-wider">Profit ($M)</label>
+                            <input type="number" id="input-prof" placeholder="100" class="w-full px-4 py-3 rounded-lg text-lg">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2">Maintenance ($M)</label>
-                            <input type="number" id="input-maint" placeholder="50" class="w-full px-4 py-3 border-2 rounded-lg text-lg">
+                            <label class="block text-sm font-bold mb-2 text-gold uppercase tracking-wider">Maintenance ($M)</label>
+                            <input type="number" id="input-maint" placeholder="50" class="w-full px-4 py-3 rounded-lg text-lg">
                         </div>
                     </div>
                     <div class="text-center">
-                        <button id="btn-calc" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-3 rounded-lg text-lg font-bold">
+                        <button id="btn-calc" class="feature-badge badge-pill bg-gold text-dark-bg px-8 py-3 text-lg font-bold hover:bg-gold-light transition-all">
                             Calculate Results
                         </button>
                     </div>
-                    <div id="results" class="hidden mt-6 border-t-2 pt-6">
+                    <div id="results" class="hidden mt-6 border-t-2 border-gold pt-6">
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div class="bg-red-50 rounded-lg p-6 border-2 border-red-200">
-                                <h4 class="font-bold text-red-800 text-center mb-4">Traditional (5 Years)</h4>
-                                <div class="space-y-2">
+                            <div class="feature-badge bg-dark-surface p-6">
+                                <h4 class="font-bold text-gold text-center mb-4 uppercase tracking-wider">Traditional (5 Years)</h4>
+                                <div class="space-y-2 text-gold-light">
                                     <div class="flex justify-between">
                                         <span>Profit Gain:</span>
-                                        <span class="font-bold" id="out-trad-profit">$0M</span>
+                                        <span class="font-bold text-gold" id="out-trad-profit">$0M</span>
                                     </div>
                                     <div class="flex justify-between">
                                         <span>Maint Savings:</span>
-                                        <span class="font-bold" id="out-trad-maint">$0M</span>
+                                        <span class="font-bold text-gold" id="out-trad-maint">$0M</span>
                                     </div>
-                                    <div class="bg-red-100 rounded p-3 mt-4 text-center">
-                                        <div class="text-2xl font-bold" id="out-trad-total">$0M</div>
-                                        <div class="text-xs">Total Value</div>
+                                    <div class="bg-dark-card rounded p-3 mt-4 text-center border border-gold">
+                                        <div class="text-2xl font-bold text-gold glow-text" id="out-trad-total">$0M</div>
+                                        <div class="text-xs text-gold-light uppercase">Total Value</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-green-50 rounded-lg p-6 border-2 border-green-200">
-                                <h4 class="font-bold text-green-800 text-center mb-4">Health-Centric (3 Years)</h4>
-                                <div class="space-y-2">
+                            <div class="feature-badge bg-dark-surface p-6">
+                                <h4 class="font-bold text-gold text-center mb-4 uppercase tracking-wider">Health-Centric (3 Years)</h4>
+                                <div class="space-y-2 text-gold-light">
                                     <div class="flex justify-between">
                                         <span>Profit Gain:</span>
-                                        <span class="font-bold" id="out-health-profit">$0M</span>
+                                        <span class="font-bold text-gold" id="out-health-profit">$0M</span>
                                     </div>
                                     <div class="flex justify-between">
                                         <span>Maint Savings:</span>
-                                        <span class="font-bold" id="out-health-maint">$0M</span>
+                                        <span class="font-bold text-gold" id="out-health-maint">$0M</span>
                                     </div>
-                                    <div class="bg-green-100 rounded p-3 mt-4 text-center">
-                                        <div class="text-2xl font-bold" id="out-health-total">$0M</div>
-                                        <div class="text-xs">Total Value</div>
+                                    <div class="bg-dark-card rounded p-3 mt-4 text-center border border-gold">
+                                        <div class="text-2xl font-bold text-gold glow-text" id="out-health-total">$0M</div>
+                                        <div class="text-xs text-gold-light uppercase">Total Value</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-lg p-6 text-center">
-                            <h5 class="font-bold text-gray-900 mb-2">Your Advantage</h5>
-                            <div class="text-4xl font-bold" id="out-advantage">$0M</div>
-                            <p class="text-sm mt-2">Extra value in 2 fewer years</p>
+                        <div class="feature-badge bg-gold p-6 text-center">
+                            <h5 class="font-bold text-dark-bg mb-2 uppercase tracking-wider">Your Advantage</h5>
+                            <div class="text-4xl font-bold text-dark-bg" id="out-advantage">$0M</div>
+                            <p class="text-sm mt-2 text-dark-bg opacity-80">Extra value in 2 fewer years</p>
                         </div>
                     </div>
                 </div>
@@ -200,59 +304,59 @@
 
             <!-- Comparison Charts -->
             <div class="grid lg:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white rounded-2xl shadow-xl p-6 border-4 border-red-200">
-                    <h3 class="text-xl font-bold text-red-800 mb-4">Traditional</h3>
-                    <div style="height: 300px;">
+                <div class="feature-badge bg-dark-surface p-6">
+                    <h3 class="text-xl font-bold text-gold mb-4 uppercase tracking-wider">Traditional</h3>
+                    <div class="chart-container p-4" style="height: 300px;">
                         <canvas id="chart2"></canvas>
                     </div>
                     <div class="text-center mt-4">
-                        <div class="text-2xl font-bold text-red-600" id="display-comp-trad">+5.7%</div>
-                        <div class="text-sm">ROCE over 4-5 years</div>
+                        <div class="text-3xl font-bold text-gold glow-text" id="display-comp-trad">+5.7%</div>
+                        <div class="text-sm text-gold-light uppercase">ROCE over 4-5 years</div>
                     </div>
                 </div>
-                <div class="bg-white rounded-2xl shadow-xl p-6 border-4 border-green-200">
-                    <h3 class="text-xl font-bold text-green-800 mb-4">Health-Centric</h3>
-                    <div style="height: 300px;">
+                <div class="feature-badge bg-dark-surface p-6">
+                    <h3 class="text-xl font-bold text-gold mb-4 uppercase tracking-wider">Health-Centric</h3>
+                    <div class="chart-container p-4" style="height: 300px;">
                         <canvas id="chart3"></canvas>
                     </div>
                     <div class="text-center mt-4">
-                        <div class="text-2xl font-bold text-green-600" id="display-comp-health">+12.2%</div>
-                        <div class="text-sm">ROCE over 3 years</div>
+                        <div class="text-3xl font-bold text-gold glow-text" id="display-comp-health">+12.2%</div>
+                        <div class="text-sm text-gold-light uppercase">ROCE over 3 years</div>
                     </div>
                 </div>
             </div>
 
             <!-- Case Studies -->
-            <h3 class="text-3xl font-bold text-center mb-6">Proven Results</h3>
+            <h3 class="text-3xl font-bold text-center mb-6 text-gold glow-text">Proven Results</h3>
             <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
-                    <div class="bg-blue-100 rounded p-3 mb-4">
-                        <h4 class="font-bold">OQ (Oman)</h4>
-                        <p class="text-xs">GE Vernova APM</p>
+                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="feature-badge bg-dark-surface p-6 hover:bg-dark-card transition-all">
+                    <div class="border-b border-gold pb-3 mb-4">
+                        <h4 class="font-bold text-gold">OQ (Oman)</h4>
+                        <p class="text-xs text-gold-light opacity-60 uppercase">GE Vernova APM</p>
                     </div>
-                    <div class="text-3xl font-bold text-green-600">$59M</div>
-                    <p class="text-sm">Saved</p>
+                    <div class="text-4xl font-bold text-gold glow-text">$59M</div>
+                    <p class="text-sm text-gold-light uppercase">Saved</p>
                 </a>
-                <a href="https://www.aspentech.com/en/products/apm/aspen-mtell" target="_blank" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
-                    <div class="bg-green-100 rounded p-3 mb-4">
-                        <h4 class="font-bold">OCP Ecuador</h4>
-                        <p class="text-xs">AspenTech</p>
+                <a href="https://www.aspentech.com/en/products/apm/aspen-mtell" target="_blank" class="feature-badge bg-dark-surface p-6 hover:bg-dark-card transition-all">
+                    <div class="border-b border-gold pb-3 mb-4">
+                        <h4 class="font-bold text-gold">OCP Ecuador</h4>
+                        <p class="text-xs text-gold-light opacity-60 uppercase">AspenTech</p>
                     </div>
-                    <div class="text-3xl font-bold text-green-600">+20%</div>
-                    <p class="text-sm">Uptime</p>
+                    <div class="text-4xl font-bold text-gold glow-text">+20%</div>
+                    <p class="text-sm text-gold-light uppercase">Uptime</p>
                 </a>
-                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all">
-                    <div class="bg-purple-100 rounded p-3 mb-4">
-                        <h4 class="font-bold">Total EP</h4>
-                        <p class="text-xs">GE Vernova</p>
+                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="feature-badge bg-dark-surface p-6 hover:bg-dark-card transition-all">
+                    <div class="border-b border-gold pb-3 mb-4">
+                        <h4 class="font-bold text-gold">Total EP</h4>
+                        <p class="text-xs text-gold-light opacity-60 uppercase">GE Vernova</p>
                     </div>
-                    <div class="text-3xl font-bold text-green-600">Zero</div>
-                    <p class="text-sm">Breakdowns</p>
+                    <div class="text-4xl font-bold text-gold glow-text">Zero</div>
+                    <p class="text-sm text-gold-light uppercase">Breakdowns</p>
                 </a>
             </div>
 
             <div class="text-center">
-                <button id="btn-restart" class="bg-gray-600 text-white px-8 py-4 rounded-xl font-bold">
+                <button id="btn-restart" class="feature-badge badge-pill bg-dark-card text-gold px-8 py-4 font-bold hover:bg-gold hover:text-dark-bg transition-all">
                     ← Start Over
                 </button>
             </div>
@@ -263,6 +367,10 @@
         // Global state
         let currentIndustry = null;
         let charts = {};
+
+        // Chart.js global defaults for dark theme
+        Chart.defaults.color = '#d4a017';
+        Chart.defaults.borderColor = '#3d3d3d';
 
         // Data
         const DATA = {
@@ -289,14 +397,14 @@
             currentIndustry = ind;
             hideAll();
             document.getElementById('step2').classList.remove('hidden');
-            
-            const badge = ind === 'oilgas' 
-                ? '<div class="inline-block bg-orange-100 text-orange-800 px-6 py-3 rounded-full font-bold">Oil & Gas Industry</div>'
-                : '<div class="inline-block bg-yellow-100 text-yellow-800 px-6 py-3 rounded-full font-bold">Power Generation Industry</div>';
-            
+
+            const badge = ind === 'oilgas'
+                ? '<div class="inline-block border-2 border-gold text-gold px-6 py-3 rounded-full font-bold uppercase tracking-wider">Oil & Gas Industry</div>'
+                : '<div class="inline-block border-2 border-gold text-gold px-6 py-3 rounded-full font-bold uppercase tracking-wider">Power Generation Industry</div>';
+
             document.getElementById('badge2').innerHTML = badge;
             document.getElementById('display-trad-roce').textContent = '+' + DATA[ind].trad.total + '%';
-            
+
             setTimeout(function() { drawChart('chart1', DATA[ind].trad, true); }, 100);
             window.scrollTo(0,0);
         }
@@ -310,10 +418,10 @@
         function goToStep4() {
             hideAll();
             document.getElementById('step4').classList.remove('hidden');
-            
+
             document.getElementById('display-comp-trad').textContent = '+' + DATA[currentIndustry].trad.total + '%';
             document.getElementById('display-comp-health').textContent = '+' + DATA[currentIndustry].health.total + '%';
-            
+
             setTimeout(function() {
                 drawChart('chart2', DATA[currentIndustry].trad, false);
                 drawChart('chart3', DATA[currentIndustry].health, false);
@@ -355,17 +463,25 @@
         function drawChart(canvasId, data, showLegend) {
             const canvas = document.getElementById(canvasId);
             if (!canvas) return;
-            
+
             if (charts[canvasId]) {
                 charts[canvasId].destroy();
             }
 
             const datasets = [];
-            if (data.strategy) datasets.push({ label:'Asset Strategy', data:data.strategy, backgroundColor:'#ef4444', stack:'stack' });
-            if (data.risk) datasets.push({ label:'Risk & Performance', data:data.risk, backgroundColor:'#f59e0b', stack:'stack' });
-            if (data.planning) datasets.push({ label:'Planning & Optimization', data:data.planning, backgroundColor:'#8b5cf6', stack:'stack' });
-            if (data.health) datasets.push({ label:'Equipment Health', data:data.health, backgroundColor:'#10b981', stack:'stack' });
-            if (data.predictive) datasets.push({ label:'Predictive Maintenance', data:data.predictive, backgroundColor:'#3b82f6', stack:'stack' });
+            const colors = {
+                strategy: '#b8860b',
+                risk: '#c9a227',
+                planning: '#d4a017',
+                health: '#e6b422',
+                predictive: '#f0c850'
+            };
+
+            if (data.strategy) datasets.push({ label:'Asset Strategy', data:data.strategy, backgroundColor: colors.strategy, stack:'stack' });
+            if (data.risk) datasets.push({ label:'Risk & Performance', data:data.risk, backgroundColor: colors.risk, stack:'stack' });
+            if (data.planning) datasets.push({ label:'Planning & Optimization', data:data.planning, backgroundColor: colors.planning, stack:'stack' });
+            if (data.health) datasets.push({ label:'Equipment Health', data:data.health, backgroundColor: colors.health, stack:'stack' });
+            if (data.predictive) datasets.push({ label:'Predictive Maintenance', data:data.predictive, backgroundColor: colors.predictive, stack:'stack' });
 
             charts[canvasId] = new Chart(canvas, {
                 type: 'bar',
@@ -377,11 +493,25 @@
                     responsive: true,
                     maintainAspectRatio: canvasId === 'chart1',
                     scales: {
-                        y: { stacked: true, beginAtZero: true, title: { display: true, text: 'ROCE Improvement (%)' } },
-                        x: { stacked: true }
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            title: { display: true, text: 'ROCE Improvement (%)', color: '#d4a017' },
+                            grid: { color: '#3d3d3d' },
+                            ticks: { color: '#d4a017' }
+                        },
+                        x: {
+                            stacked: true,
+                            grid: { color: '#3d3d3d' },
+                            ticks: { color: '#d4a017' }
+                        }
                     },
                     plugins: {
-                        legend: { display: showLegend, position: 'bottom' }
+                        legend: {
+                            display: showLegend,
+                            position: 'bottom',
+                            labels: { color: '#d4a017' }
+                        }
                     }
                 }
             });
