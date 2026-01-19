@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI-Powered APM Value Calculator</title>
+    <meta name="description" content="Interactive APM Value Calculator - Compare Traditional, Health-Centric, and Holistic approaches for Asset Performance Management">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -57,16 +58,28 @@
             outline: none;
             box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
         }
+        .nav-btn {
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            transform: translateX(4px);
+        }
+        .nav-btn-back:hover {
+            transform: translateX(-4px);
+        }
     </style>
 </head>
 <body class="bg-dark-bg min-h-screen">
+    <!-- Navigation Bar -->
     <nav class="bg-dark-surface border-b-2 border-orange sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 text-center">
-            <span class="text-xl md:text-2xl font-bold text-white">AI-Powered APM Value Calculator</span>
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <span class="text-lg md:text-2xl font-bold text-white">AI-Powered APM Value Calculator</span>
+            <div id="step-indicator" class="text-sm text-gray-400"></div>
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <div class="max-w-7xl mx-auto px-4 py-6 md:py-10">
+
         <!-- Step 1: Industry Selection -->
         <div id="step1">
             <div class="text-center mb-10">
@@ -83,7 +96,7 @@
                         </div>
                         <div class="min-w-0">
                             <h3 class="text-xl md:text-2xl font-bold text-orange">Oil & Gas</h3>
-                            <p class="text-xs md:text-sm text-gray-400 truncate">Upstream / Midstream / Downstream</p>
+                            <p class="text-xs md:text-sm text-gray-400">Upstream / Midstream / Downstream</p>
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm">ROCE analysis for energy sector operations</p>
@@ -97,7 +110,7 @@
                         </div>
                         <div class="min-w-0">
                             <h3 class="text-xl md:text-2xl font-bold text-orange">Power Generation</h3>
-                            <p class="text-xs md:text-sm text-gray-400 truncate">Availability / O&M Cost</p>
+                            <p class="text-xs md:text-sm text-gray-400">Availability / O&M Cost</p>
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm">Availability and O&M cost per MWh analysis</p>
@@ -105,324 +118,642 @@
             </div>
         </div>
 
-        <!-- Step 2: Traditional Approach -->
+        <!-- Step 2: Traditional ISO 55000 Approach -->
         <div id="step2" class="hidden">
-            <div class="text-center mb-8">
-                <div id="badge2" class="mb-4"></div>
+            <div class="text-center mb-6">
+                <div id="badge2" class="mb-3"></div>
                 <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Traditional ISO 55000 Approach</h2>
+                <p class="text-gray-400">The framework-first methodology</p>
             </div>
-            <div class="feature-badge bg-dark-surface p-6 md:p-8 max-w-5xl mx-auto">
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-5xl mx-auto">
                 <div class="border-l-4 border-orange bg-dark-card p-4 mb-6">
-                    <p class="text-white"><span class="text-orange font-bold">The Old Way:</span> Framework-first, technology-last</p>
+                    <p class="text-white"><span class="text-orange font-bold">The Old Way:</span> Framework-first, technology-last approach taking 4-5 years</p>
                 </div>
                 <div class="mb-6 chart-container p-4">
-                    <canvas id="chart1" height="280"></canvas>
+                    <canvas id="chart1" height="260"></canvas>
                 </div>
-
-                <!-- Feature Badges Grid -->
                 <div class="grid grid-cols-3 gap-3 md:gap-4 my-6">
-                    <div class="feature-badge bg-dark-card p-4 md:p-6 text-center">
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
                         <div class="text-2xl md:text-4xl font-bold text-orange">4-5</div>
                         <div class="text-xs md:text-sm text-white font-medium">Years</div>
                         <div class="text-xs text-gray-500 mt-1">Timeline</div>
                     </div>
-                    <div class="feature-badge bg-dark-card p-4 md:p-6 text-center">
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
                         <div class="text-2xl md:text-4xl font-bold text-orange" id="display-trad-roce">+5.7%</div>
                         <div class="text-xs md:text-sm text-white font-medium">ROCE</div>
                         <div class="text-xs text-gray-500 mt-1">Impact</div>
                     </div>
-                    <div class="feature-badge bg-dark-card p-4 md:p-6 text-center">
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
                         <div class="text-2xl md:text-4xl font-bold text-orange">~0</div>
                         <div class="text-xs md:text-sm text-white font-medium">Value</div>
                         <div class="text-xs text-gray-500 mt-1">First 2 Years</div>
                     </div>
                 </div>
-
-                <div class="text-center mt-8">
-                    <button id="btn-step3" class="feature-badge badge-pill bg-dark-card text-white px-8 md:px-12 py-3 md:py-4 text-base md:text-lg font-bold hover:bg-orange hover:text-black transition-all">
+                <div class="flex justify-between items-center mt-8">
+                    <button onclick="goToStep(1)" class="nav-btn nav-btn-back text-gray-400 hover:text-white flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                        Back
+                    </button>
+                    <button onclick="goToStep(3)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
                         What Changed?
+                        <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Step 3: Technology Disruption -->
+        <!-- Step 3: Disruptive Technology Companies -->
         <div id="step3" class="hidden">
-            <div class="feature-badge bg-dark-surface p-6 md:p-12 mb-8">
-                <h2 class="text-2xl md:text-4xl font-bold mb-3 text-center text-white">The Last Decade Changed Everything</h2>
-                <p class="text-base md:text-xl text-center text-gray-300 mb-8">Technology disruption enabling health-centric APM</p>
+            <div class="text-center mb-6">
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">The Last Decade Changed Everything</h2>
+                <p class="text-gray-300">Technology disruption enabling health-centric APM</p>
+            </div>
 
-                <!-- Technology Feature Badges -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
-                    <div class="feature-badge bg-dark-card p-4 md:p-6 text-center">
-                        <div class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 md:mb-3 border-2 border-orange rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 mb-6">
+                <!-- Technology Badges -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-8">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
                             </svg>
                         </div>
-                        <h3 class="text-base md:text-lg font-bold text-orange mb-1">Cloud</h3>
+                        <h3 class="text-sm md:text-base font-bold text-orange">Cloud</h3>
                         <p class="text-xs text-gray-400">Deploy in Days</p>
                     </div>
-                    <div class="feature-badge bg-dark-card p-4 md:p-6 text-center">
-                        <div class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 md:mb-3 border-2 border-orange rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
                             </svg>
                         </div>
-                        <h3 class="text-base md:text-lg font-bold text-orange mb-1">IoT</h3>
+                        <h3 class="text-sm md:text-base font-bold text-orange">IoT</h3>
                         <p class="text-xs text-gray-400">90% Cost Reduction</p>
                     </div>
-                    <div class="feature-badge bg-dark-card p-4 md:p-6 text-center">
-                        <div class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 md:mb-3 border-2 border-orange rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                             </svg>
                         </div>
-                        <h3 class="text-base md:text-lg font-bold text-orange mb-1">AI & ML</h3>
+                        <h3 class="text-sm md:text-base font-bold text-orange">AI & ML</h3>
                         <p class="text-xs text-gray-400">87% Accuracy</p>
                     </div>
-                    <div class="feature-badge bg-dark-card p-4 md:p-6 text-center">
-                        <div class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 md:mb-3 border-2 border-orange rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
                             </svg>
                         </div>
-                        <h3 class="text-base md:text-lg font-bold text-orange mb-1">Big Data</h3>
+                        <h3 class="text-sm md:text-base font-bold text-orange">Big Data</h3>
                         <p class="text-xs text-gray-400">Real-Time Insights</p>
                     </div>
                 </div>
 
-                <!-- Vendor Innovation -->
-                <div class="feature-badge bg-dark-card p-4 md:p-6 mb-8">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-white">Vendor Innovation</h3>
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <div class="border-l-4 border-orange pl-4">
-                            <h4 class="font-bold text-orange">GE Vernova</h4>
-                            <p class="text-sm text-gray-300">SmartSignal AI - Zero breakdowns at Total EP</p>
+                <!-- Disruptor Companies -->
+                <h3 class="text-xl font-bold text-white mb-4 text-center">The Disruptors Changing APM</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-orange">Databricks</h4>
+                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">10x Faster</span>
                         </div>
-                        <div class="border-l-4 border-orange pl-4">
-                            <h4 class="font-bold text-orange">AspenTech</h4>
-                            <p class="text-sm text-gray-300">Aspen Mtell - OCP Ecuador +20% uptime</p>
+                        <p class="text-xs text-gray-400 mb-1">Data processing for anomaly detection</p>
+                        <p class="text-xs text-gray-500">Unified data lakehouse platform enabling real-time predictive maintenance analytics</p>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-orange">Augury</h4>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">70% Reduction</span>
                         </div>
-                        <div class="border-l-4 border-orange pl-4">
-                            <h4 class="font-bold text-orange">IBM Maximo</h4>
-                            <p class="text-sm text-gray-300">87% failure prediction accuracy</p>
+                        <p class="text-xs text-gray-400 mb-1">In unplanned downtime events</p>
+                        <p class="text-xs text-gray-500">AI-powered machine health platform with wireless sensors and edge computing</p>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-orange">C3 AI</h4>
+                            <span class="text-xs bg-orange-900 text-orange-300 px-2 py-1 rounded">3-6 Months</span>
                         </div>
+                        <p class="text-xs text-gray-400 mb-1">Time to value vs. 3-5 years traditional</p>
+                        <p class="text-xs text-gray-500">Enterprise AI suite with pre-built APM models reducing deployment time</p>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-orange">Uptake</h4>
+                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">50M Hours</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-1">Of prevented downtime across customers</p>
+                        <p class="text-xs text-gray-500">Industrial AI platform processing billions of sensor signals</p>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-orange">Samsara</h4>
+                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">25% Decrease</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-1">In equipment maintenance costs</p>
+                        <p class="text-xs text-gray-500">Connected operations cloud with IoT sensors and AI analytics</p>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-orange">Presenso</h4>
+                            <span class="text-xs bg-red-900 text-red-300 px-2 py-1 rounded">95% Accuracy</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-1">Failure prediction 30+ days in advance</p>
+                        <p class="text-xs text-gray-500">Self-learning AI for complex industrial processes</p>
                     </div>
                 </div>
 
-                <div class="text-center">
-                    <button id="btn-step4" class="feature-badge badge-pill bg-dark-card text-white px-8 md:px-12 py-3 md:py-4 text-base md:text-lg font-bold hover:bg-orange hover:text-black transition-all">
-                        See Health-Centric Approach
+                <!-- Why Disruptors Win -->
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                    <div class="text-center p-3 bg-dark-card rounded-lg">
+                        <div class="text-2xl mb-1">&#9889;</div>
+                        <h4 class="text-sm font-bold text-orange">Rapid Deploy</h4>
+                        <p class="text-xs text-gray-500">Weeks, not years</p>
+                    </div>
+                    <div class="text-center p-3 bg-dark-card rounded-lg">
+                        <div class="text-2xl mb-1">&#127919;</div>
+                        <h4 class="text-sm font-bold text-orange">AI-First</h4>
+                        <p class="text-xs text-gray-500">Built on ML</p>
+                    </div>
+                    <div class="text-center p-3 bg-dark-card rounded-lg">
+                        <div class="text-2xl mb-1">&#128176;</div>
+                        <h4 class="text-sm font-bold text-orange">Pay-as-Grow</h4>
+                        <p class="text-xs text-gray-500">No upfront cost</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-6">
+                    <button onclick="goToStep(2)" class="nav-btn nav-btn-back text-gray-400 hover:text-white flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                        Back
+                    </button>
+                    <button onclick="goToStep(4)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
+                        Best of Both
+                        <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Step 4: Comparison & Calculator -->
+        <!-- Step 4: Holistic Asset Intelligence -->
         <div id="step4" class="hidden">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Compare the Approaches</h2>
+            <div class="text-center mb-6">
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Holistic Asset Intelligence</h2>
+                <p class="text-gray-300">Combining strategic frameworks with cutting-edge AI</p>
             </div>
 
-            <!-- Calculator -->
-            <div class="feature-badge bg-dark-surface p-6 md:p-8 mb-8">
-                <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-6">Calculate Your ROI</h3>
-                <div class="feature-badge bg-dark-card p-4 md:p-6">
-                    <div class="grid grid-cols-2 gap-4 md:gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Revenue ($M)</label>
-                            <input type="number" id="input-rev" placeholder="1000" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg text-base md:text-lg">
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 mb-6">
+                <!-- Two Column Approach -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-2xl">&#128203;</span>
+                            <h3 class="text-lg font-bold text-white">Strategic Foundation</h3>
                         </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Capital ($M)</label>
-                            <input type="number" id="input-cap" placeholder="500" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg text-base md:text-lg">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Profit ($M)</label>
-                            <input type="number" id="input-prof" placeholder="100" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg text-base md:text-lg">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Maintenance ($M)</label>
-                            <input type="number" id="input-maint" placeholder="50" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg text-base md:text-lg">
-                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                ISO 55000 governance framework
+                            </li>
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                Clear asset strategy alignment
+                            </li>
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                Risk-based planning processes
+                            </li>
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                Stakeholder buy-in & change management
+                            </li>
+                        </ul>
                     </div>
-                    <div class="text-center">
-                        <button id="btn-calc" class="feature-badge badge-pill bg-orange text-black px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-bold hover:bg-orange-light transition-all">
-                            Calculate Results
-                        </button>
-                    </div>
-                    <div id="results" class="hidden mt-6 border-t-2 border-orange pt-6">
-                        <div class="grid md:grid-cols-2 gap-4 md:gap-6 mb-6">
-                            <div class="feature-badge bg-dark-surface p-4 md:p-6">
-                                <h4 class="font-bold text-orange text-center mb-4 text-sm md:text-base">Traditional (5 Years)</h4>
-                                <div class="space-y-2 text-gray-300 text-sm md:text-base">
-                                    <div class="flex justify-between">
-                                        <span>Profit Gain:</span>
-                                        <span class="font-bold text-white" id="out-trad-profit">$0M</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span>Maint Savings:</span>
-                                        <span class="font-bold text-white" id="out-trad-maint">$0M</span>
-                                    </div>
-                                    <div class="bg-dark-card rounded p-3 mt-4 text-center border border-orange">
-                                        <div class="text-xl md:text-2xl font-bold text-orange" id="out-trad-total">$0M</div>
-                                        <div class="text-xs text-gray-400">Total Value</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-badge bg-dark-surface p-4 md:p-6">
-                                <h4 class="font-bold text-orange text-center mb-4 text-sm md:text-base">Health-Centric (3 Years)</h4>
-                                <div class="space-y-2 text-gray-300 text-sm md:text-base">
-                                    <div class="flex justify-between">
-                                        <span>Profit Gain:</span>
-                                        <span class="font-bold text-white" id="out-health-profit">$0M</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span>Maint Savings:</span>
-                                        <span class="font-bold text-white" id="out-health-maint">$0M</span>
-                                    </div>
-                                    <div class="bg-dark-card rounded p-3 mt-4 text-center border border-orange">
-                                        <div class="text-xl md:text-2xl font-bold text-orange" id="out-health-total">$0M</div>
-                                        <div class="text-xs text-gray-400">Total Value</div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="feature-badge bg-dark-card p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-2xl">&#129302;</span>
+                            <h3 class="text-lg font-bold text-white">AI-Powered Execution</h3>
                         </div>
-                        <div class="feature-badge bg-orange p-4 md:p-6 text-center">
-                            <h5 class="font-bold text-black mb-2 text-sm md:text-base">Your Advantage</h5>
-                            <div class="text-3xl md:text-4xl font-bold text-black" id="out-advantage">$0M</div>
-                            <p class="text-sm mt-2 text-black opacity-80">Extra value in 2 fewer years</p>
-                        </div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                Real-time health monitoring (Augury, Uptake)
+                            </li>
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                Predictive maintenance (Presenso, C3 AI)
+                            </li>
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                Data lakehouse analytics (Databricks)
+                            </li>
+                            <li class="flex items-start gap-2 text-gray-300">
+                                <span class="text-green-500">&#10003;</span>
+                                Connected operations (Samsara)
+                            </li>
+                        </ul>
                     </div>
                 </div>
+
+                <!-- Synergy Effect -->
+                <h3 class="text-lg font-bold text-white mb-3 text-center">The Synergy Effect</h3>
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                    <div class="text-center p-3 bg-dark-card rounded-lg border border-orange">
+                        <div class="text-2xl mb-1">&#127919;</div>
+                        <h4 class="text-sm font-bold text-orange">Better Decisions</h4>
+                        <p class="text-xs text-gray-400">Strategy meets real-time data</p>
+                    </div>
+                    <div class="text-center p-3 bg-dark-card rounded-lg border border-orange">
+                        <div class="text-2xl mb-1">&#9889;</div>
+                        <h4 class="text-sm font-bold text-orange">Faster Results</h4>
+                        <p class="text-xs text-gray-400">Framework accelerates AI</p>
+                    </div>
+                    <div class="text-center p-3 bg-dark-card rounded-lg border border-orange">
+                        <div class="text-2xl mb-1">&#128142;</div>
+                        <h4 class="text-sm font-bold text-orange">Maximum Value</h4>
+                        <p class="text-xs text-gray-400">15-20% higher ROCE</p>
+                    </div>
+                </div>
+
+                <!-- Implementation Roadmap -->
+                <h3 class="text-lg font-bold text-white mb-3 text-center">Implementation Roadmap</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-dark-card rounded-lg p-3 border-l-4 border-blue-500">
+                        <div class="text-xs text-blue-400 font-bold">Month 1-3</div>
+                        <p class="text-xs text-gray-300 mt-1">Quick wins with AI tools on critical assets</p>
+                    </div>
+                    <div class="bg-dark-card rounded-lg p-3 border-l-4 border-green-500">
+                        <div class="text-xs text-green-400 font-bold">Month 4-8</div>
+                        <p class="text-xs text-gray-300 mt-1">Deploy governance framework in parallel</p>
+                    </div>
+                    <div class="bg-dark-card rounded-lg p-3 border-l-4 border-yellow-500">
+                        <div class="text-xs text-yellow-400 font-bold">Month 9-18</div>
+                        <p class="text-xs text-gray-300 mt-1">Scale AI across asset portfolio</p>
+                    </div>
+                    <div class="bg-dark-card rounded-lg p-3 border-l-4 border-orange">
+                        <div class="text-xs text-orange font-bold">Month 18+</div>
+                        <p class="text-xs text-gray-300 mt-1">Continuous optimization & expansion</p>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
+                        <div class="text-2xl md:text-4xl font-bold text-orange">18</div>
+                        <div class="text-xs md:text-sm text-white font-medium">Months</div>
+                        <div class="text-xs text-gray-500 mt-1">Timeline</div>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
+                        <div class="text-2xl md:text-4xl font-bold text-orange" id="display-holistic-roce">+15.9%</div>
+                        <div class="text-xs md:text-sm text-white font-medium">ROCE</div>
+                        <div class="text-xs text-gray-500 mt-1">Impact</div>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
+                        <div class="text-2xl md:text-4xl font-bold text-orange">40%</div>
+                        <div class="text-xs md:text-sm text-white font-medium">Savings</div>
+                        <div class="text-xs text-gray-500 mt-1">Maintenance</div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-6">
+                    <button onclick="goToStep(3)" class="nav-btn nav-btn-back text-gray-400 hover:text-white flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                        Back
+                    </button>
+                    <button onclick="goToStep(5)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
+                        Compare All
+                        <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Comparison -->
+        <div id="step5" class="hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Compare All Approaches</h2>
+                <p class="text-gray-300">Side-by-side analysis of methodologies</p>
             </div>
 
             <!-- Comparison Charts -->
-            <div class="grid lg:grid-cols-2 gap-6 md:gap-8 mb-8">
-                <div class="feature-badge bg-dark-surface p-4 md:p-6">
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-4">Traditional</h3>
-                    <div class="chart-container p-3 md:p-4" style="height: 280px;">
+            <div class="grid lg:grid-cols-2 gap-5 mb-6">
+                <div class="feature-badge bg-dark-surface p-4 md:p-5">
+                    <h3 class="text-base md:text-lg font-bold text-white mb-3">Traditional (4-5 Years)</h3>
+                    <div class="chart-container p-3" style="height: 240px;">
                         <canvas id="chart2"></canvas>
                     </div>
-                    <div class="text-center mt-4">
-                        <div class="text-2xl md:text-3xl font-bold text-orange" id="display-comp-trad">+5.7%</div>
-                        <div class="text-sm text-gray-400">ROCE over 4-5 years</div>
+                    <div class="text-center mt-3">
+                        <div class="text-2xl md:text-3xl font-bold text-red-500" id="display-comp-trad">+5.7%</div>
+                        <div class="text-xs text-gray-400">ROCE Impact</div>
                     </div>
                 </div>
-                <div class="feature-badge bg-dark-surface p-4 md:p-6">
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-4">Health-Centric</h3>
-                    <div class="chart-container p-3 md:p-4" style="height: 280px;">
+                <div class="feature-badge bg-dark-surface p-4 md:p-5">
+                    <h3 class="text-base md:text-lg font-bold text-white mb-3">Health-Centric (3 Years)</h3>
+                    <div class="chart-container p-3" style="height: 240px;">
                         <canvas id="chart3"></canvas>
                     </div>
-                    <div class="text-center mt-4">
-                        <div class="text-2xl md:text-3xl font-bold text-orange" id="display-comp-health">+12.2%</div>
-                        <div class="text-sm text-gray-400">ROCE over 3 years</div>
+                    <div class="text-center mt-3">
+                        <div class="text-2xl md:text-3xl font-bold text-blue-500" id="display-comp-health">+12.2%</div>
+                        <div class="text-xs text-gray-400">ROCE Impact</div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Holistic Chart -->
+            <div class="feature-badge bg-dark-surface p-4 md:p-5 mb-6 max-w-2xl mx-auto">
+                <h3 class="text-base md:text-lg font-bold text-white mb-3 text-center">Holistic (18 Months)</h3>
+                <div class="chart-container p-3" style="height: 240px;">
+                    <canvas id="chart4"></canvas>
+                </div>
+                <div class="text-center mt-3">
+                    <div class="text-2xl md:text-3xl font-bold text-green-500" id="display-comp-holistic">+15.9%</div>
+                    <div class="text-xs text-gray-400">ROCE Impact</div>
                 </div>
             </div>
 
             <!-- Case Studies -->
-            <h3 class="text-2xl md:text-3xl font-bold text-center mb-6 text-white">Proven Results</h3>
-            <div class="grid md:grid-cols-3 gap-4 md:gap-6 mb-8">
-                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="feature-badge bg-dark-surface p-4 md:p-6 hover:bg-dark-card transition-all">
-                    <div class="border-b border-orange pb-3 mb-4">
+            <h3 class="text-xl font-bold text-center mb-4 text-white">Proven Results</h3>
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" rel="noopener noreferrer" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
+                    <div class="border-b border-orange pb-2 mb-3">
                         <h4 class="font-bold text-orange">OQ (Oman)</h4>
                         <p class="text-xs text-gray-500">GE Vernova APM</p>
                     </div>
-                    <div class="text-3xl md:text-4xl font-bold text-white">$59M</div>
+                    <div class="text-3xl font-bold text-white">$59M</div>
                     <p class="text-sm text-gray-400">Saved</p>
                 </a>
-                <a href="https://www.aspentech.com/en/products/apm/aspen-mtell" target="_blank" class="feature-badge bg-dark-surface p-4 md:p-6 hover:bg-dark-card transition-all">
-                    <div class="border-b border-orange pb-3 mb-4">
+                <a href="https://www.aspentech.com/en/products/apm/aspen-mtell" target="_blank" rel="noopener noreferrer" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
+                    <div class="border-b border-orange pb-2 mb-3">
                         <h4 class="font-bold text-orange">OCP Ecuador</h4>
                         <p class="text-xs text-gray-500">AspenTech</p>
                     </div>
-                    <div class="text-3xl md:text-4xl font-bold text-white">+20%</div>
+                    <div class="text-3xl font-bold text-white">+20%</div>
                     <p class="text-sm text-gray-400">Uptime</p>
                 </a>
-                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" class="feature-badge bg-dark-surface p-4 md:p-6 hover:bg-dark-card transition-all">
-                    <div class="border-b border-orange pb-3 mb-4">
+                <a href="https://www.gevernova.com/software/blog/digital-outcomes-oil-gas-fast-track-roi-apm-suite" target="_blank" rel="noopener noreferrer" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
+                    <div class="border-b border-orange pb-2 mb-3">
                         <h4 class="font-bold text-orange">Total EP</h4>
                         <p class="text-xs text-gray-500">GE Vernova</p>
                     </div>
-                    <div class="text-3xl md:text-4xl font-bold text-white">Zero</div>
+                    <div class="text-3xl font-bold text-white">Zero</div>
                     <p class="text-sm text-gray-400">Breakdowns</p>
                 </a>
             </div>
 
-            <div class="text-center">
-                <button id="btn-restart" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-8 py-3 md:py-4 font-bold hover:bg-orange hover:text-black transition-all">
-                    Start Over
+            <div class="flex justify-between items-center mt-6">
+                <button onclick="goToStep(4)" class="nav-btn nav-btn-back text-gray-400 hover:text-white flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <button onclick="goToStep(6)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
+                    Calculate ROI
+                    <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
         </div>
+
+        <!-- Step 6: ROI Calculator -->
+        <div id="step6" class="hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Calculate Your ROI</h2>
+                <p class="text-gray-300">See the financial impact for your organization</p>
+            </div>
+
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-4xl mx-auto">
+                <div class="feature-badge bg-dark-card p-4 md:p-6 mb-6">
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-orange">Revenue ($M)</label>
+                            <input type="number" id="input-rev" placeholder="1000" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-orange">Capital ($M)</label>
+                            <input type="number" id="input-cap" placeholder="500" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-orange">Profit ($M)</label>
+                            <input type="number" id="input-prof" placeholder="100" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-orange">Maintenance ($M)</label>
+                            <input type="number" id="input-maint" placeholder="50" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button id="btn-calc" class="feature-badge badge-pill bg-orange text-black px-8 py-3 text-base font-bold hover:bg-orange-light transition-all">
+                            Calculate Results
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div id="results" class="hidden">
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <!-- Traditional -->
+                        <div class="feature-badge bg-dark-card p-4 border-red-500 border-2">
+                            <h4 class="font-bold text-red-500 text-center mb-3 text-sm">Traditional (5 Years)</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Profit Gain:</span>
+                                    <span class="font-bold text-white" id="out-trad-profit">$0M</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Maint Savings:</span>
+                                    <span class="font-bold text-white" id="out-trad-maint">$0M</span>
+                                </div>
+                                <div class="bg-red-900/30 rounded p-2 mt-3 text-center">
+                                    <div class="text-xl font-bold text-red-500" id="out-trad-total">$0M</div>
+                                    <div class="text-xs text-gray-400">Total Value</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Health-Centric -->
+                        <div class="feature-badge bg-dark-card p-4 border-blue-500 border-2">
+                            <h4 class="font-bold text-blue-500 text-center mb-3 text-sm">Health-Centric (3 Years)</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Profit Gain:</span>
+                                    <span class="font-bold text-white" id="out-health-profit">$0M</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Maint Savings:</span>
+                                    <span class="font-bold text-white" id="out-health-maint">$0M</span>
+                                </div>
+                                <div class="bg-blue-900/30 rounded p-2 mt-3 text-center">
+                                    <div class="text-xl font-bold text-blue-500" id="out-health-total">$0M</div>
+                                    <div class="text-xs text-gray-400">Total Value</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Holistic -->
+                        <div class="feature-badge bg-dark-card p-4 border-green-500 border-2">
+                            <h4 class="font-bold text-green-500 text-center mb-3 text-sm">Holistic (18 Months)</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Profit Gain:</span>
+                                    <span class="font-bold text-white" id="out-holistic-profit">$0M</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Maint Savings:</span>
+                                    <span class="font-bold text-white" id="out-holistic-maint">$0M</span>
+                                </div>
+                                <div class="bg-green-900/30 rounded p-2 mt-3 text-center">
+                                    <div class="text-xl font-bold text-green-500" id="out-holistic-total">$0M</div>
+                                    <div class="text-xs text-gray-400">Total Value</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advantage Banner -->
+                    <div class="feature-badge bg-orange p-5 text-center">
+                        <div class="text-2xl mb-1">&#127942;</div>
+                        <h5 class="font-bold text-black mb-1">Holistic Advantage</h5>
+                        <div class="text-3xl md:text-4xl font-bold text-black" id="out-advantage">$0M</div>
+                        <p class="text-sm mt-2 text-black opacity-80">Additional value vs. Traditional in 3.5 fewer years</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-6">
+                    <button onclick="goToStep(5)" class="nav-btn nav-btn-back text-gray-400 hover:text-white flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                        Back
+                    </button>
+                    <button onclick="location.reload()" class="feature-badge badge-pill bg-dark-card text-white px-6 py-3 text-sm font-bold hover:bg-orange hover:text-black transition-all">
+                        Start Over
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
         // Global state
         let currentIndustry = null;
+        let currentStep = 1;
         let charts = {};
 
-        // Chart.js global defaults for dark theme
+        // Chart.js defaults
         Chart.defaults.color = '#ffffff';
         Chart.defaults.borderColor = '#333333';
 
-        // Data
+        // Data with all three approaches
         const DATA = {
             oilgas: {
-                trad: { strategy:[0.3,0.3,0.3], risk:[0.2,0.5,0.5], planning:[0,0.4,0.6], health:[0,0.6,1.2], predictive:[0,0,0.8], total:5.7 },
-                health: { health:[1.5,1.5,1.5], predictive:[1.0,1.2,1.2], risk:[0.3,0.8,0.8], planning:[0,0.7,1.0], strategy:[0,0.2,0.5], total:12.2 }
+                trad: {
+                    strategy: [0.3, 0.3, 0.3],
+                    risk: [0.2, 0.5, 0.5],
+                    planning: [0, 0.4, 0.6],
+                    health: [0, 0.6, 1.2],
+                    predictive: [0, 0, 0.8],
+                    total: 5.7
+                },
+                health: {
+                    health: [1.5, 1.5, 1.5],
+                    predictive: [1.0, 1.2, 1.2],
+                    risk: [0.3, 0.8, 0.8],
+                    planning: [0, 0.7, 1.0],
+                    strategy: [0, 0.2, 0.5],
+                    total: 12.2
+                },
+                holistic: {
+                    health: [1.8, 1.8, 1.8],
+                    predictive: [1.5, 1.8, 1.8],
+                    risk: [0.5, 1.2, 1.2],
+                    planning: [0.3, 1.0, 1.4],
+                    strategy: [0.4, 0.5, 0.8],
+                    total: 15.9
+                }
             },
             powergen: {
-                trad: { strategy:[1.2,1.2,1.2], risk:[0.8,1.5,1.5], planning:[0,1.0,1.5], health:[0,1.5,3.0], predictive:[0,0,2.0], total:16.4 },
-                health: { health:[3.5,3.5,3.5], predictive:[2.5,3.0,3.0], risk:[0.8,2.0,2.0], planning:[0,1.8,2.5], strategy:[0,0.5,1.2], total:29.8 }
+                trad: {
+                    strategy: [1.2, 1.2, 1.2],
+                    risk: [0.8, 1.5, 1.5],
+                    planning: [0, 1.0, 1.5],
+                    health: [0, 1.5, 3.0],
+                    predictive: [0, 0, 2.0],
+                    total: 16.4
+                },
+                health: {
+                    health: [3.5, 3.5, 3.5],
+                    predictive: [2.5, 3.0, 3.0],
+                    risk: [0.8, 2.0, 2.0],
+                    planning: [0, 1.8, 2.5],
+                    strategy: [0, 0.5, 1.2],
+                    total: 29.8
+                },
+                holistic: {
+                    health: [4.2, 4.2, 4.2],
+                    predictive: [3.5, 4.0, 4.0],
+                    risk: [1.2, 2.8, 2.8],
+                    planning: [0.5, 2.5, 3.5],
+                    strategy: [0.8, 1.0, 1.8],
+                    total: 38.3
+                }
             }
+        };
+
+        const MAINTENANCE_SAVINGS = {
+            TRADITIONAL: 0.15,
+            HEALTH_CENTRIC: 0.30,
+            HOLISTIC: 0.40
         };
 
         // Event listeners
         document.getElementById('btn-oilgas').addEventListener('click', function() { selectIndustry('oilgas'); });
         document.getElementById('btn-powergen').addEventListener('click', function() { selectIndustry('powergen'); });
-        document.getElementById('btn-step3').addEventListener('click', goToStep3);
-        document.getElementById('btn-step4').addEventListener('click', goToStep4);
         document.getElementById('btn-calc').addEventListener('click', calculate);
-        document.getElementById('btn-restart').addEventListener('click', function() { location.reload(); });
 
-        // Functions
         function selectIndustry(ind) {
             currentIndustry = ind;
-            hideAll();
-            document.getElementById('step2').classList.remove('hidden');
+
+            // Update displays with industry data
+            document.getElementById('display-trad-roce').textContent = '+' + DATA[ind].trad.total + '%';
+            document.getElementById('display-holistic-roce').textContent = '+' + DATA[ind].holistic.total + '%';
 
             const badge = ind === 'oilgas'
-                ? '<div class="inline-block border-2 border-orange text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-sm md:text-base">Oil & Gas Industry</div>'
-                : '<div class="inline-block border-2 border-orange text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-sm md:text-base">Power Generation Industry</div>';
-
+                ? '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>'
+                : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
             document.getElementById('badge2').innerHTML = badge;
-            document.getElementById('display-trad-roce').textContent = '+' + DATA[ind].trad.total + '%';
 
+            goToStep(2);
             setTimeout(function() { drawChart('chart1', DATA[ind].trad, true); }, 100);
-            window.scrollTo(0,0);
         }
 
-        function goToStep3() {
+        function goToStep(step) {
+            currentStep = step;
             hideAll();
-            document.getElementById('step3').classList.remove('hidden');
-            window.scrollTo(0,0);
+            document.getElementById('step' + step).classList.remove('hidden');
+            updateStepIndicator();
+            window.scrollTo(0, 0);
+
+            // Draw charts when entering step 5
+            if (step === 5 && currentIndustry) {
+                setTimeout(function() {
+                    document.getElementById('display-comp-trad').textContent = '+' + DATA[currentIndustry].trad.total + '%';
+                    document.getElementById('display-comp-health').textContent = '+' + DATA[currentIndustry].health.total + '%';
+                    document.getElementById('display-comp-holistic').textContent = '+' + DATA[currentIndustry].holistic.total + '%';
+                    drawChart('chart2', DATA[currentIndustry].trad, false);
+                    drawChart('chart3', DATA[currentIndustry].health, false);
+                    drawChart('chart4', DATA[currentIndustry].holistic, false);
+                }, 100);
+            }
         }
 
-        function goToStep4() {
-            hideAll();
-            document.getElementById('step4').classList.remove('hidden');
+        function hideAll() {
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById('step' + i).classList.add('hidden');
+            }
+        }
 
-            document.getElementById('display-comp-trad').textContent = '+' + DATA[currentIndustry].trad.total + '%';
-            document.getElementById('display-comp-health').textContent = '+' + DATA[currentIndustry].health.total + '%';
-
-            setTimeout(function() {
-                drawChart('chart2', DATA[currentIndustry].trad, false);
-                drawChart('chart3', DATA[currentIndustry].health, false);
-            }, 100);
-            window.scrollTo(0,0);
+        function updateStepIndicator() {
+            const indicator = document.getElementById('step-indicator');
+            if (currentStep === 1) {
+                indicator.textContent = '';
+            } else {
+                indicator.textContent = 'Step ' + currentStep + ' of 6';
+            }
         }
 
         function calculate() {
@@ -431,29 +762,50 @@
             const prof = parseFloat(document.getElementById('input-prof').value) || 0;
             const maint = parseFloat(document.getElementById('input-maint').value) || 0;
 
-            if (rev > 0 && cap > 0 && prof > 0 && maint > 0) {
-                const tradROCE = DATA[currentIndustry].trad.total;
-                const healthROCE = DATA[currentIndustry].health.total;
-
-                const tp = prof * (tradROCE / 100);
-                const tm = maint * 0.15;
-                const tt = tp + tm;
-
-                const hp = prof * (healthROCE / 100);
-                const hm = maint * 0.30;
-                const ht = hp + hm;
-
-                document.getElementById('out-trad-profit').textContent = '$' + tp.toFixed(1) + 'M';
-                document.getElementById('out-trad-maint').textContent = '$' + tm.toFixed(1) + 'M';
-                document.getElementById('out-trad-total').textContent = '$' + tt.toFixed(1) + 'M';
-
-                document.getElementById('out-health-profit').textContent = '$' + hp.toFixed(1) + 'M';
-                document.getElementById('out-health-maint').textContent = '$' + hm.toFixed(1) + 'M';
-                document.getElementById('out-health-total').textContent = '$' + ht.toFixed(1) + 'M';
-
-                document.getElementById('out-advantage').textContent = '$' + (ht - tt).toFixed(1) + 'M';
-                document.getElementById('results').classList.remove('hidden');
+            if (rev <= 0 || cap <= 0 || prof <= 0 || maint <= 0) {
+                alert('Please enter valid positive values for all fields.');
+                return;
             }
+
+            if (!currentIndustry || !DATA[currentIndustry]) {
+                alert('Industry data not available. Please restart.');
+                return;
+            }
+
+            const tradROCE = DATA[currentIndustry].trad.total;
+            const healthROCE = DATA[currentIndustry].health.total;
+            const holisticROCE = DATA[currentIndustry].holistic.total;
+
+            // Traditional
+            const tp = prof * (tradROCE / 100);
+            const tm = maint * MAINTENANCE_SAVINGS.TRADITIONAL;
+            const tt = tp + tm;
+
+            // Health-Centric
+            const hp = prof * (healthROCE / 100);
+            const hm = maint * MAINTENANCE_SAVINGS.HEALTH_CENTRIC;
+            const ht = hp + hm;
+
+            // Holistic
+            const op = prof * (holisticROCE / 100);
+            const om = maint * MAINTENANCE_SAVINGS.HOLISTIC;
+            const ot = op + om;
+
+            // Update displays
+            document.getElementById('out-trad-profit').textContent = '$' + tp.toFixed(1) + 'M';
+            document.getElementById('out-trad-maint').textContent = '$' + tm.toFixed(1) + 'M';
+            document.getElementById('out-trad-total').textContent = '$' + tt.toFixed(1) + 'M';
+
+            document.getElementById('out-health-profit').textContent = '$' + hp.toFixed(1) + 'M';
+            document.getElementById('out-health-maint').textContent = '$' + hm.toFixed(1) + 'M';
+            document.getElementById('out-health-total').textContent = '$' + ht.toFixed(1) + 'M';
+
+            document.getElementById('out-holistic-profit').textContent = '$' + op.toFixed(1) + 'M';
+            document.getElementById('out-holistic-maint').textContent = '$' + om.toFixed(1) + 'M';
+            document.getElementById('out-holistic-total').textContent = '$' + ot.toFixed(1) + 'M';
+
+            document.getElementById('out-advantage').textContent = '$' + (ot - tt).toFixed(1) + 'M';
+            document.getElementById('results').classList.remove('hidden');
         }
 
         function drawChart(canvasId, data, showLegend) {
@@ -465,20 +817,19 @@
             }
 
             const datasets = [];
-            // Distinct colors for each category
             const colors = {
-                strategy: '#ef4444',    // Red
-                risk: '#f97316',        // Orange
-                planning: '#eab308',    // Yellow
-                health: '#22c55e',      // Green
-                predictive: '#3b82f6'   // Blue
+                strategy: '#ef4444',
+                risk: '#f97316',
+                planning: '#eab308',
+                health: '#22c55e',
+                predictive: '#3b82f6'
             };
 
-            if (data.strategy) datasets.push({ label:'Asset Strategy', data:data.strategy, backgroundColor: colors.strategy, stack:'stack' });
-            if (data.risk) datasets.push({ label:'Risk & Performance', data:data.risk, backgroundColor: colors.risk, stack:'stack' });
-            if (data.planning) datasets.push({ label:'Planning & Optimization', data:data.planning, backgroundColor: colors.planning, stack:'stack' });
-            if (data.health) datasets.push({ label:'Equipment Health', data:data.health, backgroundColor: colors.health, stack:'stack' });
-            if (data.predictive) datasets.push({ label:'Predictive Maintenance', data:data.predictive, backgroundColor: colors.predictive, stack:'stack' });
+            if (data.strategy) datasets.push({ label: 'Asset Strategy', data: data.strategy, backgroundColor: colors.strategy, stack: 'stack' });
+            if (data.risk) datasets.push({ label: 'Risk & Performance', data: data.risk, backgroundColor: colors.risk, stack: 'stack' });
+            if (data.planning) datasets.push({ label: 'Planning & Optimization', data: data.planning, backgroundColor: colors.planning, stack: 'stack' });
+            if (data.health) datasets.push({ label: 'Equipment Health', data: data.health, backgroundColor: colors.health, stack: 'stack' });
+            if (data.predictive) datasets.push({ label: 'Predictive Maintenance', data: data.predictive, backgroundColor: colors.predictive, stack: 'stack' });
 
             charts[canvasId] = new Chart(canvas, {
                 type: 'bar',
@@ -493,33 +844,29 @@
                         y: {
                             stacked: true,
                             beginAtZero: true,
-                            title: { display: true, text: 'ROCE Improvement (%)', color: '#ffffff', font: { weight: 'bold' } },
+                            title: { display: true, text: 'ROCE (%)', color: '#ffffff', font: { size: 10 } },
                             grid: { color: '#333333' },
-                            ticks: { color: '#ffffff' }
+                            ticks: { color: '#ffffff', font: { size: 10 } }
                         },
                         x: {
                             stacked: true,
                             grid: { color: '#333333' },
-                            ticks: { color: '#ffffff' }
+                            ticks: { color: '#ffffff', font: { size: 10 } }
                         }
                     },
                     plugins: {
                         legend: {
                             display: showLegend,
                             position: 'bottom',
-                            labels: { color: '#ffffff', padding: 15, font: { size: 11 } }
+                            labels: { color: '#ffffff', padding: 10, font: { size: 10 }, boxWidth: 12 }
                         }
                     }
                 }
             });
         }
 
-        function hideAll() {
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.add('hidden');
-            document.getElementById('step4').classList.add('hidden');
-        }
+        // Initialize
+        updateStepIndicator();
     </script>
 </body>
 </html>
