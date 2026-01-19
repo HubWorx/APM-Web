@@ -127,11 +127,11 @@
                 <p class="text-gray-400">The framework-first methodology</p>
             </div>
             <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-5xl mx-auto">
-                <div class="border-l-4 border-orange bg-dark-card p-4 mb-6">
+                <div id="oilgas-context" class="border-l-4 border-orange bg-dark-card p-4 mb-6">
                     <p class="text-white"><span class="text-orange font-bold">The Old Way:</span> Framework-first, technology-last approach taking 4-5 years</p>
                 </div>
-                <div id="industry-context" class="border-l-4 border-red-500 bg-dark-card p-4 mb-6 hidden">
-                    <p class="text-white"><span class="text-red-500 font-bold">Power Gen Reality:</span> Predictive maintenance first on center line equipment only. Limited adoption &amp; impact - recommendations lack asset health context, making it hard to prioritize and act.</p>
+                <div id="powergen-context" class="border-l-4 border-red-500 bg-dark-card p-4 mb-6 hidden">
+                    <p class="text-white"><span class="text-red-500 font-bold">The Old Way:</span> Laser focused on center line reliability with predictive maintenance first. Limited adoption &amp; impact - recommendations lack asset health context.</p>
                 </div>
                 <div class="mb-6 chart-container p-4">
                     <canvas id="chart1" height="260"></canvas>
@@ -255,15 +255,15 @@
                 </div>
 
                 <!-- Industry Results - Documented Case Studies -->
-                <h3 class="text-lg font-bold text-white mb-4 text-center">Documented Industry Results</h3>
+                <h3 class="text-lg font-bold text-white mb-4 text-center">Documented Case Studies</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                     <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-siemens-condition-monitoring" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">Oil & Gas Operator</h4>
-                                <p class="text-xs text-gray-500">Offshore Production</p>
+                                <h4 class="font-bold text-orange text-sm">Aker BP</h4>
+                                <p class="text-xs text-gray-500">Oil & Gas</p>
                             </div>
-                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Data Fusion</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Cognite</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
@@ -287,10 +287,10 @@
                     <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">Energy Major</h4>
-                                <p class="text-xs text-gray-500">Global Operations</p>
+                                <h4 class="font-bold text-orange text-sm">Chevron</h4>
+                                <p class="text-xs text-gray-500">Energy</p>
                             </div>
-                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Analytics</span>
+                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Seeq</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
@@ -302,7 +302,7 @@
                                 <p class="text-white font-bold">Production</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Carbon Reduction</p>
+                                <p class="text-gray-500">Carbon Goals</p>
                                 <p class="text-yellow-400 font-bold">Enabled</p>
                             </div>
                             <div>
@@ -314,10 +314,10 @@
                     <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">CPG Manufacturer</h4>
-                                <p class="text-xs text-gray-500">Food & Beverage</p>
+                                <h4 class="font-bold text-orange text-sm">PepsiCo</h4>
+                                <p class="text-xs text-gray-500">CPG Manufacturing</p>
                             </div>
-                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Machine Health</span>
+                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Augury</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
@@ -341,10 +341,10 @@
                     <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">Chemical Producer</h4>
-                                <p class="text-xs text-gray-500">Polymer Manufacturing</p>
+                                <h4 class="font-bold text-orange text-sm">Covestro</h4>
+                                <p class="text-xs text-gray-500">Chemicals</p>
                             </div>
-                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Process Analytics</span>
+                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Seeq</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
@@ -360,7 +360,7 @@
                                 <p class="text-yellow-400 font-bold">Improved</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Maint. Type</p>
+                                <p class="text-gray-500">Maintenance</p>
                                 <p class="text-orange font-bold">Proactive</p>
                             </div>
                         </div>
@@ -459,18 +459,18 @@
                     </div>
                 </div>
 
-                <!-- Holistic Results - Same industries with strategic framework -->
+                <!-- Holistic Results - Same customers with strategic framework -->
                 <h3 class="text-base font-bold text-white mb-3 text-center">Holistic Approach: Enhanced Value</h3>
-                <p class="text-center text-gray-400 text-xs mb-4">Same industries + ISO 55000 framework = amplified results</p>
+                <p class="text-center text-gray-400 text-xs mb-4">Same customers + ISO 55000 framework = amplified results</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
-                    <!-- Oil & Gas Operator -->
+                    <!-- Aker BP -->
                     <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-smart-maintenance-sustainability" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">Oil & Gas Operator</h4>
-                                <p class="text-xs text-gray-500">Offshore Production</p>
+                                <h4 class="font-bold text-orange text-sm">Aker BP</h4>
+                                <p class="text-xs text-gray-500">Oil & Gas</p>
                             </div>
-                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Data + ISO</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Cognite + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
@@ -486,19 +486,19 @@
                                 <p class="text-white font-bold">100K tons/yr</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Pump Availability</p>
+                                <p class="text-gray-500">Availability</p>
                                 <p class="text-orange font-bold">+40%</p>
                             </div>
                         </div>
                     </a>
-                    <!-- Energy Major -->
+                    <!-- Chevron -->
                     <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">Energy Major</h4>
-                                <p class="text-xs text-gray-500">Global Operations</p>
+                                <h4 class="font-bold text-orange text-sm">Chevron</h4>
+                                <p class="text-xs text-gray-500">Energy</p>
                             </div>
-                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Analytics + ISO</span>
+                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Seeq + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
@@ -510,7 +510,7 @@
                                 <p class="text-green-400 font-bold">Reduced</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Turbines Online</p>
+                                <p class="text-gray-500">Turbines</p>
                                 <p class="text-white font-bold">Optimized</p>
                             </div>
                             <div>
@@ -519,18 +519,18 @@
                             </div>
                         </div>
                     </a>
-                    <!-- CPG Manufacturer -->
+                    <!-- PepsiCo -->
                     <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">CPG Manufacturer</h4>
-                                <p class="text-xs text-gray-500">Food & Beverage</p>
+                                <h4 class="font-bold text-orange text-sm">PepsiCo</h4>
+                                <p class="text-xs text-gray-500">CPG Manufacturing</p>
                             </div>
-                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Health + ISO</span>
+                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Augury + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-gray-500">Capacity Gained</p>
+                                <p class="text-gray-500">Capacity</p>
                                 <p class="text-yellow-400 font-bold">4,000 hrs</p>
                             </div>
                             <div>
@@ -547,18 +547,18 @@
                             </div>
                         </div>
                     </a>
-                    <!-- Chemical Producer -->
+                    <!-- Covestro -->
                     <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-bold text-orange text-sm">Chemical Producer</h4>
-                                <p class="text-xs text-gray-500">Polymer Manufacturing</p>
+                                <h4 class="font-bold text-orange text-sm">Covestro</h4>
+                                <p class="text-xs text-gray-500">Chemicals</p>
                             </div>
-                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Analytics + ISO</span>
+                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Seeq + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-gray-500">Plants Connected</p>
+                                <p class="text-gray-500">Plants</p>
                                 <p class="text-yellow-400 font-bold">50 Global</p>
                             </div>
                             <div>
@@ -566,11 +566,11 @@
                                 <p class="text-green-400 font-bold">Cross-Site</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Quality Impact</p>
+                                <p class="text-gray-500">Quality</p>
                                 <p class="text-white font-bold">Higher</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Production Loss</p>
+                                <p class="text-gray-500">Loss</p>
                                 <p class="text-orange font-bold">Prevented</p>
                             </div>
                         </div>
@@ -914,12 +914,15 @@
                 : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
             document.getElementById('badge2').innerHTML = badge;
 
-            // Show Power Gen specific context
-            const industryContext = document.getElementById('industry-context');
+            // Toggle industry-specific context
+            const oilgasContext = document.getElementById('oilgas-context');
+            const powergenContext = document.getElementById('powergen-context');
             if (ind === 'powergen') {
-                industryContext.classList.remove('hidden');
+                oilgasContext.classList.add('hidden');
+                powergenContext.classList.remove('hidden');
             } else {
-                industryContext.classList.add('hidden');
+                oilgasContext.classList.remove('hidden');
+                powergenContext.classList.add('hidden');
             }
 
             goToStep(2, true);
@@ -969,12 +972,15 @@
                     document.getElementById('badge2').innerHTML = badge;
                     document.getElementById('display-trad-roce').textContent = '+' + DATA[currentIndustry].trad.total + '%';
                     document.getElementById('display-holistic-roce').textContent = '+' + DATA[currentIndustry].holistic.total + '%';
-                    // Show/hide Power Gen specific context
-                    const industryContext = document.getElementById('industry-context');
+                    // Toggle industry-specific context
+                    const oilgasContext = document.getElementById('oilgas-context');
+                    const powergenContext = document.getElementById('powergen-context');
                     if (currentIndustry === 'powergen') {
-                        industryContext.classList.remove('hidden');
+                        oilgasContext.classList.add('hidden');
+                        powergenContext.classList.remove('hidden');
                     } else {
-                        industryContext.classList.add('hidden');
+                        oilgasContext.classList.remove('hidden');
+                        powergenContext.classList.add('hidden');
                     }
                 }
                 goToStep(event.state.step, false);
