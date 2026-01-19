@@ -717,16 +717,26 @@
                 : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
             document.getElementById('badge2').innerHTML = badge;
 
-            goToStep(2);
+            goToStep(2, true);
             setTimeout(function() { drawChart('chart1', DATA[ind].trad, true); }, 100);
         }
 
-        function goToStep(step) {
+        function goToStep(step, pushState) {
             currentStep = step;
             hideAll();
             document.getElementById('step' + step).classList.remove('hidden');
             updateStepIndicator();
             window.scrollTo(0, 0);
+
+            // Push state to browser history for back/forward button support
+            if (pushState !== false) {
+                history.pushState({ step: step, industry: currentIndustry }, '', '#step' + step);
+            }
+
+            // Draw charts when entering step 2
+            if (step === 2 && currentIndustry) {
+                setTimeout(function() { drawChart('chart1', DATA[currentIndustry].trad, true); }, 100);
+            }
 
             // Draw charts when entering step 5
             if (step === 5 && currentIndustry) {
@@ -740,6 +750,28 @@
                 }, 100);
             }
         }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.step) {
+                // Restore industry if available
+                if (event.state.industry) {
+                    currentIndustry = event.state.industry;
+                    // Update badge display
+                    const badge = currentIndustry === 'oilgas'
+                        ? '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>'
+                        : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
+                    document.getElementById('badge2').innerHTML = badge;
+                    document.getElementById('display-trad-roce').textContent = '+' + DATA[currentIndustry].trad.total + '%';
+                    document.getElementById('display-holistic-roce').textContent = '+' + DATA[currentIndustry].holistic.total + '%';
+                }
+                goToStep(event.state.step, false);
+            } else {
+                // No state, go to step 1
+                currentIndustry = null;
+                goToStep(1, false);
+            }
+        });
 
         function hideAll() {
             for (let i = 1; i <= 6; i++) {
@@ -865,8 +897,12 @@
             });
         }
 
-        // Initialize
-        updateStepIndicator();
+        // Initialize - set initial state and handle page load with hash
+        (function init() {
+            // Set initial state for step 1
+            history.replaceState({ step: 1, industry: null }, '', window.location.pathname);
+            updateStepIndicator();
+        })();
     </script>
 </body>
 </html>
