@@ -90,8 +90,9 @@
                 <button id="btn-oilgas" class="feature-badge bg-dark-surface p-6 md:p-8 text-left">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-14 h-14 border-2 border-orange rounded-lg flex items-center justify-center flex-shrink-0">
-                            <svg class="w-7 h-7 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            <svg class="w-7 h-7 text-orange" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 4h16v2H4V4zm1 4h14l-1 14H6L5 8zm4 2v10h2V10H9zm4 0v10h2V10h-2z"/>
+                                <circle cx="12" cy="3" r="1.5"/>
                             </svg>
                         </div>
                         <div class="min-w-0">
@@ -128,6 +129,9 @@
             <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-5xl mx-auto">
                 <div class="border-l-4 border-orange bg-dark-card p-4 mb-6">
                     <p class="text-white"><span class="text-orange font-bold">The Old Way:</span> Framework-first, technology-last approach taking 4-5 years</p>
+                </div>
+                <div id="industry-context" class="border-l-4 border-red-500 bg-dark-card p-4 mb-6 hidden">
+                    <p class="text-white"><span class="text-red-500 font-bold">Power Gen Challenge:</span> Predictive maintenance focused only on center line equipment. Struggles with impact and adoption as recommendations lack health context.</p>
                 </div>
                 <div class="mb-6 chart-container p-4">
                     <canvas id="chart1" height="260"></canvas>
@@ -216,37 +220,150 @@
                     <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
                             <h4 class="font-bold text-orange text-sm">Databricks</h4>
-                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded whitespace-nowrap">10x Faster</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">+25% ROI</span>
                         </div>
-                        <p class="text-xs text-gray-400">Unified lakehouse for real-time predictive maintenance analytics at scale</p>
+                        <p class="text-xs text-gray-400">Unified lakehouse delivers 10x faster analytics, driving predictive maintenance value</p>
                     </div>
                     <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
                             <h4 class="font-bold text-orange text-sm">Augury</h4>
-                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">70% Less</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">-70% Downtime</span>
                         </div>
-                        <p class="text-xs text-gray-400">AI machine health with wireless sensors reducing unplanned downtime</p>
+                        <p class="text-xs text-gray-400">AI machine health reduces unplanned downtime, increasing production value</p>
                     </div>
                     <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
                             <h4 class="font-bold text-orange text-sm">HighByte</h4>
-                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded whitespace-nowrap">DataOps</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">-40% Cost</span>
                         </div>
-                        <p class="text-xs text-gray-400">Industrial DataOps connecting OT and IT for unified asset context</p>
+                        <p class="text-xs text-gray-400">Industrial DataOps cuts integration costs, accelerating time-to-value</p>
                     </div>
                     <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
                             <h4 class="font-bold text-orange text-sm">Seeq</h4>
-                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded whitespace-nowrap">Advanced</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">+30% Yield</span>
                         </div>
-                        <p class="text-xs text-gray-400">Advanced analytics for process manufacturing time-series data</p>
+                        <p class="text-xs text-gray-400">Advanced analytics improves process yields and operational efficiency</p>
                     </div>
                     <div class="feature-badge bg-dark-card p-3 sm:col-span-2 lg:col-span-1">
                         <div class="flex justify-between items-start mb-2 gap-2">
                             <h4 class="font-bold text-orange text-sm">Cognite</h4>
-                            <span class="text-xs bg-orange-900 text-orange-300 px-2 py-1 rounded whitespace-nowrap">Industrial</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">+$500M Saved</span>
                         </div>
-                        <p class="text-xs text-gray-400">Data Fusion platform contextualizing industrial data for AI/ML</p>
+                        <p class="text-xs text-gray-400">Data Fusion contextualizes industrial data, unlocking AI/ML value at scale</p>
+                    </div>
+                </div>
+
+                <!-- Customer Examples - Initial Savings -->
+                <h3 class="text-lg font-bold text-white mb-4 text-center">Early Adopter Results</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                    <div class="feature-badge bg-dark-card p-3">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h4 class="font-bold text-orange text-sm">Shell</h4>
+                                <p class="text-xs text-gray-500">Oil & Gas Major</p>
+                            </div>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Cognite</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <p class="text-gray-500">Annual Revenue</p>
+                                <p class="text-white font-bold">$386B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Maintenance Spend</p>
+                                <p class="text-white font-bold">$4.2B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$840M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">ROCE Gain</p>
+                                <p class="text-orange font-bold">+8.0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-3">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h4 class="font-bold text-orange text-sm">Chevron</h4>
+                                <p class="text-xs text-gray-500">Energy</p>
+                            </div>
+                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Seeq</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <p class="text-gray-500">Annual Revenue</p>
+                                <p class="text-white font-bold">$200B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Maintenance Spend</p>
+                                <p class="text-white font-bold">$2.1B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$420M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">ROCE Gain</p>
+                                <p class="text-orange font-bold">+8.0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-3">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h4 class="font-bold text-orange text-sm">Duke Energy</h4>
+                                <p class="text-xs text-gray-500">Power Generation</p>
+                            </div>
+                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Augury</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <p class="text-gray-500">Annual Revenue</p>
+                                <p class="text-white font-bold">$29B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Maintenance Spend</p>
+                                <p class="text-white font-bold">$1.8B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$360M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">ROCE Gain</p>
+                                <p class="text-orange font-bold">+19.2%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-badge bg-dark-card p-3">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h4 class="font-bold text-orange text-sm">BP</h4>
+                                <p class="text-xs text-gray-500">Oil & Gas</p>
+                            </div>
+                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">HighByte</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <p class="text-gray-500">Annual Revenue</p>
+                                <p class="text-white font-bold">$211B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Maintenance Spend</p>
+                                <p class="text-white font-bold">$2.3B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$460M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">ROCE Gain</p>
+                                <p class="text-orange font-bold">+8.0%</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -342,8 +459,9 @@
                     </div>
                 </div>
 
-                <!-- Real World Customer Examples -->
-                <h3 class="text-base font-bold text-white mb-3 text-center">Real World Customer Savings</h3>
+                <!-- Holistic Customer Savings - Same customers, higher value -->
+                <h3 class="text-base font-bold text-white mb-3 text-center">Holistic Approach: 2x the Savings</h3>
+                <p class="text-center text-gray-400 text-xs mb-4">Same customers, combining AI + strategic framework for maximum value</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
                     <!-- Shell Example -->
                     <div class="feature-badge bg-dark-card p-3">
@@ -352,20 +470,20 @@
                                 <h4 class="font-bold text-orange text-sm">Shell</h4>
                                 <p class="text-xs text-gray-500">Oil & Gas Major</p>
                             </div>
-                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Cognite</span>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Cognite + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-gray-500">Annual Revenue</p>
-                                <p class="text-white font-bold">$386B</p>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$840M</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Maintenance Spend</p>
-                                <p class="text-white font-bold">$4.2B</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Projected Savings</p>
+                                <p class="text-gray-500">Holistic Savings</p>
                                 <p class="text-green-400 font-bold">$1.68B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Additional Value</p>
+                                <p class="text-white font-bold">+$840M</p>
                             </div>
                             <div>
                                 <p class="text-gray-500">ROCE Gain</p>
@@ -380,20 +498,20 @@
                                 <h4 class="font-bold text-orange text-sm">Chevron</h4>
                                 <p class="text-xs text-gray-500">Energy</p>
                             </div>
-                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Seeq</span>
+                            <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Seeq + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-gray-500">Annual Revenue</p>
-                                <p class="text-white font-bold">$200B</p>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$420M</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Maintenance Spend</p>
-                                <p class="text-white font-bold">$2.1B</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Projected Savings</p>
+                                <p class="text-gray-500">Holistic Savings</p>
                                 <p class="text-green-400 font-bold">$840M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Additional Value</p>
+                                <p class="text-white font-bold">+$420M</p>
                             </div>
                             <div>
                                 <p class="text-gray-500">ROCE Gain</p>
@@ -408,20 +526,20 @@
                                 <h4 class="font-bold text-orange text-sm">Duke Energy</h4>
                                 <p class="text-xs text-gray-500">Power Generation</p>
                             </div>
-                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Augury</span>
+                            <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Augury + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-gray-500">Annual Revenue</p>
-                                <p class="text-white font-bold">$29B</p>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$360M</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Maintenance Spend</p>
-                                <p class="text-white font-bold">$1.8B</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Projected Savings</p>
+                                <p class="text-gray-500">Holistic Savings</p>
                                 <p class="text-green-400 font-bold">$720M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Additional Value</p>
+                                <p class="text-white font-bold">+$360M</p>
                             </div>
                             <div>
                                 <p class="text-gray-500">ROCE Gain</p>
@@ -436,20 +554,20 @@
                                 <h4 class="font-bold text-orange text-sm">BP</h4>
                                 <p class="text-xs text-gray-500">Oil & Gas</p>
                             </div>
-                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">HighByte</span>
+                            <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">HighByte + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-gray-500">Annual Revenue</p>
-                                <p class="text-white font-bold">$211B</p>
+                                <p class="text-gray-500">Initial Savings</p>
+                                <p class="text-yellow-400 font-bold">$460M</p>
                             </div>
                             <div>
-                                <p class="text-gray-500">Maintenance Spend</p>
-                                <p class="text-white font-bold">$2.3B</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Projected Savings</p>
+                                <p class="text-gray-500">Holistic Savings</p>
                                 <p class="text-green-400 font-bold">$920M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Additional Value</p>
+                                <p class="text-white font-bold">+$460M</p>
                             </div>
                             <div>
                                 <p class="text-gray-500">ROCE Gain</p>
@@ -796,6 +914,14 @@
                 : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
             document.getElementById('badge2').innerHTML = badge;
 
+            // Show Power Gen specific context
+            const industryContext = document.getElementById('industry-context');
+            if (ind === 'powergen') {
+                industryContext.classList.remove('hidden');
+            } else {
+                industryContext.classList.add('hidden');
+            }
+
             goToStep(2, true);
             setTimeout(function() { drawChart('chart1', DATA[ind].trad, true); }, 100);
         }
@@ -843,6 +969,13 @@
                     document.getElementById('badge2').innerHTML = badge;
                     document.getElementById('display-trad-roce').textContent = '+' + DATA[currentIndustry].trad.total + '%';
                     document.getElementById('display-holistic-roce').textContent = '+' + DATA[currentIndustry].holistic.total + '%';
+                    // Show/hide Power Gen specific context
+                    const industryContext = document.getElementById('industry-context');
+                    if (currentIndustry === 'powergen') {
+                        industryContext.classList.remove('hidden');
+                    } else {
+                        industryContext.classList.add('hidden');
+                    }
                 }
                 goToStep(event.state.step, false);
             } else {
