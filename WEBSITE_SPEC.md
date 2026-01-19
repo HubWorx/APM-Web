@@ -195,29 +195,23 @@ Rounded rectangle containers with:
 | AI & ML | Lightbulb SVG | 87% Accuracy |
 | Big Data | Database SVG | Real-Time Insights |
 
-**Company Cards (6 total, 2-column grid):**
+**Company Cards (5 total, 3-column grid):**
 
-| Company | Impact | Metric | Description |
-|---------|--------|--------|-------------|
-| Databricks | 10x Faster | Data processing | Unified data lakehouse platform |
-| Augury | 70% Reduction | Unplanned downtime | AI-powered machine health |
-| Uptake | 50M Hours | Prevented downtime | Industrial AI platform |
-| C3 AI | 3-6 Months | Time to value | Enterprise AI suite |
-| Samsara | 25% Decrease | Maintenance costs | Connected operations cloud |
-| Presenso | 95% Accuracy | 30+ day prediction | Self-learning AI |
+| Company | Impact | Description |
+|---------|--------|-------------|
+| Databricks | 10x Faster | Unified lakehouse for real-time predictive maintenance analytics |
+| Augury | 70% Less | AI machine health with wireless sensors reducing downtime |
+| HighByte | DataOps | Industrial DataOps connecting OT and IT for unified asset context |
+| Seeq | Advanced | Advanced analytics for process manufacturing time-series data |
+| Cognite | Industrial | Data Fusion platform contextualizing industrial data for AI/ML |
 
 **Why Disruptors Win (3-column):**
-1. Rapid Deployment - Cloud-native, weeks not years
-2. AI-First Approach - Built on ML from ground up
-3. Pay-as-You-Grow - Subscription models
-
-**Vendor Innovation Section:**
-- GE Vernova: SmartSignal AI - Zero breakdowns at Total EP
-- AspenTech: Aspen Mtell - OCP Ecuador +20% uptime
-- IBM Maximo: 87% failure prediction accuracy
+1. Rapid Deploy - Weeks, not years
+2. AI-First - Built on ML
+3. Pay-as-Grow - No upfront cost
 
 **CTA Button:**
-- Text: "See Health-Centric Approach"
+- Text: "Best of Both"
 - Style: Orange border pill
 
 ---
@@ -226,37 +220,46 @@ Rounded rectangle containers with:
 
 **Header:**
 - Title: "Holistic Asset Intelligence" (white)
-- Subtitle: "Combining strategic frameworks with cutting-edge AI" (gray-300)
+- Subtitle: "Strategic frameworks + cutting-edge AI" (gray-300)
 
 **The Ultimate Approach (2-column):**
 
 **Strategic Foundation:**
 - ISO 55000 governance framework
-- Clear asset strategy alignment
-- Risk-based planning processes
-- Stakeholder buy-in and change management
+- Asset strategy alignment
+- Risk-based planning
+- Stakeholder buy-in
 
 **AI-Powered Execution:**
-- Real-time health monitoring (Augury, Uptake)
-- Predictive maintenance (Presenso, C3 AI)
-- Data lakehouse analytics (Databricks)
-- Connected operations (Samsara)
+- Machine health (Augury)
+- Industrial DataOps (HighByte)
+- Process analytics (Seeq)
+- Data Fusion (Cognite)
 
-**The Synergy Effect (3-column):**
-1. Better Decisions - Strategic clarity meets real-time data
-2. Faster Results - Framework accelerates AI deployment
-3. Maximum Value - 15-20% higher ROCE than either alone
+**Real World Customer Savings (2x2 grid):**
 
-**Implementation Roadmap (4-phase):**
+| Customer | Industry | Vendor | Revenue | Maint Spend | Projected Savings | ROCE |
+|----------|----------|--------|---------|-------------|-------------------|------|
+| Shell | Oil & Gas | Cognite | $386B | $4.2B | $1.68B | +15.9% |
+| Chevron | Energy | Seeq | $200B | $2.1B | $840M | +15.9% |
+| Duke Energy | Power Gen | Augury | $29B | $1.8B | $720M | +38.3% |
+| BP | Oil & Gas | HighByte | $211B | $2.3B | $920M | +15.9% |
+
+**Implementation Timeline (4-phase):**
 | Phase | Timeline | Activity |
 |-------|----------|----------|
-| 1 | Month 1-3 | Quick wins with AI tools on critical assets |
-| 2 | Month 4-8 | Deploy governance framework in parallel |
-| 3 | Month 9-18 | Scale AI across asset portfolio |
-| 4 | Month 18+ | Continuous optimization and expansion |
+| 1 | Mo 1-3 | AI quick wins |
+| 2 | Mo 4-8 | Framework |
+| 3 | Mo 9-18 | Scale AI |
+| 4 | Mo 18+ | Optimize |
+
+**Key Metrics:**
+- 18 Months timeline
+- +15.9%/+38.3% ROCE (Oil & Gas / Power Gen)
+- 40% Maintenance Savings
 
 **CTA Button:**
-- Text: "Compare All Approaches"
+- Text: "Compare"
 
 ---
 
