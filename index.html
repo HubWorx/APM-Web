@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI-Powered APM Value Calculator</title>
     <meta name="description" content="Interactive APM Value Calculator - Compare Traditional, Health-Centric, and Holistic approaches for Asset Performance Management">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -15,19 +12,12 @@
             theme: {
                 extend: {
                     colors: {
-                        'retro-cream': '#f5e6d3',
-                        'retro-tan': '#d4a574',
-                        'retro-brown': '#8b4513',
-                        'retro-dark': '#2c1810',
-                        'retro-gold': '#d4af37',
-                        'retro-rust': '#b7410e',
-                        'retro-navy': '#1a2744',
-                        'retro-teal': '#2d6a6a',
-                    },
-                    fontFamily: {
-                        'display': ['Bebas Neue', 'sans-serif'],
-                        'heading': ['Oswald', 'sans-serif'],
-                        'badge': ['Anton', 'sans-serif'],
+                        'dark-bg': '#0a0a0a',
+                        'dark-surface': '#141414',
+                        'dark-card': '#1e1e1e',
+                        'orange': '#ff6b00',
+                        'orange-light': '#ff8533',
+                        'orange-dark': '#cc5500',
                     }
                 }
             }
@@ -39,266 +29,52 @@
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
         }
-
-        body {
-            background: linear-gradient(135deg, #2c1810 0%, #1a2744 50%, #2c1810 100%);
-            background-attachment: fixed;
-        }
-
-        /* Noise texture overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .retro-badge {
-            background: linear-gradient(145deg, #f5e6d3 0%, #d4a574 100%);
-            border: 4px solid #8b4513;
-            box-shadow:
-                0 0 0 2px #d4af37,
-                0 0 0 6px #8b4513,
-                inset 0 2px 4px rgba(255,255,255,0.3),
-                0 8px 16px rgba(0,0,0,0.4);
-            border-radius: 8px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .retro-badge:hover {
-            transform: translateY(-2px);
-            box-shadow:
-                0 0 0 2px #d4af37,
-                0 0 0 6px #8b4513,
-                inset 0 2px 4px rgba(255,255,255,0.3),
-                0 12px 24px rgba(0,0,0,0.5);
-        }
-
-        .retro-badge-dark {
-            background: linear-gradient(145deg, #2c1810 0%, #1a2744 100%);
-            border: 3px solid #d4af37;
-            box-shadow:
-                0 0 0 1px #8b4513,
-                0 0 0 4px #d4af37,
-                inset 0 1px 2px rgba(212,175,55,0.2),
-                0 6px 12px rgba(0,0,0,0.5);
-            border-radius: 8px;
-        }
-
-        .retro-stamp {
-            background: radial-gradient(circle, #b7410e 0%, #8b4513 100%);
-            border: 3px dashed #d4af37;
-            border-radius: 50%;
-            box-shadow:
-                inset 0 0 10px rgba(0,0,0,0.3),
-                0 4px 8px rgba(0,0,0,0.3);
-            transform: rotate(-5deg);
-        }
-
-        .retro-ribbon {
-            background: linear-gradient(90deg, #b7410e 0%, #d4af37 50%, #b7410e 100%);
-            color: #f5e6d3;
-            padding: 8px 24px;
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-
-        .retro-ribbon::before,
-        .retro-ribbon::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            border: 8px solid transparent;
-            border-top-color: #8b4513;
-        }
-
-        .retro-ribbon::before {
-            left: 0;
-            border-left-color: #8b4513;
-        }
-
-        .retro-ribbon::after {
-            right: 0;
-            border-right-color: #8b4513;
-        }
-
-        .retro-button {
-            background: linear-gradient(145deg, #d4af37 0%, #8b4513 100%);
-            border: 3px solid #2c1810;
-            color: #2c1810;
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 12px 32px;
-            border-radius: 50px;
-            box-shadow:
-                inset 0 2px 4px rgba(255,255,255,0.3),
-                0 4px 8px rgba(0,0,0,0.3);
+        .feature-badge {
+            border: 2px solid #ff6b00;
+            border-radius: 12px;
             transition: all 0.2s ease;
         }
-
-        .retro-button:hover {
-            background: linear-gradient(145deg, #f5e6d3 0%, #d4af37 100%);
-            transform: translateY(-2px);
-            box-shadow:
-                inset 0 2px 4px rgba(255,255,255,0.3),
-                0 6px 12px rgba(0,0,0,0.4);
+        .feature-badge:hover {
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+            border-color: #ff8533;
         }
-
-        .retro-seal {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle at 30% 30%, #d4af37 0%, #8b4513 70%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow:
-                0 0 0 4px #2c1810,
-                0 0 0 8px #d4af37,
-                inset 0 -4px 8px rgba(0,0,0,0.3),
-                0 8px 16px rgba(0,0,0,0.4);
-            position: relative;
+        .badge-pill {
+            border-radius: 50px;
         }
-
-        .retro-seal::before {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            border: 2px dashed #f5e6d3;
-            border-radius: 50%;
-            opacity: 0.5;
-        }
-
-        .retro-card {
-            background: linear-gradient(145deg, #3d2317 0%, #2c1810 100%);
-            border: 2px solid #d4af37;
-            border-radius: 4px;
-            box-shadow:
-                inset 0 1px 2px rgba(212,175,55,0.1),
-                0 4px 8px rgba(0,0,0,0.3);
-        }
-
-        .retro-title {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #d4af37;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .retro-subtitle {
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 1px;
-            color: #f5e6d3;
-        }
-
         .chart-container {
-            background: linear-gradient(145deg, #3d2317 0%, #2c1810 100%);
-            border: 2px solid #d4af37;
-            border-radius: 8px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+            background: #141414;
+            border: 2px solid #ff6b00;
+            border-radius: 12px;
         }
-
         input[type="number"] {
-            background: linear-gradient(145deg, #3d2317 0%, #2c1810 100%);
-            border: 2px solid #d4af37;
-            color: #f5e6d3;
-            font-family: 'Oswald', sans-serif;
+            background: #1e1e1e;
+            border: 2px solid #ff6b00;
+            color: #ffffff;
         }
-
         input[type="number"]::placeholder {
-            color: #8b7355;
+            color: #888888;
         }
-
         input[type="number"]:focus {
             outline: none;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-            border-color: #f5e6d3;
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
         }
-
-        .star-decoration {
-            color: #d4af37;
-            text-shadow: 0 0 10px rgba(212,175,55,0.5);
-        }
-
-        .vintage-border {
-            border: 3px double #d4af37;
-            padding: 4px;
-        }
-
-        .vintage-border-inner {
-            border: 1px solid #8b4513;
-        }
-
-        /* Decorative corners */
-        .corner-decoration {
-            position: relative;
-        }
-
-        .corner-decoration::before,
-        .corner-decoration::after {
-            content: '✦';
-            position: absolute;
-            color: #d4af37;
-            font-size: 12px;
-        }
-
-        .corner-decoration::before {
-            top: -6px;
-            left: -6px;
-        }
-
-        .corner-decoration::after {
-            bottom: -6px;
-            right: -6px;
-        }
-
         .nav-btn {
             transition: all 0.2s ease;
         }
-
         .nav-btn:hover {
-            transform: translateY(-2px);
+            transform: translateX(4px);
         }
-
-        /* Retro scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #2c1810;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(145deg, #d4af37, #8b4513);
-            border-radius: 6px;
-            border: 2px solid #2c1810;
+        .nav-btn-back:hover {
+            transform: translateX(-4px);
         }
     </style>
 </head>
-<body class="min-h-screen relative z-10">
+<body class="bg-dark-bg min-h-screen">
     <!-- Navigation Bar -->
-    <nav class="retro-badge-dark sticky top-0 z-50 mx-4 mt-4 rounded-lg">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <span class="star-decoration text-2xl">★</span>
-                <span class="retro-title text-xl md:text-2xl">APM Value Calculator</span>
-                <span class="star-decoration text-2xl">★</span>
-            </div>
-            <div id="step-indicator" class="retro-subtitle text-sm text-retro-tan"></div>
+    <nav class="bg-dark-surface border-b-2 border-orange sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <span class="text-lg md:text-2xl font-bold text-white">AI-Powered APM Value Calculator</span>
+            <div id="step-indicator" class="text-sm text-gray-400"></div>
         </div>
     </nav>
 
@@ -307,55 +83,39 @@
         <!-- Step 1: Industry Selection -->
         <div id="step1">
             <div class="text-center mb-10">
-                <div class="inline-block mb-4">
-                    <span class="star-decoration text-lg">✦</span>
-                    <span class="star-decoration text-2xl mx-2">★</span>
-                    <span class="star-decoration text-lg">✦</span>
-                </div>
-                <h1 class="retro-title text-4xl md:text-6xl mb-4">APM Value Realization Journey</h1>
-                <p class="retro-subtitle text-lg md:text-xl text-retro-tan">Choose your industry to begin</p>
-                <div class="inline-block mt-4">
-                    <span class="star-decoration text-lg">✦</span>
-                    <span class="star-decoration text-2xl mx-2">★</span>
-                    <span class="star-decoration text-lg">✦</span>
-                </div>
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">APM Value Realization Journey</h1>
+                <p class="text-lg md:text-xl text-gray-300">Choose your industry to begin</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <button id="btn-oilgas" class="retro-badge p-6 md:p-8 text-left corner-decoration">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="retro-seal w-16 h-16 flex-shrink-0">
-                            <svg class="w-8 h-8 text-retro-cream" fill="currentColor" viewBox="0 0 24 24">
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <button id="btn-oilgas" class="feature-badge bg-dark-surface p-6 md:p-8 text-left">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 border-2 border-orange rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-7 h-7 text-orange" fill="currentColor" viewBox="0 0 24 24">
                                 <ellipse cx="12" cy="5" rx="7" ry="3"/>
                                 <path d="M5 5v14c0 1.66 3.13 3 7 3s7-1.34 7-3V5"/>
                                 <ellipse cx="12" cy="12" rx="7" ry="2" fill-opacity="0.3"/>
                             </svg>
                         </div>
                         <div class="min-w-0">
-                            <h3 class="font-heading text-2xl md:text-3xl font-bold text-retro-brown uppercase tracking-wide">Oil & Gas</h3>
-                            <p class="text-xs md:text-sm text-retro-brown/70 font-heading">Upstream / Midstream / Downstream</p>
+                            <h3 class="text-xl md:text-2xl font-bold text-orange">Oil & Gas</h3>
+                            <p class="text-xs md:text-sm text-gray-400">Upstream / Midstream / Downstream</p>
                         </div>
                     </div>
-                    <p class="text-retro-brown/80 text-sm font-heading">ROCE analysis for energy sector operations</p>
-                    <div class="mt-3 text-center">
-                        <span class="text-retro-gold text-xs font-badge tracking-widest">★ CLICK TO SELECT ★</span>
-                    </div>
+                    <p class="text-gray-400 text-sm">ROCE analysis for energy sector operations</p>
                 </button>
-                <button id="btn-powergen" class="retro-badge p-6 md:p-8 text-left corner-decoration">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="retro-seal w-16 h-16 flex-shrink-0">
-                            <svg class="w-8 h-8 text-retro-cream" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <button id="btn-powergen" class="feature-badge bg-dark-surface p-6 md:p-8 text-left">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 border-2 border-orange rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-7 h-7 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                             </svg>
                         </div>
                         <div class="min-w-0">
-                            <h3 class="font-heading text-2xl md:text-3xl font-bold text-retro-brown uppercase tracking-wide">Power Generation</h3>
-                            <p class="text-xs md:text-sm text-retro-brown/70 font-heading">Availability / O&M Cost</p>
+                            <h3 class="text-xl md:text-2xl font-bold text-orange">Power Generation</h3>
+                            <p class="text-xs md:text-sm text-gray-400">Availability / O&M Cost</p>
                         </div>
                     </div>
-                    <p class="text-retro-brown/80 text-sm font-heading">Availability and O&M cost per MWh analysis</p>
-                    <div class="mt-3 text-center">
-                        <span class="text-retro-gold text-xs font-badge tracking-widest">★ CLICK TO SELECT ★</span>
-                    </div>
+                    <p class="text-gray-400 text-sm">Availability and O&M cost per MWh analysis</p>
                 </button>
             </div>
         </div>
@@ -364,41 +124,38 @@
         <div id="step2" class="hidden">
             <div class="text-center mb-6">
                 <div id="badge2" class="mb-3"></div>
-                <div class="inline-block mb-2">
-                    <span class="star-decoration">✦ ★ ✦</span>
-                </div>
-                <h2 class="retro-title text-3xl md:text-5xl mb-2">Traditional ISO 55000 Approach</h2>
-                <p class="retro-subtitle text-retro-tan">The framework-first methodology</p>
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Traditional ISO 55000 Approach</h2>
+                <p class="text-gray-400">The framework-first methodology</p>
             </div>
-            <div class="retro-badge-dark p-5 md:p-8 max-w-5xl mx-auto">
-                <div id="oilgas-context" class="retro-card p-4 mb-6 border-l-4 border-retro-rust">
-                    <p class="text-retro-cream font-heading"><span class="text-retro-gold font-bold">⚠ The Old Way:</span> Framework-first, technology-last approach taking 4-5 years</p>
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-5xl mx-auto">
+                <div id="oilgas-context" class="border-l-4 border-orange bg-dark-card p-4 mb-6">
+                    <p class="text-white"><span class="text-orange font-bold">The Old Way:</span> Framework-first, technology-last approach taking 4-5 years</p>
                 </div>
-                <div id="powergen-context" class="retro-card p-4 mb-6 border-l-4 border-retro-rust hidden">
-                    <p class="text-retro-cream font-heading"><span class="text-retro-rust font-bold">⚠ The Old Way:</span> Laser focused on center line reliability with predictive maintenance first. Limited adoption &amp; impact - recommendations lack asset health context.</p>
+                <div id="powergen-context" class="border-l-4 border-red-500 bg-dark-card p-4 mb-6 hidden">
+                    <p class="text-white"><span class="text-red-500 font-bold">The Old Way:</span> Laser focused on center line reliability with predictive maintenance first. Limited adoption &amp; impact - recommendations lack asset health context.</p>
                 </div>
                 <div class="mb-6 chart-container p-4">
                     <canvas id="chart1" height="260"></canvas>
                 </div>
                 <div class="grid grid-cols-3 gap-3 md:gap-4 my-6">
-                    <div class="retro-badge p-3 md:p-5 text-center">
-                        <div class="font-display text-3xl md:text-5xl text-retro-brown">4-5</div>
-                        <div class="text-xs md:text-sm text-retro-brown font-heading font-bold">YEARS</div>
-                        <div class="text-xs text-retro-brown/60 mt-1 font-heading">Timeline</div>
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
+                        <div class="text-2xl md:text-4xl font-bold text-orange">4-5</div>
+                        <div class="text-xs md:text-sm text-white font-medium">Years</div>
+                        <div class="text-xs text-gray-500 mt-1">Timeline</div>
                     </div>
-                    <div class="retro-badge p-3 md:p-5 text-center">
-                        <div class="font-display text-2xl md:text-4xl text-retro-brown" id="display-trad-roce">+5.7%</div>
-                        <div class="text-xs text-retro-brown font-heading font-bold">ROCE IMPACT</div>
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
+                        <div class="text-xl md:text-3xl font-bold text-orange" id="display-trad-roce">+5.7%</div>
+                        <div class="text-xs text-white font-medium">ROCE Impact</div>
                     </div>
-                    <div class="retro-badge p-3 md:p-5 text-center">
-                        <div class="font-display text-3xl md:text-5xl text-retro-brown">~0</div>
-                        <div class="text-xs md:text-sm text-retro-brown font-heading font-bold">VALUE</div>
-                        <div class="text-xs text-retro-brown/60 mt-1 font-heading">First 2 Years</div>
+                    <div class="feature-badge bg-dark-card p-3 md:p-5 text-center">
+                        <div class="text-2xl md:text-4xl font-bold text-orange">~0</div>
+                        <div class="text-xs md:text-sm text-white font-medium">Value</div>
+                        <div class="text-xs text-gray-500 mt-1">First 2 Years</div>
                     </div>
                 </div>
                 <div class="flex justify-center items-center mt-8">
-                    <button onclick="goToStep(3)" class="retro-button nav-btn text-lg">
-                        ★ What Changed? ★
+                    <button onclick="goToStep(3)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
+                        What Changed?
                         <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                     </button>
                 </div>
@@ -408,202 +165,199 @@
         <!-- Step 3: Disruptive Technology Companies -->
         <div id="step3" class="hidden">
             <div class="text-center mb-6">
-                <div class="inline-block mb-2">
-                    <span class="star-decoration">✦ ★ ✦</span>
-                </div>
-                <h2 class="retro-title text-3xl md:text-5xl mb-2">The Last Decade Changed Everything</h2>
-                <p class="retro-subtitle text-retro-tan">Technology disruption enabling health-centric APM</p>
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">The Last Decade Changed Everything</h2>
+                <p class="text-gray-300">Technology disruption enabling health-centric APM</p>
             </div>
 
-            <div class="retro-badge-dark p-5 md:p-8 mb-6">
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 mb-6">
                 <!-- Technology Badges -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-8">
-                    <div class="retro-badge p-4 text-center">
-                        <div class="retro-stamp w-12 h-12 mx-auto mb-2 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-retro-cream" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
                             </svg>
                         </div>
-                        <h3 class="font-display text-lg text-retro-brown">CLOUD</h3>
-                        <p class="text-xs text-retro-brown/70 font-heading">Deploy in Weeks</p>
+                        <h3 class="text-sm md:text-base font-bold text-orange">Cloud</h3>
+                        <p class="text-xs text-gray-400">Deploy in Weeks</p>
                     </div>
-                    <div class="retro-badge p-4 text-center">
-                        <div class="retro-stamp w-12 h-12 mx-auto mb-2 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-retro-cream" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
                             </svg>
                         </div>
-                        <h3 class="font-display text-lg text-retro-brown">IOT</h3>
-                        <p class="text-xs text-retro-brown/70 font-heading">90% Cost Reduction</p>
+                        <h3 class="text-sm md:text-base font-bold text-orange">IoT</h3>
+                        <p class="text-xs text-gray-400">90% Cost Reduction</p>
                     </div>
-                    <div class="retro-badge p-4 text-center">
-                        <div class="retro-stamp w-12 h-12 mx-auto mb-2 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-retro-cream" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                             </svg>
                         </div>
-                        <h3 class="font-display text-lg text-retro-brown">AI & ML</h3>
-                        <p class="text-xs text-retro-brown/70 font-heading">87% Accuracy</p>
+                        <h3 class="text-sm md:text-base font-bold text-orange">AI & ML</h3>
+                        <p class="text-xs text-gray-400">87% Accuracy</p>
                     </div>
-                    <div class="retro-badge p-4 text-center">
-                        <div class="retro-stamp w-12 h-12 mx-auto mb-2 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-retro-cream" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <div class="feature-badge bg-dark-card p-4 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 border-2 border-orange rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
                             </svg>
                         </div>
-                        <h3 class="font-display text-lg text-retro-brown">BIG DATA</h3>
-                        <p class="text-xs text-retro-brown/70 font-heading">Real-Time Insights</p>
+                        <h3 class="text-sm md:text-base font-bold text-orange">Big Data</h3>
+                        <p class="text-xs text-gray-400">Real-Time Insights</p>
                     </div>
                 </div>
 
                 <!-- Disruptor Companies -->
-                <h3 class="retro-title text-2xl text-center mb-4">★ The Disruptors Changing APM ★</h3>
+                <h3 class="text-lg font-bold text-white mb-4 text-center">The Disruptors Changing APM</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
-                    <div class="retro-card p-3">
+                    <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
-                            <h4 class="font-heading font-heading font-bold text-retro-gold text-sm uppercase">Databricks</h4>
-                            <span class="text-xs bg-retro-teal text-retro-cream px-2 py-1 rounded font-heading">+25% ROI</span>
+                            <h4 class="font-bold text-orange text-sm">Databricks</h4>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">+25% ROI</span>
                         </div>
-                        <p class="text-xs text-retro-cream/70 font-heading">Unified lakehouse delivers 10x faster analytics, driving predictive maintenance value</p>
+                        <p class="text-xs text-gray-400">Unified lakehouse delivers 10x faster analytics, driving predictive maintenance value</p>
                     </div>
-                    <div class="retro-card p-3">
+                    <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
-                            <h4 class="font-heading font-heading font-bold text-retro-gold text-sm uppercase">Augury</h4>
-                            <span class="text-xs bg-retro-teal text-retro-cream px-2 py-1 rounded font-heading">-70% Downtime</span>
+                            <h4 class="font-bold text-orange text-sm">Augury</h4>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">-70% Downtime</span>
                         </div>
-                        <p class="text-xs text-retro-cream/70 font-heading">AI machine health reduces unplanned downtime, increasing production value</p>
+                        <p class="text-xs text-gray-400">AI machine health reduces unplanned downtime, increasing production value</p>
                     </div>
-                    <div class="retro-card p-3">
+                    <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
-                            <h4 class="font-heading font-heading font-bold text-retro-gold text-sm uppercase">HighByte</h4>
-                            <span class="text-xs bg-retro-teal text-retro-cream px-2 py-1 rounded font-heading">-40% Cost</span>
+                            <h4 class="font-bold text-orange text-sm">HighByte</h4>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">-40% Cost</span>
                         </div>
-                        <p class="text-xs text-retro-cream/70 font-heading">Industrial DataOps cuts integration costs, accelerating time-to-value</p>
+                        <p class="text-xs text-gray-400">Industrial DataOps cuts integration costs, accelerating time-to-value</p>
                     </div>
-                    <div class="retro-card p-3">
+                    <div class="feature-badge bg-dark-card p-3">
                         <div class="flex justify-between items-start mb-2 gap-2">
-                            <h4 class="font-heading font-heading font-bold text-retro-gold text-sm uppercase">Seeq</h4>
-                            <span class="text-xs bg-retro-teal text-retro-cream px-2 py-1 rounded font-heading">+30% Yield</span>
+                            <h4 class="font-bold text-orange text-sm">Seeq</h4>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">+30% Yield</span>
                         </div>
-                        <p class="text-xs text-retro-cream/70 font-heading">Advanced analytics improves process yields and operational efficiency</p>
+                        <p class="text-xs text-gray-400">Advanced analytics improves process yields and operational efficiency</p>
                     </div>
-                    <div class="retro-card p-3 sm:col-span-2 lg:col-span-1">
+                    <div class="feature-badge bg-dark-card p-3 sm:col-span-2 lg:col-span-1">
                         <div class="flex justify-between items-start mb-2 gap-2">
-                            <h4 class="font-heading font-heading font-bold text-retro-gold text-sm uppercase">Cognite</h4>
-                            <span class="text-xs bg-retro-teal text-retro-cream px-2 py-1 rounded font-heading">+$500M Saved</span>
+                            <h4 class="font-bold text-orange text-sm">Cognite</h4>
+                            <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded whitespace-nowrap">+$500M Saved</span>
                         </div>
-                        <p class="text-xs text-retro-cream/70 font-heading">Data Fusion contextualizes industrial data, unlocking AI/ML value at scale</p>
+                        <p class="text-xs text-gray-400">Data Fusion contextualizes industrial data, unlocking AI/ML value at scale</p>
                     </div>
                 </div>
 
                 <!-- Industry Results - Documented Case Studies -->
-                <h3 class="text-lg font-bold text-retro-cream mb-4 text-center">Documented Case Studies</h3>
+                <h3 class="text-lg font-bold text-white mb-4 text-center">Documented Case Studies</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-                    <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-siemens-condition-monitoring" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-siemens-condition-monitoring" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">Aker BP</h4>
-                                <p class="text-xs text-retro-tan/70">Oil & Gas</p>
+                                <h4 class="font-bold text-orange text-sm">Aker BP</h4>
+                                <p class="text-xs text-gray-500">Oil & Gas</p>
                             </div>
                             <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Cognite</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Hours Saved</p>
-                                <p class="text-retro-cream font-bold">1,300</p>
+                                <p class="text-gray-500">Hours Saved</p>
+                                <p class="text-white font-bold">1,300</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">OpEx Savings</p>
-                                <p class="text-retro-cream font-bold">$6.5M</p>
+                                <p class="text-gray-500">OpEx Savings</p>
+                                <p class="text-white font-bold">$6.5M</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Maint. Reduction</p>
+                                <p class="text-gray-500">Maint. Reduction</p>
                                 <p class="text-yellow-400 font-bold">-30%</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Shutdowns</p>
-                                <p class="text-retro-gold font-bold">-70%</p>
+                                <p class="text-gray-500">Shutdowns</p>
+                                <p class="text-orange font-bold">-70%</p>
                             </div>
                         </div>
                     </a>
-                    <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">Chevron</h4>
-                                <p class="text-xs text-retro-tan/70">Energy</p>
+                                <h4 class="font-bold text-orange text-sm">Chevron</h4>
+                                <p class="text-xs text-gray-500">Energy</p>
                             </div>
                             <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Seeq</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Deployment</p>
-                                <p class="text-retro-cream font-bold">Global SaaS</p>
+                                <p class="text-gray-500">Deployment</p>
+                                <p class="text-white font-bold">Global SaaS</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Use Cases</p>
-                                <p class="text-retro-cream font-bold">Production</p>
+                                <p class="text-gray-500">Use Cases</p>
+                                <p class="text-white font-bold">Production</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Carbon Goals</p>
+                                <p class="text-gray-500">Carbon Goals</p>
                                 <p class="text-yellow-400 font-bold">Enabled</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Analysis Time</p>
-                                <p class="text-retro-gold font-bold">-99%</p>
+                                <p class="text-gray-500">Analysis Time</p>
+                                <p class="text-orange font-bold">-99%</p>
                             </div>
                         </div>
                     </a>
-                    <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">PepsiCo</h4>
-                                <p class="text-xs text-retro-tan/70">CPG Manufacturing</p>
+                                <h4 class="font-bold text-orange text-sm">PepsiCo</h4>
+                                <p class="text-xs text-gray-500">CPG Manufacturing</p>
                             </div>
                             <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Augury</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Revenue</p>
-                                <p class="text-retro-cream font-bold">$91B</p>
+                                <p class="text-gray-500">Revenue</p>
+                                <p class="text-white font-bold">$91B</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Capacity Gained</p>
-                                <p class="text-retro-cream font-bold">4,000 hrs/yr</p>
+                                <p class="text-gray-500">Capacity Gained</p>
+                                <p class="text-white font-bold">4,000 hrs/yr</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Downtime Cut</p>
+                                <p class="text-gray-500">Downtime Cut</p>
                                 <p class="text-yellow-400 font-bold">-70%</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">ROI</p>
-                                <p class="text-retro-gold font-bold">5-20x</p>
+                                <p class="text-gray-500">ROI</p>
+                                <p class="text-orange font-bold">5-20x</p>
                             </div>
                         </div>
                     </a>
-                    <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">Covestro</h4>
-                                <p class="text-xs text-retro-tan/70">Chemicals</p>
+                                <h4 class="font-bold text-orange text-sm">Covestro</h4>
+                                <p class="text-xs text-gray-500">Chemicals</p>
                             </div>
                             <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Seeq</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Plants</p>
-                                <p class="text-retro-cream font-bold">50 Global</p>
+                                <p class="text-gray-500">Plants</p>
+                                <p class="text-white font-bold">50 Global</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Analytics</p>
-                                <p class="text-retro-cream font-bold">Self-Service</p>
+                                <p class="text-gray-500">Analytics</p>
+                                <p class="text-white font-bold">Self-Service</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Quality</p>
+                                <p class="text-gray-500">Quality</p>
                                 <p class="text-yellow-400 font-bold">Improved</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Maintenance</p>
-                                <p class="text-retro-gold font-bold">Proactive</p>
+                                <p class="text-gray-500">Maintenance</p>
+                                <p class="text-orange font-bold">Proactive</p>
                             </div>
                         </div>
                     </a>
@@ -611,25 +365,25 @@
 
                 <!-- Why Disruptors Win -->
                 <div class="grid grid-cols-3 gap-3 mb-6">
-                    <div class="text-center p-3 bg-retro-dark rounded-lg">
+                    <div class="text-center p-3 bg-dark-card rounded-lg">
                         <div class="text-2xl mb-1">&#9889;</div>
-                        <h4 class="text-sm font-heading font-bold text-retro-gold">Rapid Deploy</h4>
-                        <p class="text-xs text-retro-tan/70">Weeks, not years</p>
+                        <h4 class="text-sm font-bold text-orange">Rapid Deploy</h4>
+                        <p class="text-xs text-gray-500">Weeks, not years</p>
                     </div>
-                    <div class="text-center p-3 bg-retro-dark rounded-lg">
+                    <div class="text-center p-3 bg-dark-card rounded-lg">
                         <div class="text-2xl mb-1">&#127919;</div>
-                        <h4 class="text-sm font-heading font-bold text-retro-gold">AI-First</h4>
-                        <p class="text-xs text-retro-tan/70">Built on ML</p>
+                        <h4 class="text-sm font-bold text-orange">AI-First</h4>
+                        <p class="text-xs text-gray-500">Built on ML</p>
                     </div>
-                    <div class="text-center p-3 bg-retro-dark rounded-lg">
+                    <div class="text-center p-3 bg-dark-card rounded-lg">
                         <div class="text-2xl mb-1">&#128176;</div>
-                        <h4 class="text-sm font-heading font-bold text-retro-gold">Pay-as-Grow</h4>
-                        <p class="text-xs text-retro-tan/70">No upfront cost</p>
+                        <h4 class="text-sm font-bold text-orange">Pay-as-Grow</h4>
+                        <p class="text-xs text-gray-500">No upfront cost</p>
                     </div>
                 </div>
 
                 <div class="flex justify-center items-center mt-6">
-                    <button onclick="goToStep(4)" class="retro-button bg-retro-dark text-retro-cream px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-retro-gold hover:text-black transition-all nav-btn">
+                    <button onclick="goToStep(4)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
                         Best of Both
                         <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                     </button>
@@ -640,59 +394,56 @@
         <!-- Step 4: Holistic Asset Intelligence -->
         <div id="step4" class="hidden">
             <div class="text-center mb-6">
-                <div class="inline-block mb-2">
-                    <span class="star-decoration">✦ ★ ✦</span>
-                </div>
-                <h2 class="retro-title text-3xl md:text-5xl mb-2">Holistic Asset Intelligence</h2>
-                <p class="retro-subtitle text-retro-tan">Strategic frameworks + cutting-edge AI</p>
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Holistic Asset Intelligence</h2>
+                <p class="text-gray-300">Strategic frameworks + cutting-edge AI</p>
             </div>
 
-            <div class="retro-badge-dark p-4 md:p-6 mb-6">
+            <div class="feature-badge bg-dark-surface p-4 md:p-6 mb-6">
                 <!-- Two Column Approach -->
                 <div class="grid md:grid-cols-2 gap-3 mb-5">
-                    <div class="retro-card p-3">
+                    <div class="feature-badge bg-dark-card p-3">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="text-xl">&#128203;</span>
-                            <h3 class="text-base font-bold text-retro-cream">Strategic Foundation</h3>
+                            <h3 class="text-base font-bold text-white">Strategic Foundation</h3>
                         </div>
                         <ul class="space-y-1 text-xs">
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 ISO 55000 governance framework
                             </li>
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 Asset strategy alignment
                             </li>
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 Risk-based planning
                             </li>
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 Stakeholder buy-in
                             </li>
                         </ul>
                     </div>
-                    <div class="retro-card p-3">
+                    <div class="feature-badge bg-dark-card p-3">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="text-xl">&#129302;</span>
-                            <h3 class="text-base font-bold text-retro-cream">AI-Powered Execution</h3>
+                            <h3 class="text-base font-bold text-white">AI-Powered Execution</h3>
                         </div>
                         <ul class="space-y-1 text-xs">
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 Machine health monitoring
                             </li>
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 Industrial DataOps
                             </li>
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 Process analytics
                             </li>
-                            <li class="flex items-start gap-2 text-retro-cream/80">
+                            <li class="flex items-start gap-2 text-gray-300">
                                 <span class="text-green-500">&#10003;</span>
                                 Data contextualization
                             </li>
@@ -701,162 +452,162 @@
                 </div>
 
                 <!-- Holistic Results - Same customers with strategic framework -->
-                <h3 class="text-base font-bold text-retro-cream mb-3 text-center">Holistic Approach: Enhanced Value</h3>
-                <p class="text-center text-retro-tan text-xs mb-4">Same customers + ISO 55000 framework = amplified results</p>
+                <h3 class="text-base font-bold text-white mb-3 text-center">Holistic Approach: Enhanced Value</h3>
+                <p class="text-center text-gray-400 text-xs mb-4">Same customers + ISO 55000 framework = amplified results</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
                     <!-- Aker BP -->
-                    <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-smart-maintenance-sustainability" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-smart-maintenance-sustainability" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">Aker BP</h4>
-                                <p class="text-xs text-retro-tan/70">Oil & Gas</p>
+                                <h4 class="font-bold text-orange text-sm">Aker BP</h4>
+                                <p class="text-xs text-gray-500">Oil & Gas</p>
                             </div>
                             <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Cognite + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Initial OpEx</p>
+                                <p class="text-gray-500">Initial OpEx</p>
                                 <p class="text-yellow-400 font-bold">$6.5M</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Holistic Value</p>
+                                <p class="text-gray-500">Holistic Value</p>
                                 <p class="text-green-400 font-bold">$13M+</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">CO2 Reduction</p>
-                                <p class="text-retro-cream font-bold">100K tons/yr</p>
+                                <p class="text-gray-500">CO2 Reduction</p>
+                                <p class="text-white font-bold">100K tons/yr</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Availability</p>
-                                <p class="text-retro-gold font-bold">+40%</p>
+                                <p class="text-gray-500">Availability</p>
+                                <p class="text-orange font-bold">+40%</p>
                             </div>
                         </div>
                     </a>
                     <!-- Chevron -->
-                    <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">Chevron</h4>
-                                <p class="text-xs text-retro-tan/70">Energy</p>
+                                <h4 class="font-bold text-orange text-sm">Chevron</h4>
+                                <p class="text-xs text-gray-500">Energy</p>
                             </div>
                             <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Seeq + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Analysis Time</p>
+                                <p class="text-gray-500">Analysis Time</p>
                                 <p class="text-yellow-400 font-bold">4mo to 30min</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Emissions</p>
+                                <p class="text-gray-500">Emissions</p>
                                 <p class="text-green-400 font-bold">Reduced</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Turbines</p>
-                                <p class="text-retro-cream font-bold">Optimized</p>
+                                <p class="text-gray-500">Turbines</p>
+                                <p class="text-white font-bold">Optimized</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Carbon Goals</p>
-                                <p class="text-retro-gold font-bold">Enabled</p>
+                                <p class="text-gray-500">Carbon Goals</p>
+                                <p class="text-orange font-bold">Enabled</p>
                             </div>
                         </div>
                     </a>
                     <!-- PepsiCo -->
-                    <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">PepsiCo</h4>
-                                <p class="text-xs text-retro-tan/70">CPG Manufacturing</p>
+                                <h4 class="font-bold text-orange text-sm">PepsiCo</h4>
+                                <p class="text-xs text-gray-500">CPG Manufacturing</p>
                             </div>
                             <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Augury + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Capacity</p>
+                                <p class="text-gray-500">Capacity</p>
                                 <p class="text-yellow-400 font-bold">4,000 hrs</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Holistic Value</p>
+                                <p class="text-gray-500">Holistic Value</p>
                                 <p class="text-green-400 font-bold">8,000+ hrs</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Rollout</p>
-                                <p class="text-retro-cream font-bold">All NA Plants</p>
+                                <p class="text-gray-500">Rollout</p>
+                                <p class="text-white font-bold">All NA Plants</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">ROI</p>
-                                <p class="text-retro-gold font-bold">10-20x</p>
+                                <p class="text-gray-500">ROI</p>
+                                <p class="text-orange font-bold">10-20x</p>
                             </div>
                         </div>
                     </a>
                     <!-- Covestro -->
-                    <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="retro-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
+                    <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="font-heading font-bold text-retro-gold text-sm">Covestro</h4>
-                                <p class="text-xs text-retro-tan/70">Chemicals</p>
+                                <h4 class="font-bold text-orange text-sm">Covestro</h4>
+                                <p class="text-xs text-gray-500">Chemicals</p>
                             </div>
                             <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Seeq + ISO</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>
-                                <p class="text-retro-tan/70">Plants</p>
+                                <p class="text-gray-500">Plants</p>
                                 <p class="text-yellow-400 font-bold">50 Global</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Data Sharing</p>
+                                <p class="text-gray-500">Data Sharing</p>
                                 <p class="text-green-400 font-bold">Cross-Site</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Quality</p>
-                                <p class="text-retro-cream font-bold">Higher</p>
+                                <p class="text-gray-500">Quality</p>
+                                <p class="text-white font-bold">Higher</p>
                             </div>
                             <div>
-                                <p class="text-retro-tan/70">Loss</p>
-                                <p class="text-retro-gold font-bold">Prevented</p>
+                                <p class="text-gray-500">Loss</p>
+                                <p class="text-orange font-bold">Prevented</p>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <!-- Implementation Timeline -->
-                <h3 class="text-base font-bold text-retro-cream mb-3 text-center">Implementation Timeline</h3>
+                <h3 class="text-base font-bold text-white mb-3 text-center">Implementation Timeline</h3>
                 <div class="grid grid-cols-4 gap-2 mb-5">
-                    <div class="bg-retro-dark rounded p-2 border-l-2 border-blue-500">
+                    <div class="bg-dark-card rounded p-2 border-l-2 border-blue-500">
                         <div class="text-xs text-blue-400 font-bold">Mo 1-3</div>
-                        <p class="text-xs text-retro-tan">AI quick wins</p>
+                        <p class="text-xs text-gray-400">AI quick wins</p>
                     </div>
-                    <div class="bg-retro-dark rounded p-2 border-l-2 border-green-500">
+                    <div class="bg-dark-card rounded p-2 border-l-2 border-green-500">
                         <div class="text-xs text-green-400 font-bold">Mo 4-8</div>
-                        <p class="text-xs text-retro-tan">Framework</p>
+                        <p class="text-xs text-gray-400">Framework</p>
                     </div>
-                    <div class="bg-retro-dark rounded p-2 border-l-2 border-yellow-500">
+                    <div class="bg-dark-card rounded p-2 border-l-2 border-yellow-500">
                         <div class="text-xs text-yellow-400 font-bold">Mo 9-18</div>
-                        <p class="text-xs text-retro-tan">Scale AI</p>
+                        <p class="text-xs text-gray-400">Scale AI</p>
                     </div>
-                    <div class="bg-retro-dark rounded p-2 border-l-2 border-retro-gold">
-                        <div class="text-xs text-retro-gold font-bold">Mo 18+</div>
-                        <p class="text-xs text-retro-tan">Optimize</p>
+                    <div class="bg-dark-card rounded p-2 border-l-2 border-orange">
+                        <div class="text-xs text-orange font-bold">Mo 18+</div>
+                        <p class="text-xs text-gray-400">Optimize</p>
                     </div>
                 </div>
 
                 <!-- Key Metrics -->
                 <div class="grid grid-cols-3 gap-2 mb-5">
-                    <div class="retro-card p-3 text-center">
-                        <div class="text-2xl md:text-3xl font-heading font-bold text-retro-gold">18</div>
-                        <div class="text-xs text-retro-cream font-medium">Months</div>
+                    <div class="feature-badge bg-dark-card p-3 text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-orange">18</div>
+                        <div class="text-xs text-white font-medium">Months</div>
                     </div>
-                    <div class="retro-card p-3 text-center">
-                        <div class="text-2xl md:text-3xl font-heading font-bold text-retro-gold" id="display-holistic-roce">+15.9%</div>
-                        <div class="text-xs text-retro-cream font-medium">ROCE</div>
+                    <div class="feature-badge bg-dark-card p-3 text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-orange" id="display-holistic-roce">+15.9%</div>
+                        <div class="text-xs text-white font-medium">ROCE</div>
                     </div>
-                    <div class="retro-card p-3 text-center">
-                        <div class="text-2xl md:text-3xl font-heading font-bold text-retro-gold">40%</div>
-                        <div class="text-xs text-retro-cream font-medium">Savings</div>
+                    <div class="feature-badge bg-dark-card p-3 text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-orange">40%</div>
+                        <div class="text-xs text-white font-medium">Savings</div>
                     </div>
                 </div>
 
                 <div class="flex justify-center items-center mt-4">
-                    <button onclick="goToStep(5)" class="retro-button bg-retro-dark text-retro-cream px-5 md:px-8 py-2 text-sm font-bold hover:bg-retro-gold hover:text-black transition-all nav-btn">
+                    <button onclick="goToStep(5)" class="feature-badge badge-pill bg-dark-card text-white px-5 md:px-8 py-2 text-sm font-bold hover:bg-orange hover:text-black transition-all nav-btn">
                         Compare
                         <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                     </button>
@@ -867,95 +618,92 @@
         <!-- Step 5: Comparison -->
         <div id="step5" class="hidden">
             <div class="text-center mb-4">
-                <div class="inline-block mb-2">
-                    <span class="star-decoration">✦ ★ ✦</span>
-                </div>
-                <h2 class="retro-title text-3xl md:text-4xl mb-2">Compare All Approaches</h2>
-                <p class="retro-subtitle text-retro-tan text-sm">Side-by-side analysis of methodologies</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Compare All Approaches</h2>
+                <p class="text-gray-400 text-sm">Side-by-side analysis of methodologies</p>
             </div>
 
             <!-- Comparison Charts - 3 column grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
-                <div class="retro-badge-dark p-3">
-                    <h3 class="text-sm font-bold text-retro-cream mb-2 text-center">Traditional ISO 55000 (4-5 Yrs)</h3>
+                <div class="feature-badge bg-dark-surface p-3">
+                    <h3 class="text-sm font-bold text-white mb-2 text-center">Traditional ISO 55000 (4-5 Yrs)</h3>
                     <div class="chart-container p-2" style="height: 180px;">
                         <canvas id="chart2"></canvas>
                     </div>
                     <div class="text-center mt-2">
                         <div class="text-xl md:text-2xl font-bold text-red-500" id="display-comp-trad">+5.7%</div>
-                        <div class="text-xs text-retro-tan">ROCE</div>
+                        <div class="text-xs text-gray-400">ROCE</div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-3">
-                        <div class="bg-retro-dark p-2 rounded border border-gray-700 text-center">
-                            <div class="text-xs text-retro-tan/70">Focus</div>
-                            <div class="text-xs font-bold text-retro-cream">Framework</div>
+                        <div class="bg-dark-card p-2 rounded border border-gray-700 text-center">
+                            <div class="text-xs text-gray-500">Focus</div>
+                            <div class="text-xs font-bold text-white">Framework</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-gray-700 text-center">
-                            <div class="text-xs text-retro-tan/70">Value Start</div>
-                            <div class="text-xs font-bold text-retro-cream">Year 3+</div>
+                        <div class="bg-dark-card p-2 rounded border border-gray-700 text-center">
+                            <div class="text-xs text-gray-500">Value Start</div>
+                            <div class="text-xs font-bold text-white">Year 3+</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-gray-700 text-center">
-                            <div class="text-xs text-retro-tan/70">Technology</div>
-                            <div class="text-xs font-bold text-retro-cream">Last</div>
+                        <div class="bg-dark-card p-2 rounded border border-gray-700 text-center">
+                            <div class="text-xs text-gray-500">Technology</div>
+                            <div class="text-xs font-bold text-white">Last</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-gray-700 text-center">
-                            <div class="text-xs text-retro-tan/70">Maint Savings</div>
-                            <div class="text-xs font-bold text-retro-cream">15%</div>
+                        <div class="bg-dark-card p-2 rounded border border-gray-700 text-center">
+                            <div class="text-xs text-gray-500">Maint Savings</div>
+                            <div class="text-xs font-bold text-white">15%</div>
                         </div>
                     </div>
                 </div>
-                <div class="retro-badge-dark p-3">
-                    <h3 class="text-sm font-bold text-retro-cream mb-2 text-center">Health-Centric AI (3 Yrs)</h3>
+                <div class="feature-badge bg-dark-surface p-3">
+                    <h3 class="text-sm font-bold text-white mb-2 text-center">Health-Centric AI (3 Yrs)</h3>
                     <div class="chart-container p-2" style="height: 180px;">
                         <canvas id="chart3"></canvas>
                     </div>
                     <div class="text-center mt-2">
                         <div class="text-xl md:text-2xl font-bold text-blue-500" id="display-comp-health">+12.2%</div>
-                        <div class="text-xs text-retro-tan">ROCE</div>
+                        <div class="text-xs text-gray-400">ROCE</div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-3">
-                        <div class="bg-retro-dark p-2 rounded border border-blue-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Focus</div>
+                        <div class="bg-dark-card p-2 rounded border border-blue-500 text-center">
+                            <div class="text-xs text-gray-500">Focus</div>
                             <div class="text-xs font-bold text-blue-400">Predictive</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-blue-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Value Start</div>
+                        <div class="bg-dark-card p-2 rounded border border-blue-500 text-center">
+                            <div class="text-xs text-gray-500">Value Start</div>
                             <div class="text-xs font-bold text-blue-400">Year 1</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-blue-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Technology</div>
+                        <div class="bg-dark-card p-2 rounded border border-blue-500 text-center">
+                            <div class="text-xs text-gray-500">Technology</div>
                             <div class="text-xs font-bold text-blue-400">First</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-blue-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Maint Savings</div>
+                        <div class="bg-dark-card p-2 rounded border border-blue-500 text-center">
+                            <div class="text-xs text-gray-500">Maint Savings</div>
                             <div class="text-xs font-bold text-blue-400">30%</div>
                         </div>
                     </div>
                 </div>
-                <div class="retro-badge-dark p-3">
-                    <h3 class="text-sm font-bold text-retro-cream mb-2 text-center">Holistic Intelligence (18 Mo)</h3>
+                <div class="feature-badge bg-dark-surface p-3">
+                    <h3 class="text-sm font-bold text-white mb-2 text-center">Holistic Intelligence (18 Mo)</h3>
                     <div class="chart-container p-2" style="height: 180px;">
                         <canvas id="chart4"></canvas>
                     </div>
                     <div class="text-center mt-2">
                         <div class="text-xl md:text-2xl font-bold text-green-500" id="display-comp-holistic">+15.9%</div>
-                        <div class="text-xs text-retro-tan">ROCE</div>
+                        <div class="text-xs text-gray-400">ROCE</div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-3">
-                        <div class="bg-retro-dark p-2 rounded border border-green-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Focus</div>
+                        <div class="bg-dark-card p-2 rounded border border-green-500 text-center">
+                            <div class="text-xs text-gray-500">Focus</div>
                             <div class="text-xs font-bold text-green-400">Integrated</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-green-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Value Start</div>
+                        <div class="bg-dark-card p-2 rounded border border-green-500 text-center">
+                            <div class="text-xs text-gray-500">Value Start</div>
                             <div class="text-xs font-bold text-green-400">Month 3</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-green-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Technology</div>
+                        <div class="bg-dark-card p-2 rounded border border-green-500 text-center">
+                            <div class="text-xs text-gray-500">Technology</div>
                             <div class="text-xs font-bold text-green-400">AI + ISO</div>
                         </div>
-                        <div class="bg-retro-dark p-2 rounded border border-green-500 text-center">
-                            <div class="text-xs text-retro-tan/70">Maint Savings</div>
+                        <div class="bg-dark-card p-2 rounded border border-green-500 text-center">
+                            <div class="text-xs text-gray-500">Maint Savings</div>
                             <div class="text-xs font-bold text-green-400">40%</div>
                         </div>
                     </div>
@@ -963,11 +711,11 @@
             </div>
 
             <div class="flex justify-center items-center gap-3 mt-6">
-                <button onclick="goToStep(7)" class="retro-button bg-retro-dark text-retro-cream px-6 md:px-8 py-3 text-sm md:text-base font-bold hover:bg-green-600 hover:text-retro-cream transition-all nav-btn border-2 border-green-600">
+                <button onclick="goToStep(7)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-8 py-3 text-sm md:text-base font-bold hover:bg-green-600 hover:text-white transition-all nav-btn border-2 border-green-600">
                     Learn More
                     <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </button>
-                <button onclick="goToStep(6)" class="retro-button bg-retro-dark text-retro-cream px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-retro-gold hover:text-black transition-all nav-btn">
+                <button onclick="goToStep(6)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
                     Calculate ROI
                     <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                 </button>
@@ -977,35 +725,32 @@
         <!-- Step 6: ROI Calculator -->
         <div id="step6" class="hidden">
             <div class="text-center mb-6">
-                <div class="inline-block mb-2">
-                    <span class="star-decoration">✦ ★ ✦</span>
-                </div>
-                <h2 class="retro-title text-3xl md:text-5xl mb-2">Calculate Your ROI</h2>
-                <p class="retro-subtitle text-retro-tan">See the financial impact for your organization</p>
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Calculate Your ROI</h2>
+                <p class="text-gray-300">See the financial impact for your organization</p>
             </div>
 
-            <div class="retro-badge-dark p-5 md:p-8 max-w-4xl mx-auto">
-                <div class="retro-card p-4 md:p-6 mb-6">
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-4xl mx-auto">
+                <div class="feature-badge bg-dark-card p-4 md:p-6 mb-6">
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-retro-gold">Revenue ($M)</label>
+                            <label class="block text-sm font-bold mb-2 text-orange">Revenue ($M)</label>
                             <input type="number" id="input-rev" placeholder="1000" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-retro-gold">Capital ($M)</label>
+                            <label class="block text-sm font-bold mb-2 text-orange">Capital ($M)</label>
                             <input type="number" id="input-cap" placeholder="500" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-retro-gold">Profit ($M)</label>
+                            <label class="block text-sm font-bold mb-2 text-orange">Profit ($M)</label>
                             <input type="number" id="input-prof" placeholder="100" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-retro-gold">Maintenance ($M)</label>
+                            <label class="block text-sm font-bold mb-2 text-orange">Maintenance ($M)</label>
                             <input type="number" id="input-maint" placeholder="50" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
                         </div>
                     </div>
                     <div class="text-center">
-                        <button id="btn-calc" class="retro-button bg-retro-gold text-black px-8 py-3 text-base font-bold hover:bg-retro-gold-light transition-all">
+                        <button id="btn-calc" class="feature-badge badge-pill bg-orange text-black px-8 py-3 text-base font-bold hover:bg-orange-light transition-all">
                             Calculate Results
                         </button>
                     </div>
@@ -1015,63 +760,63 @@
                 <div id="results" class="hidden">
                     <div class="grid md:grid-cols-3 gap-4 mb-6">
                         <!-- Traditional -->
-                        <div class="retro-card p-4 border-red-500 border-2">
+                        <div class="feature-badge bg-dark-card p-4 border-red-500 border-2">
                             <h4 class="font-bold text-red-500 text-center mb-3 text-sm">Traditional (5 Years)</h4>
                             <div class="space-y-2 text-sm">
-                                <div class="flex justify-between text-retro-cream/80">
+                                <div class="flex justify-between text-gray-300">
                                     <span>Profit Gain:</span>
-                                    <span class="font-bold text-retro-cream" id="out-trad-profit">$0M</span>
+                                    <span class="font-bold text-white" id="out-trad-profit">$0M</span>
                                 </div>
-                                <div class="flex justify-between text-retro-cream/80">
+                                <div class="flex justify-between text-gray-300">
                                     <span>Maint Savings:</span>
-                                    <span class="font-bold text-retro-cream" id="out-trad-maint">$0M</span>
+                                    <span class="font-bold text-white" id="out-trad-maint">$0M</span>
                                 </div>
                                 <div class="bg-red-900/30 rounded p-2 mt-3 text-center">
                                     <div class="text-xl font-bold text-red-500" id="out-trad-total">$0M</div>
-                                    <div class="text-xs text-retro-tan">Total Value</div>
+                                    <div class="text-xs text-gray-400">Total Value</div>
                                 </div>
                             </div>
                         </div>
                         <!-- Health-Centric -->
-                        <div class="retro-card p-4 border-blue-500 border-2">
+                        <div class="feature-badge bg-dark-card p-4 border-blue-500 border-2">
                             <h4 class="font-bold text-blue-500 text-center mb-3 text-sm">Health-Centric (3 Years)</h4>
                             <div class="space-y-2 text-sm">
-                                <div class="flex justify-between text-retro-cream/80">
+                                <div class="flex justify-between text-gray-300">
                                     <span>Profit Gain:</span>
-                                    <span class="font-bold text-retro-cream" id="out-health-profit">$0M</span>
+                                    <span class="font-bold text-white" id="out-health-profit">$0M</span>
                                 </div>
-                                <div class="flex justify-between text-retro-cream/80">
+                                <div class="flex justify-between text-gray-300">
                                     <span>Maint Savings:</span>
-                                    <span class="font-bold text-retro-cream" id="out-health-maint">$0M</span>
+                                    <span class="font-bold text-white" id="out-health-maint">$0M</span>
                                 </div>
                                 <div class="bg-blue-900/30 rounded p-2 mt-3 text-center">
                                     <div class="text-xl font-bold text-blue-500" id="out-health-total">$0M</div>
-                                    <div class="text-xs text-retro-tan">Total Value</div>
+                                    <div class="text-xs text-gray-400">Total Value</div>
                                 </div>
                             </div>
                         </div>
                         <!-- Holistic -->
-                        <div class="retro-card p-4 border-green-500 border-2">
+                        <div class="feature-badge bg-dark-card p-4 border-green-500 border-2">
                             <h4 class="font-bold text-green-500 text-center mb-3 text-sm">Holistic (18 Months)</h4>
                             <div class="space-y-2 text-sm">
-                                <div class="flex justify-between text-retro-cream/80">
+                                <div class="flex justify-between text-gray-300">
                                     <span>Profit Gain:</span>
-                                    <span class="font-bold text-retro-cream" id="out-holistic-profit">$0M</span>
+                                    <span class="font-bold text-white" id="out-holistic-profit">$0M</span>
                                 </div>
-                                <div class="flex justify-between text-retro-cream/80">
+                                <div class="flex justify-between text-gray-300">
                                     <span>Maint Savings:</span>
-                                    <span class="font-bold text-retro-cream" id="out-holistic-maint">$0M</span>
+                                    <span class="font-bold text-white" id="out-holistic-maint">$0M</span>
                                 </div>
                                 <div class="bg-green-900/30 rounded p-2 mt-3 text-center">
                                     <div class="text-xl font-bold text-green-500" id="out-holistic-total">$0M</div>
-                                    <div class="text-xs text-retro-tan">Total Value</div>
+                                    <div class="text-xs text-gray-400">Total Value</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Advantage Banner -->
-                    <div class="retro-badge bg-retro-gold p-5 text-center">
+                    <div class="feature-badge bg-orange p-5 text-center">
                         <div class="text-2xl mb-1">&#127942;</div>
                         <h5 class="font-bold text-black mb-1">Holistic Advantage</h5>
                         <div class="text-3xl md:text-4xl font-bold text-black" id="out-advantage">$0M</div>
@@ -1080,7 +825,7 @@
                 </div>
 
                 <div class="flex justify-center items-center mt-6">
-                    <button onclick="location.reload()" class="retro-button bg-retro-dark text-retro-cream px-6 py-3 text-sm font-bold hover:bg-retro-gold hover:text-black transition-all">
+                    <button onclick="location.reload()" class="feature-badge badge-pill bg-dark-card text-white px-6 py-3 text-sm font-bold hover:bg-orange hover:text-black transition-all">
                         Start Over
                     </button>
                 </div>
@@ -1090,184 +835,181 @@
         <!-- Step 7: Learn More -->
         <div id="step7" class="hidden">
             <div class="text-center mb-6">
-                <div class="inline-block mb-2">
-                    <span class="star-decoration">✦ ★ ✦</span>
-                </div>
-                <h2 class="retro-title text-3xl md:text-5xl mb-2">Learn More</h2>
-                <p class="retro-subtitle text-retro-tan">FAQs, insights, and resources for your APM journey</p>
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Learn More</h2>
+                <p class="text-gray-300">FAQs, insights, and resources for your APM journey</p>
             </div>
 
             <div class="max-w-5xl mx-auto">
                 <!-- Tab Navigation -->
                 <div class="flex gap-2 mb-6 justify-center flex-wrap">
-                    <button onclick="showTab('faq')" id="tab-faq" class="tab-btn retro-badge bg-retro-gold text-black px-4 py-2 text-sm font-bold">FAQ</button>
-                    <button onclick="showTab('blog')" id="tab-blog" class="tab-btn retro-card text-retro-cream px-4 py-2 text-sm font-bold">Insights & Articles</button>
+                    <button onclick="showTab('faq')" id="tab-faq" class="tab-btn feature-badge bg-orange text-black px-4 py-2 text-sm font-bold">FAQ</button>
+                    <button onclick="showTab('blog')" id="tab-blog" class="tab-btn feature-badge bg-dark-card text-white px-4 py-2 text-sm font-bold">Insights & Articles</button>
                 </div>
 
                 <!-- FAQ Tab -->
                 <div id="content-faq" class="tab-content">
                     <!-- Customer Type Filter -->
                     <div class="flex gap-2 mb-4 justify-center flex-wrap">
-                        <button onclick="filterFaq('all')" class="faq-filter text-xs px-3 py-1 rounded-full bg-retro-gold text-black font-bold">All</button>
-                        <button onclick="filterFaq('greenfield')" class="faq-filter text-xs px-3 py-1 rounded-full bg-retro-dark text-green-400 border border-green-400">Greenfield</button>
-                        <button onclick="filterFaq('disruptive')" class="faq-filter text-xs px-3 py-1 rounded-full bg-retro-dark text-blue-400 border border-blue-400">Disruptive Tech Users</button>
-                        <button onclick="filterFaq('legacy')" class="faq-filter text-xs px-3 py-1 rounded-full bg-retro-dark text-yellow-400 border border-yellow-400">Legacy System Users</button>
+                        <button onclick="filterFaq('all')" class="faq-filter text-xs px-3 py-1 rounded-full bg-orange text-black font-bold">All</button>
+                        <button onclick="filterFaq('greenfield')" class="faq-filter text-xs px-3 py-1 rounded-full bg-dark-card text-green-400 border border-green-400">Greenfield</button>
+                        <button onclick="filterFaq('disruptive')" class="faq-filter text-xs px-3 py-1 rounded-full bg-dark-card text-blue-400 border border-blue-400">Disruptive Tech Users</button>
+                        <button onclick="filterFaq('legacy')" class="faq-filter text-xs px-3 py-1 rounded-full bg-dark-card text-yellow-400 border border-yellow-400">Legacy System Users</button>
                     </div>
 
                     <div class="space-y-3" id="faq-list">
                         <!-- Greenfield FAQs -->
-                        <div class="faq-item retro-badge-dark p-4" data-type="greenfield">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="greenfield">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">What's the best starting point for a greenfield APM implementation?</h4>
-                                <span class="text-retro-gold text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
+                                <h4 class="font-bold text-white text-sm pr-4">What's the best starting point for a greenfield APM implementation?</h4>
+                                <span class="text-orange text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Start with machine health monitoring on critical assets. Deploy IoT sensors, establish data pipelines, then layer in predictive analytics. Build the ISO 55000 framework in parallel to ensure governance scales with technology.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Start with machine health monitoring on critical assets. Deploy IoT sensors, establish data pipelines, then layer in predictive analytics. Build the ISO 55000 framework in parallel to ensure governance scales with technology.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="greenfield">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="greenfield">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">How do I build the business case for executive buy-in?</h4>
-                                <span class="text-retro-gold text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
+                                <h4 class="font-bold text-white text-sm pr-4">How do I build the business case for executive buy-in?</h4>
+                                <span class="text-orange text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Focus on ROCE improvement and maintenance cost reduction. Use industry benchmarks (15-40% maintenance savings) and peer case studies. Start with a pilot on high-value assets to demonstrate quick wins within 90 days.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Focus on ROCE improvement and maintenance cost reduction. Use industry benchmarks (15-40% maintenance savings) and peer case studies. Start with a pilot on high-value assets to demonstrate quick wins within 90 days.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="greenfield">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="greenfield">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">Should I hire internal expertise or use consultants?</h4>
-                                <span class="text-retro-gold text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
+                                <h4 class="font-bold text-white text-sm pr-4">Should I hire internal expertise or use consultants?</h4>
+                                <span class="text-orange text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Hybrid approach works best. Use consultants for initial strategy and vendor selection, but build internal capability for ongoing operations. Key roles: Data Engineer, Reliability Engineer, and APM Program Manager.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Hybrid approach works best. Use consultants for initial strategy and vendor selection, but build internal capability for ongoing operations. Key roles: Data Engineer, Reliability Engineer, and APM Program Manager.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="greenfield">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="greenfield">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">What data infrastructure do I need before starting?</h4>
-                                <span class="text-retro-gold text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
+                                <h4 class="font-bold text-white text-sm pr-4">What data infrastructure do I need before starting?</h4>
+                                <span class="text-orange text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Minimum requirements: historian for time-series data, asset registry (even in Excel initially), and cloud connectivity. Modern platforms like Cognite or Databricks can accelerate this with pre-built industrial data models.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Minimum requirements: historian for time-series data, asset registry (even in Excel initially), and cloud connectivity. Modern platforms like Cognite or Databricks can accelerate this with pre-built industrial data models.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="greenfield">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="greenfield">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">How do I prioritize which assets to monitor first?</h4>
-                                <span class="text-retro-gold text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
+                                <h4 class="font-bold text-white text-sm pr-4">How do I prioritize which assets to monitor first?</h4>
+                                <span class="text-orange text-xs bg-green-900 text-green-400 px-2 py-1 rounded">Greenfield</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Use criticality ranking: production impact × failure probability × detection difficulty. Start with rotating equipment (pumps, compressors, turbines) that have high failure costs and established ML models available.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Use criticality ranking: production impact × failure probability × detection difficulty. Start with rotating equipment (pumps, compressors, turbines) that have high failure costs and established ML models available.</p>
                         </div>
 
                         <!-- Disruptive Tech Users FAQs -->
-                        <div class="faq-item retro-badge-dark p-4" data-type="disruptive">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="disruptive">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">I'm using Augury/Seeq/Cognite - how do I scale beyond the pilot?</h4>
-                                <span class="text-retro-gold text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
+                                <h4 class="font-bold text-white text-sm pr-4">I'm using Augury/Seeq/Cognite - how do I scale beyond the pilot?</h4>
+                                <span class="text-orange text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Document pilot ROI meticulously, create internal champions, and develop a rollout playbook. Most scaling failures come from lack of change management - invest in training and workflow integration before expanding.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Document pilot ROI meticulously, create internal champions, and develop a rollout playbook. Most scaling failures come from lack of change management - invest in training and workflow integration before expanding.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="disruptive">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="disruptive">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">How do I integrate multiple point solutions into a cohesive strategy?</h4>
-                                <span class="text-retro-gold text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
+                                <h4 class="font-bold text-white text-sm pr-4">How do I integrate multiple point solutions into a cohesive strategy?</h4>
+                                <span class="text-orange text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Use an Industrial DataOps layer (like HighByte) to normalize data across tools. Establish a single source of truth for asset hierarchy. Map each tool's output to ISO 55000 decision frameworks.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Use an Industrial DataOps layer (like HighByte) to normalize data across tools. Establish a single source of truth for asset hierarchy. Map each tool's output to ISO 55000 decision frameworks.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="disruptive">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="disruptive">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">My predictive models work but recommendations aren't being actioned - why?</h4>
-                                <span class="text-retro-gold text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
+                                <h4 class="font-bold text-white text-sm pr-4">My predictive models work but recommendations aren't being actioned - why?</h4>
+                                <span class="text-orange text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">This is the adoption gap. Recommendations lack context (criticality, risk, business impact). Solution: integrate with work management, add health scores, and provide clear prioritization. The holistic approach addresses this directly.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">This is the adoption gap. Recommendations lack context (criticality, risk, business impact). Solution: integrate with work management, add health scores, and provide clear prioritization. The holistic approach addresses this directly.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="disruptive">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="disruptive">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">Should I consolidate vendors or maintain best-of-breed?</h4>
-                                <span class="text-retro-gold text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
+                                <h4 class="font-bold text-white text-sm pr-4">Should I consolidate vendors or maintain best-of-breed?</h4>
+                                <span class="text-orange text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Best-of-breed typically outperforms suites for specialized use cases. The key is strong data integration. Evaluate: Does the suite genuinely excel at each capability, or just check boxes?</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Best-of-breed typically outperforms suites for specialized use cases. The key is strong data integration. Evaluate: Does the suite genuinely excel at each capability, or just check boxes?</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="disruptive">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="disruptive">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">How do I measure true ROI beyond vendor claims?</h4>
-                                <span class="text-retro-gold text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
+                                <h4 class="font-bold text-white text-sm pr-4">How do I measure true ROI beyond vendor claims?</h4>
+                                <span class="text-orange text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Track: avoided failures (with $ impact), maintenance labor hours saved, parts inventory reduction, and production uptime gains. Use control groups where possible. Require 6-month baseline before deployment.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Track: avoided failures (with $ impact), maintenance labor hours saved, parts inventory reduction, and production uptime gains. Use control groups where possible. Require 6-month baseline before deployment.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="disruptive">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="disruptive">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">What's the role of generative AI in APM?</h4>
-                                <span class="text-retro-gold text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
+                                <h4 class="font-bold text-white text-sm pr-4">What's the role of generative AI in APM?</h4>
+                                <span class="text-orange text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded">Disruptive</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">GenAI excels at: natural language queries on asset data, automated report generation, root cause analysis summaries, and maintenance procedure generation. It complements (not replaces) physics-based and ML models.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">GenAI excels at: natural language queries on asset data, automated report generation, root cause analysis summaries, and maintenance procedure generation. It complements (not replaces) physics-based and ML models.</p>
                         </div>
 
                         <!-- Legacy System Users FAQs -->
-                        <div class="faq-item retro-badge-dark p-4" data-type="legacy">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="legacy">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">My SAP PM/Maximo investment is significant - do I need to replace it?</h4>
-                                <span class="text-retro-gold text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
+                                <h4 class="font-bold text-white text-sm pr-4">My SAP PM/Maximo investment is significant - do I need to replace it?</h4>
+                                <span class="text-orange text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">No. EAM systems remain valuable for work management and asset registry. Layer modern APM tools on top for analytics and prediction. Use APIs to push recommendations back into your existing workflow.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">No. EAM systems remain valuable for work management and asset registry. Layer modern APM tools on top for analytics and prediction. Use APIs to push recommendations back into your existing workflow.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="legacy">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="legacy">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">How do I extract value from decades of historian data?</h4>
-                                <span class="text-retro-gold text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
+                                <h4 class="font-bold text-white text-sm pr-4">How do I extract value from decades of historian data?</h4>
+                                <span class="text-orange text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Historical data is gold for ML training. Use tools like Seeq to analyze patterns, identify failure signatures, and build predictive models. Data quality matters more than quantity - focus on cleaning key asset data first.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Historical data is gold for ML training. Use tools like Seeq to analyze patterns, identify failure signatures, and build predictive models. Data quality matters more than quantity - focus on cleaning key asset data first.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="legacy">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="legacy">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">We tried ISO 55000 and it stalled - what went wrong?</h4>
-                                <span class="text-retro-gold text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
+                                <h4 class="font-bold text-white text-sm pr-4">We tried ISO 55000 and it stalled - what went wrong?</h4>
+                                <span class="text-orange text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Common failure modes: too much upfront documentation, no quick wins, lack of executive sponsorship. The holistic approach starts with technology wins (months 1-3) to build momentum, then adds governance progressively.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Common failure modes: too much upfront documentation, no quick wins, lack of executive sponsorship. The holistic approach starts with technology wins (months 1-3) to build momentum, then adds governance progressively.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="legacy">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="legacy">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">How do I modernize without disrupting operations?</h4>
-                                <span class="text-retro-gold text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
+                                <h4 class="font-bold text-white text-sm pr-4">How do I modernize without disrupting operations?</h4>
+                                <span class="text-orange text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Run new systems in parallel initially. Start with read-only analytics before enabling automated actions. Use shadow mode for predictions - compare to actual outcomes before trusting the models.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Run new systems in parallel initially. Start with read-only analytics before enabling automated actions. Use shadow mode for predictions - compare to actual outcomes before trusting the models.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="legacy">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="legacy">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">Our maintenance team is resistant to AI - how do I drive adoption?</h4>
-                                <span class="text-retro-gold text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
+                                <h4 class="font-bold text-white text-sm pr-4">Our maintenance team is resistant to AI - how do I drive adoption?</h4>
+                                <span class="text-orange text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Position AI as augmenting expertise, not replacing it. Involve technicians in model validation - their domain knowledge improves accuracy. Celebrate early wins publicly. Make the tools genuinely easier than spreadsheets.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Position AI as augmenting expertise, not replacing it. Involve technicians in model validation - their domain knowledge improves accuracy. Celebrate early wins publicly. Make the tools genuinely easier than spreadsheets.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="legacy">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="legacy">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">What's the typical migration timeline from legacy to modern APM?</h4>
-                                <span class="text-retro-gold text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
+                                <h4 class="font-bold text-white text-sm pr-4">What's the typical migration timeline from legacy to modern APM?</h4>
+                                <span class="text-orange text-xs bg-yellow-900 text-yellow-400 px-2 py-1 rounded">Legacy</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">18-24 months for full transformation. Months 1-6: pilot and prove value. Months 7-12: scale to critical assets. Months 13-18: enterprise rollout. Months 19-24: optimization and continuous improvement.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">18-24 months for full transformation. Months 1-6: pilot and prove value. Months 7-12: scale to critical assets. Months 13-18: enterprise rollout. Months 19-24: optimization and continuous improvement.</p>
                         </div>
 
                         <!-- General FAQs -->
-                        <div class="faq-item retro-badge-dark p-4" data-type="all">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="all">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">What's the difference between APM, EAM, and CMMS?</h4>
-                                <span class="text-retro-gold text-xs bg-gray-700 text-retro-cream/80 px-2 py-1 rounded">General</span>
+                                <h4 class="font-bold text-white text-sm pr-4">What's the difference between APM, EAM, and CMMS?</h4>
+                                <span class="text-orange text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">General</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">CMMS: Work order management. EAM: Asset lifecycle + CMMS. APM: Analytics + prediction + EAM. Modern APM platforms focus on the predictive and prescriptive layers, often integrating with existing EAM/CMMS.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">CMMS: Work order management. EAM: Asset lifecycle + CMMS. APM: Analytics + prediction + EAM. Modern APM platforms focus on the predictive and prescriptive layers, often integrating with existing EAM/CMMS.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="all">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="all">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">How accurate are predictive maintenance models really?</h4>
-                                <span class="text-retro-gold text-xs bg-gray-700 text-retro-cream/80 px-2 py-1 rounded">General</span>
+                                <h4 class="font-bold text-white text-sm pr-4">How accurate are predictive maintenance models really?</h4>
+                                <span class="text-orange text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">General</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Well-tuned models achieve 85-95% accuracy for common failure modes. Accuracy depends on: data quality, failure history availability, and physics model integration. Expect 6-12 months to reach peak performance.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Well-tuned models achieve 85-95% accuracy for common failure modes. Accuracy depends on: data quality, failure history availability, and physics model integration. Expect 6-12 months to reach peak performance.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="all">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="all">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">Cloud vs. on-premise for industrial APM?</h4>
-                                <span class="text-retro-gold text-xs bg-gray-700 text-retro-cream/80 px-2 py-1 rounded">General</span>
+                                <h4 class="font-bold text-white text-sm pr-4">Cloud vs. on-premise for industrial APM?</h4>
+                                <span class="text-orange text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">General</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Cloud is winning. Benefits: faster deployment, automatic updates, better ML capabilities, easier scaling. Edge computing handles latency-sensitive use cases. Hybrid architectures are most common in practice.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Cloud is winning. Benefits: faster deployment, automatic updates, better ML capabilities, easier scaling. Edge computing handles latency-sensitive use cases. Hybrid architectures are most common in practice.</p>
                         </div>
-                        <div class="faq-item retro-badge-dark p-4" data-type="all">
+                        <div class="faq-item feature-badge bg-dark-surface p-4" data-type="all">
                             <div class="flex justify-between items-start cursor-pointer" onclick="toggleFaq(this)">
-                                <h4 class="font-bold text-retro-cream text-sm pr-4">What cybersecurity considerations apply to APM?</h4>
-                                <span class="text-retro-gold text-xs bg-gray-700 text-retro-cream/80 px-2 py-1 rounded">General</span>
+                                <h4 class="font-bold text-white text-sm pr-4">What cybersecurity considerations apply to APM?</h4>
+                                <span class="text-orange text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">General</span>
                             </div>
-                            <p class="text-retro-tan text-xs mt-2 hidden">Critical: network segmentation (OT/IT separation), encrypted data transmission, role-based access control, audit logging. Modern platforms are SOC 2 compliant. Work with your CISO from day one.</p>
+                            <p class="text-gray-400 text-xs mt-2 hidden">Critical: network segmentation (OT/IT separation), encrypted data transmission, role-based access control, audit logging. Modern platforms are SOC 2 compliant. Work with your CISO from day one.</p>
                         </div>
                     </div>
                 </div>
@@ -1276,47 +1018,47 @@
                 <div id="content-blog" class="tab-content hidden">
                     <div class="grid md:grid-cols-2 gap-4">
                         <!-- Disruptive Tech Articles -->
-                        <a href="https://www.cognite.com/en/resources/customer-stories" target="_blank" rel="noopener" class="retro-badge-dark p-4 hover:bg-retro-dark transition-all">
+                        <a href="https://www.cognite.com/en/resources/customer-stories" target="_blank" rel="noopener" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
                             <span class="text-xs bg-green-900 text-green-400 px-2 py-1 rounded mb-2 inline-block">Case Studies</span>
-                            <h4 class="font-heading font-bold text-retro-gold mb-2">Industrial Data Fusion in Practice</h4>
-                            <p class="text-retro-tan text-xs mb-3">How leading oil & gas companies are using Cognite Data Fusion to contextualize industrial data and drive AI/ML value at scale.</p>
-                            <span class="text-retro-gold text-xs">Read on Cognite →</span>
+                            <h4 class="font-bold text-orange mb-2">Industrial Data Fusion in Practice</h4>
+                            <p class="text-gray-400 text-xs mb-3">How leading oil & gas companies are using Cognite Data Fusion to contextualize industrial data and drive AI/ML value at scale.</p>
+                            <span class="text-orange text-xs">Read on Cognite →</span>
                         </a>
-                        <a href="https://www.augury.com/resources/" target="_blank" rel="noopener" class="retro-badge-dark p-4 hover:bg-retro-dark transition-all">
+                        <a href="https://www.augury.com/resources/" target="_blank" rel="noopener" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
                             <span class="text-xs bg-purple-900 text-purple-400 px-2 py-1 rounded mb-2 inline-block">Machine Health</span>
-                            <h4 class="font-heading font-bold text-retro-gold mb-2">The Science of Machine Health</h4>
-                            <p class="text-retro-tan text-xs mb-3">Understanding how AI-powered vibration analysis and acoustic monitoring enable predictive maintenance at scale.</p>
-                            <span class="text-retro-gold text-xs">Read on Augury →</span>
+                            <h4 class="font-bold text-orange mb-2">The Science of Machine Health</h4>
+                            <p class="text-gray-400 text-xs mb-3">Understanding how AI-powered vibration analysis and acoustic monitoring enable predictive maintenance at scale.</p>
+                            <span class="text-orange text-xs">Read on Augury →</span>
                         </a>
-                        <a href="https://www.seeq.com/resources/" target="_blank" rel="noopener" class="retro-badge-dark p-4 hover:bg-retro-dark transition-all">
+                        <a href="https://www.seeq.com/resources/" target="_blank" rel="noopener" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
                             <span class="text-xs bg-blue-900 text-blue-400 px-2 py-1 rounded mb-2 inline-block">Analytics</span>
-                            <h4 class="font-heading font-bold text-retro-gold mb-2">Advanced Analytics for Process Industries</h4>
-                            <p class="text-retro-tan text-xs mb-3">How self-service analytics tools are democratizing data science for process engineers and reliability teams.</p>
-                            <span class="text-retro-gold text-xs">Read on Seeq →</span>
+                            <h4 class="font-bold text-orange mb-2">Advanced Analytics for Process Industries</h4>
+                            <p class="text-gray-400 text-xs mb-3">How self-service analytics tools are democratizing data science for process engineers and reliability teams.</p>
+                            <span class="text-orange text-xs">Read on Seeq →</span>
                         </a>
-                        <a href="https://www.highbyte.com/resources/resource-hub" target="_blank" rel="noopener" class="retro-badge-dark p-4 hover:bg-retro-dark transition-all">
+                        <a href="https://www.highbyte.com/resources/resource-hub" target="_blank" rel="noopener" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
                             <span class="text-xs bg-cyan-900 text-cyan-400 px-2 py-1 rounded mb-2 inline-block">DataOps</span>
-                            <h4 class="font-heading font-bold text-retro-gold mb-2">Industrial DataOps Explained</h4>
-                            <p class="text-retro-tan text-xs mb-3">Why data integration and contextualization are the foundation of successful APM implementations.</p>
-                            <span class="text-retro-gold text-xs">Read on HighByte →</span>
+                            <h4 class="font-bold text-orange mb-2">Industrial DataOps Explained</h4>
+                            <p class="text-gray-400 text-xs mb-3">Why data integration and contextualization are the foundation of successful APM implementations.</p>
+                            <span class="text-orange text-xs">Read on HighByte →</span>
                         </a>
-                        <a href="https://www.databricks.com/solutions/industries/manufacturing" target="_blank" rel="noopener" class="retro-badge-dark p-4 hover:bg-retro-dark transition-all">
+                        <a href="https://www.databricks.com/solutions/industries/manufacturing" target="_blank" rel="noopener" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
                             <span class="text-xs bg-red-900 text-red-400 px-2 py-1 rounded mb-2 inline-block">Lakehouse</span>
-                            <h4 class="font-heading font-bold text-retro-gold mb-2">Unified Data Lakehouse for Manufacturing</h4>
-                            <p class="text-retro-tan text-xs mb-3">How the lakehouse architecture enables real-time analytics and ML for predictive maintenance use cases.</p>
-                            <span class="text-retro-gold text-xs">Read on Databricks →</span>
+                            <h4 class="font-bold text-orange mb-2">Unified Data Lakehouse for Manufacturing</h4>
+                            <p class="text-gray-400 text-xs mb-3">How the lakehouse architecture enables real-time analytics and ML for predictive maintenance use cases.</p>
+                            <span class="text-orange text-xs">Read on Databricks →</span>
                         </a>
-                        <a href="https://www.iso.org/standard/55088.html" target="_blank" rel="noopener" class="retro-badge-dark p-4 hover:bg-retro-dark transition-all">
-                            <span class="text-xs bg-retro-gold-900 text-retro-gold-400 px-2 py-1 rounded mb-2 inline-block">Framework</span>
-                            <h4 class="font-heading font-bold text-retro-gold mb-2">ISO 55000 Asset Management Standard</h4>
-                            <p class="text-retro-tan text-xs mb-3">The international standard for asset management systems - governance framework that amplifies technology investments.</p>
-                            <span class="text-retro-gold text-xs">Read on ISO →</span>
+                        <a href="https://www.iso.org/standard/55088.html" target="_blank" rel="noopener" class="feature-badge bg-dark-surface p-4 hover:bg-dark-card transition-all">
+                            <span class="text-xs bg-orange-900 text-orange-400 px-2 py-1 rounded mb-2 inline-block">Framework</span>
+                            <h4 class="font-bold text-orange mb-2">ISO 55000 Asset Management Standard</h4>
+                            <p class="text-gray-400 text-xs mb-3">The international standard for asset management systems - governance framework that amplifies technology investments.</p>
+                            <span class="text-orange text-xs">Read on ISO →</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="flex justify-center items-center mt-8">
-                    <button onclick="goToStep(6)" class="retro-button bg-retro-dark text-retro-cream px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-retro-gold hover:text-black transition-all nav-btn">
+                    <button onclick="goToStep(6)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
                         Calculate ROI
                         <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
                     </button>
@@ -1332,9 +1074,9 @@
         let currentStep = 1;
         let charts = {};
 
-        // Chart.js defaults - retro theme
-        Chart.defaults.color = '#f5e6d3';
-        Chart.defaults.borderColor = '#8b4513';
+        // Chart.js defaults
+        Chart.defaults.color = '#ffffff';
+        Chart.defaults.borderColor = '#333333';
 
         // Data with all three approaches
         const DATA = {
@@ -1411,8 +1153,8 @@
             document.getElementById('display-holistic-roce').textContent = '+' + DATA[ind].holistic.total + '%';
 
             const badge = ind === 'oilgas'
-                ? '<div class="inline-block border-2 border-retro-gold text-retro-cream px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>'
-                : '<div class="inline-block border-2 border-retro-gold text-retro-cream px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
+                ? '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>'
+                : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
             document.getElementById('badge2').innerHTML = badge;
 
             // Toggle industry-specific context
@@ -1468,8 +1210,8 @@
                     currentIndustry = event.state.industry;
                     // Update badge display
                     const badge = currentIndustry === 'oilgas'
-                        ? '<div class="inline-block border-2 border-retro-gold text-retro-cream px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>'
-                        : '<div class="inline-block border-2 border-retro-gold text-retro-cream px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
+                        ? '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>'
+                        : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
                     document.getElementById('badge2').innerHTML = badge;
                     document.getElementById('display-trad-roce').textContent = '+' + DATA[currentIndustry].trad.total + '%';
                     document.getElementById('display-holistic-roce').textContent = '+' + DATA[currentIndustry].holistic.total + '%';
@@ -1502,14 +1244,14 @@
         function showTab(tab) {
             document.getElementById('content-faq').classList.add('hidden');
             document.getElementById('content-blog').classList.add('hidden');
-            document.getElementById('tab-faq').classList.remove('bg-retro-gold', 'text-black');
-            document.getElementById('tab-faq').classList.add('bg-retro-dark', 'text-retro-cream');
-            document.getElementById('tab-blog').classList.remove('bg-retro-gold', 'text-black');
-            document.getElementById('tab-blog').classList.add('bg-retro-dark', 'text-retro-cream');
+            document.getElementById('tab-faq').classList.remove('bg-orange', 'text-black');
+            document.getElementById('tab-faq').classList.add('bg-dark-card', 'text-white');
+            document.getElementById('tab-blog').classList.remove('bg-orange', 'text-black');
+            document.getElementById('tab-blog').classList.add('bg-dark-card', 'text-white');
 
             document.getElementById('content-' + tab).classList.remove('hidden');
-            document.getElementById('tab-' + tab).classList.remove('bg-retro-dark', 'text-retro-cream');
-            document.getElementById('tab-' + tab).classList.add('bg-retro-gold', 'text-black');
+            document.getElementById('tab-' + tab).classList.remove('bg-dark-card', 'text-white');
+            document.getElementById('tab-' + tab).classList.add('bg-orange', 'text-black');
         }
 
         // FAQ filtering
@@ -1518,11 +1260,11 @@
             const filters = document.querySelectorAll('.faq-filter');
 
             filters.forEach(f => {
-                f.classList.remove('bg-retro-gold', 'text-black');
-                f.classList.add('bg-retro-dark');
+                f.classList.remove('bg-orange', 'text-black');
+                f.classList.add('bg-dark-card');
             });
-            event.target.classList.remove('bg-retro-dark');
-            event.target.classList.add('bg-retro-gold', 'text-black');
+            event.target.classList.remove('bg-dark-card');
+            event.target.classList.add('bg-orange', 'text-black');
 
             items.forEach(item => {
                 if (type === 'all' || item.dataset.type === type || item.dataset.type === 'all') {
@@ -1609,13 +1351,12 @@
             }
 
             const datasets = [];
-            // Retro color palette
             const colors = {
-                strategy: '#b7410e',    // Rust red
-                risk: '#d4af37',        // Gold
-                planning: '#8b4513',    // Saddle brown
-                health: '#2d6a6a',      // Retro teal
-                predictive: '#1a2744'   // Navy
+                strategy: '#ef4444',
+                risk: '#f97316',
+                planning: '#eab308',
+                health: '#22c55e',
+                predictive: '#3b82f6'
             };
 
             if (data.strategy) datasets.push({ label: 'Asset Strategy', data: data.strategy, backgroundColor: colors.strategy, stack: 'stack' });
@@ -1638,12 +1379,12 @@
                             stacked: true,
                             beginAtZero: true,
                             title: { display: true, text: 'ROCE (%)', color: '#ffffff', font: { size: 10 } },
-                            grid: { color: '#5c3a21' },
+                            grid: { color: '#333333' },
                             ticks: { color: '#ffffff', font: { size: 10 } }
                         },
                         x: {
                             stacked: true,
-                            grid: { color: '#5c3a21' },
+                            grid: { color: '#333333' },
                             ticks: { color: '#ffffff', font: { size: 10 } }
                         }
                     },
