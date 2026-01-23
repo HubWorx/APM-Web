@@ -905,26 +905,52 @@
                 <p class="text-gray-300">See the financial impact for your organization</p>
             </div>
 
-            <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-4xl mx-auto">
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-5xl mx-auto">
                 <div class="feature-badge bg-dark-card p-4 md:p-6 mb-6">
-                    <div class="grid grid-cols-2 gap-4 mb-6">
+                    <h3 class="text-lg font-bold text-orange mb-4 text-center">Enter Your Organization's Financials</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Revenue ($M)</label>
+                            <label class="block text-sm font-bold mb-2 text-orange">Annual Revenue ($M)</label>
                             <input type="number" id="input-rev" placeholder="1000" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                            <p class="text-xs text-gray-500 mt-1">Total annual revenue from all business operations</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Capital ($M)</label>
+                            <label class="block text-sm font-bold mb-2 text-orange">Capital Employed ($M)</label>
                             <input type="number" id="input-cap" placeholder="500" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                            <p class="text-xs text-gray-500 mt-1">Total assets minus current liabilities (used for ROCE calculation)</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Profit ($M)</label>
+                            <label class="block text-sm font-bold mb-2 text-orange">Operating Profit ($M)</label>
                             <input type="number" id="input-prof" placeholder="100" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                            <p class="text-xs text-gray-500 mt-1">EBIT - Earnings before interest and taxes</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold mb-2 text-orange">Maintenance ($M)</label>
-                            <input type="number" id="input-maint" placeholder="50" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                            <label class="block text-sm font-bold mb-2 text-orange">Operating Expense ($M)</label>
+                            <input type="number" id="input-opex" placeholder="200" min="0" step="0.1" class="w-full px-3 py-2 rounded-lg text-base">
+                            <p class="text-xs text-gray-500 mt-1">Total annual operating costs (excluding COGS)</p>
                         </div>
                     </div>
+
+                    <!-- Maintenance Percentage Slider -->
+                    <div class="bg-dark-surface p-4 rounded-lg mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-sm font-bold text-orange">Maintenance as % of Operating Expense</label>
+                            <span class="text-lg font-bold text-white" id="maint-pct-display">40%</span>
+                        </div>
+                        <input type="range" id="input-maint-pct" min="20" max="60" value="40" class="w-full h-2 bg-dark-card rounded-lg appearance-none cursor-pointer accent-orange">
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>20%</span>
+                            <span>40%</span>
+                            <span>60%</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Typical range: 20-40% for efficient operations, 40-60% for asset-intensive industries</p>
+                        <div class="mt-2 text-center">
+                            <span class="text-sm text-gray-400">Calculated Maintenance Spend: </span>
+                            <span class="text-sm font-bold text-orange" id="calc-maint-display">$0M</span>
+                        </div>
+                    </div>
+
                     <div class="text-center">
                         <button id="btn-calc" class="feature-badge badge-pill bg-orange text-black px-8 py-3 text-base font-bold hover:bg-orange-light transition-all">
                             Calculate Results
@@ -934,22 +960,65 @@
 
                 <!-- Results -->
                 <div id="results" class="hidden">
+                    <!-- Input Summary -->
+                    <div class="feature-badge bg-dark-card p-4 mb-6">
+                        <h4 class="font-bold text-white text-center mb-3">Your Input Summary</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 text-center text-sm">
+                            <div>
+                                <p class="text-gray-500">Revenue</p>
+                                <p class="font-bold text-white" id="sum-rev">$0M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Capital</p>
+                                <p class="font-bold text-white" id="sum-cap">$0M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Profit</p>
+                                <p class="font-bold text-white" id="sum-prof">$0M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">OpEx</p>
+                                <p class="font-bold text-white" id="sum-opex">$0M</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Maintenance</p>
+                                <p class="font-bold text-orange" id="sum-maint">$0M</p>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <span class="text-xs text-gray-500">Current ROCE: </span>
+                            <span class="text-sm font-bold text-yellow-400" id="sum-roce">0%</span>
+                        </div>
+                    </div>
+
                     <div class="grid md:grid-cols-3 gap-4 mb-6">
                         <!-- Traditional -->
                         <div class="feature-badge bg-dark-card p-4 border-red-500 border-2">
                             <h4 class="font-bold text-red-500 text-center mb-3 text-sm">Traditional (5 Years)</h4>
                             <div class="space-y-2 text-sm">
                                 <div class="flex justify-between text-gray-300">
+                                    <span>ROCE Improvement:</span>
+                                    <span class="font-bold text-white" id="out-trad-roce-pct">+0%</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
                                     <span>Profit Gain:</span>
                                     <span class="font-bold text-white" id="out-trad-profit">$0M</span>
                                 </div>
                                 <div class="flex justify-between text-gray-300">
-                                    <span>Maint Savings:</span>
+                                    <span>Maint Savings (15%):</span>
                                     <span class="font-bold text-white" id="out-trad-maint">$0M</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Downtime Reduction:</span>
+                                    <span class="font-bold text-white" id="out-trad-downtime">$0M</span>
                                 </div>
                                 <div class="bg-red-900/30 rounded p-2 mt-3 text-center">
                                     <div class="text-xl font-bold text-red-500" id="out-trad-total">$0M</div>
-                                    <div class="text-xs text-gray-400">Total Value</div>
+                                    <div class="text-xs text-gray-400">Total Annual Value</div>
+                                </div>
+                                <div class="text-center text-xs text-gray-500 mt-2">
+                                    <span>5-Year Value: </span>
+                                    <span class="font-bold text-red-400" id="out-trad-5yr">$0M</span>
                                 </div>
                             </div>
                         </div>
@@ -958,16 +1027,28 @@
                             <h4 class="font-bold text-blue-500 text-center mb-3 text-sm">Health-Centric (3 Years)</h4>
                             <div class="space-y-2 text-sm">
                                 <div class="flex justify-between text-gray-300">
+                                    <span>ROCE Improvement:</span>
+                                    <span class="font-bold text-white" id="out-health-roce-pct">+0%</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
                                     <span>Profit Gain:</span>
                                     <span class="font-bold text-white" id="out-health-profit">$0M</span>
                                 </div>
                                 <div class="flex justify-between text-gray-300">
-                                    <span>Maint Savings:</span>
+                                    <span>Maint Savings (30%):</span>
                                     <span class="font-bold text-white" id="out-health-maint">$0M</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Downtime Reduction:</span>
+                                    <span class="font-bold text-white" id="out-health-downtime">$0M</span>
                                 </div>
                                 <div class="bg-blue-900/30 rounded p-2 mt-3 text-center">
                                     <div class="text-xl font-bold text-blue-500" id="out-health-total">$0M</div>
-                                    <div class="text-xs text-gray-400">Total Value</div>
+                                    <div class="text-xs text-gray-400">Total Annual Value</div>
+                                </div>
+                                <div class="text-center text-xs text-gray-500 mt-2">
+                                    <span>3-Year Value: </span>
+                                    <span class="font-bold text-blue-400" id="out-health-3yr">$0M</span>
                                 </div>
                             </div>
                         </div>
@@ -976,18 +1057,73 @@
                             <h4 class="font-bold text-green-500 text-center mb-3 text-sm">Holistic (3 Years)</h4>
                             <div class="space-y-2 text-sm">
                                 <div class="flex justify-between text-gray-300">
+                                    <span>ROCE Improvement:</span>
+                                    <span class="font-bold text-white" id="out-holistic-roce-pct">+0%</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
                                     <span>Profit Gain:</span>
                                     <span class="font-bold text-white" id="out-holistic-profit">$0M</span>
                                 </div>
                                 <div class="flex justify-between text-gray-300">
-                                    <span>Maint Savings:</span>
+                                    <span>Maint Savings (40%):</span>
                                     <span class="font-bold text-white" id="out-holistic-maint">$0M</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Downtime Reduction:</span>
+                                    <span class="font-bold text-white" id="out-holistic-downtime">$0M</span>
                                 </div>
                                 <div class="bg-green-900/30 rounded p-2 mt-3 text-center">
                                     <div class="text-xl font-bold text-green-500" id="out-holistic-total">$0M</div>
-                                    <div class="text-xs text-gray-400">Total Value</div>
+                                    <div class="text-xs text-gray-400">Total Annual Value</div>
+                                </div>
+                                <div class="text-center text-xs text-gray-500 mt-2">
+                                    <span>3-Year Value: </span>
+                                    <span class="font-bold text-green-400" id="out-holistic-3yr">$0M</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Breakdown -->
+                    <div class="feature-badge bg-dark-card p-4 mb-6">
+                        <h4 class="font-bold text-white text-center mb-3">Value Breakdown Comparison</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="border-b border-gray-700">
+                                        <th class="text-left py-2 text-gray-400">Category</th>
+                                        <th class="text-right py-2 text-red-500">Traditional</th>
+                                        <th class="text-right py-2 text-blue-500">Health-Centric</th>
+                                        <th class="text-right py-2 text-green-500">Holistic</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-300">
+                                    <tr class="border-b border-gray-800">
+                                        <td class="py-2">Profit Improvement</td>
+                                        <td class="text-right" id="tbl-trad-profit">$0M</td>
+                                        <td class="text-right" id="tbl-health-profit">$0M</td>
+                                        <td class="text-right" id="tbl-holistic-profit">$0M</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-800">
+                                        <td class="py-2">Maintenance Savings</td>
+                                        <td class="text-right" id="tbl-trad-maint">$0M</td>
+                                        <td class="text-right" id="tbl-health-maint">$0M</td>
+                                        <td class="text-right" id="tbl-holistic-maint">$0M</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-800">
+                                        <td class="py-2">Downtime Reduction</td>
+                                        <td class="text-right" id="tbl-trad-downtime">$0M</td>
+                                        <td class="text-right" id="tbl-health-downtime">$0M</td>
+                                        <td class="text-right" id="tbl-holistic-downtime">$0M</td>
+                                    </tr>
+                                    <tr class="font-bold">
+                                        <td class="py-2 text-white">Annual Total</td>
+                                        <td class="text-right text-red-500" id="tbl-trad-total">$0M</td>
+                                        <td class="text-right text-blue-500" id="tbl-health-total">$0M</td>
+                                        <td class="text-right text-green-500" id="tbl-holistic-total">$0M</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -996,7 +1132,17 @@
                         <div class="text-2xl mb-1">&#127942;</div>
                         <h5 class="font-bold text-black mb-1">Holistic Advantage</h5>
                         <div class="text-3xl md:text-4xl font-bold text-black" id="out-advantage">$0M</div>
-                        <p class="text-sm mt-2 text-black opacity-80">Additional value vs. Traditional in 1-2 fewer years</p>
+                        <p class="text-sm mt-2 text-black opacity-80">Additional annual value vs. Traditional</p>
+                        <div class="mt-3 grid grid-cols-2 gap-4 text-sm">
+                            <div class="bg-black/10 rounded p-2">
+                                <p class="text-black/70">vs Traditional (5yr)</p>
+                                <p class="font-bold text-black" id="out-adv-vs-trad">+$0M</p>
+                            </div>
+                            <div class="bg-black/10 rounded p-2">
+                                <p class="text-black/70">vs Health-Centric</p>
+                                <p class="font-bold text-black" id="out-adv-vs-health">+$0M</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1321,6 +1467,26 @@
         document.getElementById('btn-powergen').addEventListener('click', function() { selectIndustry('powergen'); });
         document.getElementById('btn-calc').addEventListener('click', calculate);
 
+        // Maintenance percentage slider
+        const maintSlider = document.getElementById('input-maint-pct');
+        const maintPctDisplay = document.getElementById('maint-pct-display');
+        const calcMaintDisplay = document.getElementById('calc-maint-display');
+
+        maintSlider.addEventListener('input', function() {
+            const pct = this.value;
+            maintPctDisplay.textContent = pct + '%';
+            updateCalculatedMaint();
+        });
+
+        document.getElementById('input-opex').addEventListener('input', updateCalculatedMaint);
+
+        function updateCalculatedMaint() {
+            const opex = parseFloat(document.getElementById('input-opex').value) || 0;
+            const pct = parseFloat(document.getElementById('input-maint-pct').value) || 40;
+            const maint = opex * (pct / 100);
+            calcMaintDisplay.textContent = '$' + maint.toFixed(1) + 'M';
+        }
+
         function selectIndustry(ind) {
             currentIndustry = ind;
 
@@ -1485,9 +1651,11 @@
             const rev = parseFloat(document.getElementById('input-rev').value) || 0;
             const cap = parseFloat(document.getElementById('input-cap').value) || 0;
             const prof = parseFloat(document.getElementById('input-prof').value) || 0;
-            const maint = parseFloat(document.getElementById('input-maint').value) || 0;
+            const opex = parseFloat(document.getElementById('input-opex').value) || 0;
+            const maintPct = parseFloat(document.getElementById('input-maint-pct').value) || 40;
+            const maint = opex * (maintPct / 100);
 
-            if (rev <= 0 || cap <= 0 || prof <= 0 || maint <= 0) {
+            if (rev <= 0 || cap <= 0 || prof <= 0 || opex <= 0) {
                 alert('Please enter valid positive values for all fields.');
                 return;
             }
@@ -1497,39 +1665,91 @@
                 return;
             }
 
+            // Calculate current ROCE
+            const currentROCE = (prof / cap) * 100;
+
             const tradROCE = DATA[currentIndustry].trad.total;
             const healthROCE = DATA[currentIndustry].health.total;
             const holisticROCE = DATA[currentIndustry].holistic.total;
 
-            // Traditional
+            // Downtime reduction factors (as % of revenue)
+            const DOWNTIME_FACTORS = {
+                TRADITIONAL: 0.005,      // 0.5% of revenue
+                HEALTH_CENTRIC: 0.015,   // 1.5% of revenue
+                HOLISTIC: 0.025          // 2.5% of revenue
+            };
+
+            // Traditional (5 years)
             const tp = prof * (tradROCE / 100);
             const tm = maint * MAINTENANCE_SAVINGS.TRADITIONAL;
-            const tt = tp + tm;
+            const td = rev * DOWNTIME_FACTORS.TRADITIONAL;
+            const tt = tp + tm + td;
 
-            // Health-Centric
+            // Health-Centric (3 years)
             const hp = prof * (healthROCE / 100);
             const hm = maint * MAINTENANCE_SAVINGS.HEALTH_CENTRIC;
-            const ht = hp + hm;
+            const hd = rev * DOWNTIME_FACTORS.HEALTH_CENTRIC;
+            const ht = hp + hm + hd;
 
-            // Holistic
+            // Holistic (3 years)
             const op = prof * (holisticROCE / 100);
             const om = maint * MAINTENANCE_SAVINGS.HOLISTIC;
-            const ot = op + om;
+            const od = rev * DOWNTIME_FACTORS.HOLISTIC;
+            const ot = op + om + od;
 
-            // Update displays
+            // Update input summary
+            document.getElementById('sum-rev').textContent = '$' + rev.toFixed(0) + 'M';
+            document.getElementById('sum-cap').textContent = '$' + cap.toFixed(0) + 'M';
+            document.getElementById('sum-prof').textContent = '$' + prof.toFixed(0) + 'M';
+            document.getElementById('sum-opex').textContent = '$' + opex.toFixed(0) + 'M';
+            document.getElementById('sum-maint').textContent = '$' + maint.toFixed(1) + 'M (' + maintPct + '%)';
+            document.getElementById('sum-roce').textContent = currentROCE.toFixed(1) + '%';
+
+            // Update Traditional displays
+            document.getElementById('out-trad-roce-pct').textContent = '+' + tradROCE.toFixed(1) + '%';
             document.getElementById('out-trad-profit').textContent = '$' + tp.toFixed(1) + 'M';
             document.getElementById('out-trad-maint').textContent = '$' + tm.toFixed(1) + 'M';
+            document.getElementById('out-trad-downtime').textContent = '$' + td.toFixed(1) + 'M';
             document.getElementById('out-trad-total').textContent = '$' + tt.toFixed(1) + 'M';
+            document.getElementById('out-trad-5yr').textContent = '$' + (tt * 3).toFixed(1) + 'M'; // Value realized in years 3-5
 
+            // Update Health-Centric displays
+            document.getElementById('out-health-roce-pct').textContent = '+' + healthROCE.toFixed(1) + '%';
             document.getElementById('out-health-profit').textContent = '$' + hp.toFixed(1) + 'M';
             document.getElementById('out-health-maint').textContent = '$' + hm.toFixed(1) + 'M';
+            document.getElementById('out-health-downtime').textContent = '$' + hd.toFixed(1) + 'M';
             document.getElementById('out-health-total').textContent = '$' + ht.toFixed(1) + 'M';
+            document.getElementById('out-health-3yr').textContent = '$' + (ht * 3).toFixed(1) + 'M';
 
+            // Update Holistic displays
+            document.getElementById('out-holistic-roce-pct').textContent = '+' + holisticROCE.toFixed(1) + '%';
             document.getElementById('out-holistic-profit').textContent = '$' + op.toFixed(1) + 'M';
             document.getElementById('out-holistic-maint').textContent = '$' + om.toFixed(1) + 'M';
+            document.getElementById('out-holistic-downtime').textContent = '$' + od.toFixed(1) + 'M';
             document.getElementById('out-holistic-total').textContent = '$' + ot.toFixed(1) + 'M';
+            document.getElementById('out-holistic-3yr').textContent = '$' + (ot * 3).toFixed(1) + 'M';
 
-            document.getElementById('out-advantage').textContent = '$' + (ot - tt).toFixed(1) + 'M';
+            // Update table
+            document.getElementById('tbl-trad-profit').textContent = '$' + tp.toFixed(1) + 'M';
+            document.getElementById('tbl-trad-maint').textContent = '$' + tm.toFixed(1) + 'M';
+            document.getElementById('tbl-trad-downtime').textContent = '$' + td.toFixed(1) + 'M';
+            document.getElementById('tbl-trad-total').textContent = '$' + tt.toFixed(1) + 'M';
+
+            document.getElementById('tbl-health-profit').textContent = '$' + hp.toFixed(1) + 'M';
+            document.getElementById('tbl-health-maint').textContent = '$' + hm.toFixed(1) + 'M';
+            document.getElementById('tbl-health-downtime').textContent = '$' + hd.toFixed(1) + 'M';
+            document.getElementById('tbl-health-total').textContent = '$' + ht.toFixed(1) + 'M';
+
+            document.getElementById('tbl-holistic-profit').textContent = '$' + op.toFixed(1) + 'M';
+            document.getElementById('tbl-holistic-maint').textContent = '$' + om.toFixed(1) + 'M';
+            document.getElementById('tbl-holistic-downtime').textContent = '$' + od.toFixed(1) + 'M';
+            document.getElementById('tbl-holistic-total').textContent = '$' + ot.toFixed(1) + 'M';
+
+            // Update advantage displays
+            document.getElementById('out-advantage').textContent = '$' + (ot - tt).toFixed(1) + 'M/yr';
+            document.getElementById('out-adv-vs-trad').textContent = '+$' + ((ot * 3) - (tt * 3)).toFixed(1) + 'M';
+            document.getElementById('out-adv-vs-health').textContent = '+$' + ((ot * 3) - (ht * 3)).toFixed(1) + 'M';
+
             document.getElementById('results').classList.remove('hidden');
         }
 
