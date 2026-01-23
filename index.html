@@ -86,7 +86,7 @@
                 <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">APM Value Realization Journey</h1>
                 <p class="text-lg md:text-xl text-gray-300">Choose your industry to begin</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 <button id="btn-oilgas" class="feature-badge bg-dark-surface p-6 md:p-8 text-left">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-14 h-14 border-2 border-orange rounded-lg flex items-center justify-center flex-shrink-0">
@@ -121,6 +121,65 @@
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm">Availability and O&M cost per MWh analysis</p>
+                </button>
+                <button id="btn-manufacturing" class="feature-badge bg-dark-surface p-6 md:p-8 text-left">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 border-2 border-orange rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-7 h-7 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <!-- Factory/Manufacturing icon -->
+                                <path d="M2 20h20V8l-6 4V8l-6 4V4H2v16z"/>
+                                <rect x="5" y="14" width="2" height="3" fill="currentColor"/>
+                                <rect x="9" y="14" width="2" height="3" fill="currentColor"/>
+                                <rect x="13" y="14" width="2" height="3" fill="currentColor"/>
+                                <rect x="17" y="14" width="2" height="3" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="min-w-0">
+                            <h3 class="text-xl md:text-2xl font-bold text-orange">Manufacturing</h3>
+                            <p class="text-xs md:text-sm text-gray-400">OEE / Production Efficiency</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">OEE and production efficiency analysis</p>
+                </button>
+            </div>
+        </div>
+
+        <!-- Manufacturing Under Construction -->
+        <div id="step-manufacturing" class="hidden">
+            <div class="text-center mb-10">
+                <div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm mb-4">Manufacturing Industry</div>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Under Construction</h2>
+                <p class="text-lg md:text-xl text-gray-300 mb-8">We're building something great for Manufacturing</p>
+            </div>
+            <div class="feature-badge bg-dark-surface p-8 md:p-12 max-w-3xl mx-auto text-center">
+                <div class="w-24 h-24 mx-auto mb-6 border-4 border-orange rounded-full flex items-center justify-center">
+                    <svg class="w-12 h-12 text-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-orange mb-4">Manufacturing APM Value Calculator</h3>
+                <p class="text-gray-400 mb-6">Our team is developing specialized APM value analysis for manufacturing operations, including:</p>
+                <div class="grid md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-dark-card p-4 rounded-lg">
+                        <div class="text-2xl mb-2">&#9881;</div>
+                        <h4 class="font-bold text-white text-sm">OEE Optimization</h4>
+                        <p class="text-xs text-gray-500">Overall Equipment Effectiveness analysis</p>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-lg">
+                        <div class="text-2xl mb-2">&#128200;</div>
+                        <h4 class="font-bold text-white text-sm">Production Efficiency</h4>
+                        <p class="text-xs text-gray-500">Throughput and yield improvements</p>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-lg">
+                        <div class="text-2xl mb-2">&#128269;</div>
+                        <h4 class="font-bold text-white text-sm">Quality Impact</h4>
+                        <p class="text-xs text-gray-500">Defect reduction and scrap savings</p>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm mb-6">Check back soon for the full Manufacturing APM experience</p>
+                <button onclick="goToStep(1)" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                    Back to Industry Selection
                 </button>
             </div>
         </div>
@@ -627,119 +686,192 @@
                     </div>
                 </div>
 
-                <!-- Holistic Results - Same customers with strategic framework -->
-                <h3 class="text-base font-bold text-white mb-3 text-center">Holistic Approach: Enhanced Value</h3>
-                <p class="text-center text-gray-400 text-xs mb-4">Same customers + ISO 55000 framework = amplified results</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
+                <!-- Holistic Results - Building on Health-Centric Value -->
+                <h3 class="text-base font-bold text-white mb-3 text-center">Building on Health-Centric Value</h3>
+                <p class="text-center text-gray-400 text-xs mb-4">Same AI technology + ISO 55000 strategic framework = amplified, sustainable results</p>
+
+                <!-- Value Building Legend -->
+                <div class="flex justify-center gap-4 mb-4 text-xs">
+                    <div class="flex items-center gap-1">
+                        <span class="w-3 h-3 bg-yellow-500 rounded"></span>
+                        <span class="text-gray-400">Health-Centric Base</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="w-3 h-3 bg-blue-500 rounded"></span>
+                        <span class="text-gray-400">+ ISO Framework</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="w-3 h-3 bg-green-500 rounded"></span>
+                        <span class="text-gray-400">= Holistic Total</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                     <!-- Aker BP -->
-                    <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-smart-maintenance-sustainability" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
-                        <div class="flex justify-between items-start mb-2">
+                    <a href="https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-smart-maintenance-sustainability" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-4 hover:bg-dark-surface transition-all cursor-pointer">
+                        <div class="flex justify-between items-start mb-3">
                             <div>
                                 <h4 class="font-bold text-orange text-sm">Aker BP</h4>
                                 <p class="text-xs text-gray-500">Oil & Gas</p>
                             </div>
                             <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">Data Fusion + ISO</span>
                         </div>
+                        <!-- Value Progression -->
+                        <div class="bg-dark-surface rounded-lg p-3 mb-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-yellow-400 mb-1">Health-Centric</p>
+                                    <p class="text-lg font-bold text-yellow-400">$6.5M</p>
+                                    <p class="text-xs text-gray-500">OpEx savings</p>
+                                </div>
+                                <div class="text-xl text-blue-400 px-2">+</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-blue-400 mb-1">ISO Framework</p>
+                                    <p class="text-lg font-bold text-blue-400">$6.5M+</p>
+                                    <p class="text-xs text-gray-500">Strategic gains</p>
+                                </div>
+                                <div class="text-xl text-green-400 px-2">=</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-green-400 mb-1">Holistic Total</p>
+                                    <p class="text-lg font-bold text-green-400">$13M+</p>
+                                    <p class="text-xs text-gray-500">2x value</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
-                            <div>
-                                <p class="text-gray-500">Initial OpEx</p>
-                                <p class="text-yellow-400 font-bold">$6.5M</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">100K tons CO2/yr reduced</span>
                             </div>
-                            <div>
-                                <p class="text-gray-500">Holistic Value</p>
-                                <p class="text-green-400 font-bold">$13M+</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">CO2 Reduction</p>
-                                <p class="text-white font-bold">100K tons/yr</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Availability</p>
-                                <p class="text-orange font-bold">+40%</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">+40% availability gain</span>
                             </div>
                         </div>
                     </a>
                     <!-- Chevron -->
-                    <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
-                        <div class="flex justify-between items-start mb-2">
+                    <a href="https://info.seeq.com/chevron-technology-ventures-download" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-4 hover:bg-dark-surface transition-all cursor-pointer">
+                        <div class="flex justify-between items-start mb-3">
                             <div>
                                 <h4 class="font-bold text-orange text-sm">Chevron</h4>
                                 <p class="text-xs text-gray-500">Energy</p>
                             </div>
                             <span class="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">Process Analytics + ISO</span>
                         </div>
+                        <!-- Value Progression -->
+                        <div class="bg-dark-surface rounded-lg p-3 mb-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-yellow-400 mb-1">Health-Centric</p>
+                                    <p class="text-lg font-bold text-yellow-400">-99%</p>
+                                    <p class="text-xs text-gray-500">Analysis time</p>
+                                </div>
+                                <div class="text-xl text-blue-400 px-2">+</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-blue-400 mb-1">ISO Framework</p>
+                                    <p class="text-lg font-bold text-blue-400">Global</p>
+                                    <p class="text-xs text-gray-500">Standardization</p>
+                                </div>
+                                <div class="text-xl text-green-400 px-2">=</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-green-400 mb-1">Holistic Total</p>
+                                    <p class="text-lg font-bold text-green-400">Carbon</p>
+                                    <p class="text-xs text-gray-500">Goals enabled</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
-                            <div>
-                                <p class="text-gray-500">Analysis Time</p>
-                                <p class="text-yellow-400 font-bold">4mo to 30min</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">Turbines optimized</span>
                             </div>
-                            <div>
-                                <p class="text-gray-500">Emissions</p>
-                                <p class="text-green-400 font-bold">Reduced</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Turbines</p>
-                                <p class="text-white font-bold">Optimized</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Carbon Goals</p>
-                                <p class="text-orange font-bold">Enabled</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">Emissions reduced</span>
                             </div>
                         </div>
                     </a>
                     <!-- PepsiCo -->
-                    <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
-                        <div class="flex justify-between items-start mb-2">
+                    <a href="https://www.augury.com/success-stories/pepsicos-manufacturing-innovation-leads-to-tangible-roi/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-4 hover:bg-dark-surface transition-all cursor-pointer">
+                        <div class="flex justify-between items-start mb-3">
                             <div>
                                 <h4 class="font-bold text-orange text-sm">PepsiCo</h4>
                                 <p class="text-xs text-gray-500">CPG Manufacturing</p>
                             </div>
                             <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Machine Health + ISO</span>
                         </div>
+                        <!-- Value Progression -->
+                        <div class="bg-dark-surface rounded-lg p-3 mb-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-yellow-400 mb-1">Health-Centric</p>
+                                    <p class="text-lg font-bold text-yellow-400">4,000</p>
+                                    <p class="text-xs text-gray-500">hrs capacity</p>
+                                </div>
+                                <div class="text-xl text-blue-400 px-2">+</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-blue-400 mb-1">ISO Framework</p>
+                                    <p class="text-lg font-bold text-blue-400">4,000+</p>
+                                    <p class="text-xs text-gray-500">hrs additional</p>
+                                </div>
+                                <div class="text-xl text-green-400 px-2">=</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-green-400 mb-1">Holistic Total</p>
+                                    <p class="text-lg font-bold text-green-400">8,000+</p>
+                                    <p class="text-xs text-gray-500">hrs/yr gained</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
-                            <div>
-                                <p class="text-gray-500">Capacity</p>
-                                <p class="text-yellow-400 font-bold">4,000 hrs</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">All NA plants deployed</span>
                             </div>
-                            <div>
-                                <p class="text-gray-500">Holistic Value</p>
-                                <p class="text-green-400 font-bold">8,000+ hrs</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Rollout</p>
-                                <p class="text-white font-bold">All NA Plants</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">ROI</p>
-                                <p class="text-orange font-bold">10-20x</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">10-20x ROI achieved</span>
                             </div>
                         </div>
                     </a>
                     <!-- Covestro -->
-                    <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-3 hover:bg-dark-surface transition-all cursor-pointer">
-                        <div class="flex justify-between items-start mb-2">
+                    <a href="https://www.seeq.com/resources/success-stories/covestro-improves-chemical-manufacturing-process-running-seeq-on-aws/" target="_blank" rel="noopener" class="feature-badge bg-dark-card p-4 hover:bg-dark-surface transition-all cursor-pointer">
+                        <div class="flex justify-between items-start mb-3">
                             <div>
                                 <h4 class="font-bold text-orange text-sm">Covestro</h4>
                                 <p class="text-xs text-gray-500">Chemicals</p>
                             </div>
                             <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Process Analytics + ISO</span>
                         </div>
+                        <!-- Value Progression -->
+                        <div class="bg-dark-surface rounded-lg p-3 mb-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-yellow-400 mb-1">Health-Centric</p>
+                                    <p class="text-lg font-bold text-yellow-400">Local</p>
+                                    <p class="text-xs text-gray-500">Plant analytics</p>
+                                </div>
+                                <div class="text-xl text-blue-400 px-2">+</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-blue-400 mb-1">ISO Framework</p>
+                                    <p class="text-lg font-bold text-blue-400">Global</p>
+                                    <p class="text-xs text-gray-500">Standardization</p>
+                                </div>
+                                <div class="text-xl text-green-400 px-2">=</div>
+                                <div class="text-center flex-1">
+                                    <p class="text-xs text-green-400 mb-1">Holistic Total</p>
+                                    <p class="text-lg font-bold text-green-400">50 Sites</p>
+                                    <p class="text-xs text-gray-500">Cross-sharing</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
-                            <div>
-                                <p class="text-gray-500">Plants</p>
-                                <p class="text-yellow-400 font-bold">50 Global</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">Quality improved</span>
                             </div>
-                            <div>
-                                <p class="text-gray-500">Data Sharing</p>
-                                <p class="text-green-400 font-bold">Cross-Site</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Quality</p>
-                                <p class="text-white font-bold">Higher</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Loss</p>
-                                <p class="text-orange font-bold">Prevented</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-500">&#10003;</span>
+                                <span class="text-gray-400">Production loss prevented</span>
                             </div>
                         </div>
                     </a>
@@ -1465,7 +1597,13 @@
         // Event listeners
         document.getElementById('btn-oilgas').addEventListener('click', function() { selectIndustry('oilgas'); });
         document.getElementById('btn-powergen').addEventListener('click', function() { selectIndustry('powergen'); });
+        document.getElementById('btn-manufacturing').addEventListener('click', function() { showManufacturing(); });
         document.getElementById('btn-calc').addEventListener('click', calculate);
+
+        function showManufacturing() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step-manufacturing').classList.remove('hidden');
+        }
 
         // Maintenance percentage slider
         const maintSlider = document.getElementById('input-maint-pct');
@@ -1595,6 +1733,7 @@
             for (let i = 1; i <= 7; i++) {
                 document.getElementById('step' + i).classList.add('hidden');
             }
+            document.getElementById('step-manufacturing').classList.add('hidden');
         }
 
         // Tab switching for Learn More page
