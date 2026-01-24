@@ -204,6 +204,99 @@ Annual Total                            = $72.9M
 
 ---
 
+## Supporting Evidence: Traditional Approach (ISO 55000)
+
+The Traditional approach assumptions are supported by documented ISO 55001 implementations:
+
+### Utility Industry Case Studies
+
+| Organization | Benefits Achieved | Source |
+|--------------|-------------------|--------|
+| [Scottish Water](https://committee.iso.org/files/live/sites/tc251/files/stories/BSI-ISO-55001-Case-Study-Scottish-Water-UK-EN.pdf) | Improved asset efficiency, enhanced customer service, broke down departmental silos | BSI Case Study |
+| [Palm Beach County Water Utilities](https://committee.iso.org/sites/tc251/social-links/resources/case-studies.html) | People-led asset management framework implementation | ISO TC251 |
+| [Gladstone Area Water Board](https://committee.iso.org/sites/tc251/social-links/resources/case-studies.html) | Sound asset practices contributing to water price setting | ISO TC251 |
+| [Lansing Board of Water & Light](https://committee.iso.org/sites/tc251/social-links/resources/case-studies.html) | Demonstrated municipal utility benefits | ISO TC251 |
+| [Energinet](https://committee.iso.org/sites/tc251/social-links/resources/case-studies.html) | Power utility asset management improvements | ISO TC251 |
+
+### Documented ISO 55001 Benefits
+
+According to [Bureau Veritas](https://certification.bureauveritas.com/asset-management-system-iso-55001-certification) and [NQA](https://www.nqa.com/en-us/certification/standards/iso-55001):
+- Lower costs and maximized ROI throughout asset lifecycle
+- Extended asset life through reliability-centered maintenance
+- Reduced operational costs
+- Better planning for major capital expenditures
+- Demonstrated compliance to regulators and stakeholders
+
+### Why Traditional Takes Longer (5 Years)
+
+[U.S. utilities research](https://breakingenergy.com/2016/07/28/u-s-utilities-weigh-the-cost-and-benefit-of-iso-55001certification/) indicates that ISO 55001 certification requires:
+- Comprehensive governance framework development
+- Cross-departmental alignment and cultural change
+- Stakeholder buy-in processes
+- Independent audit and certification cycles
+
+---
+
+## Supporting Evidence: Health-Centric Approach (AI/ML)
+
+The Health-Centric approach assumptions are supported by documented AI/predictive maintenance implementations:
+
+### Industry Research & Benchmarks
+
+| Metric | Finding | Source |
+|--------|---------|--------|
+| Downtime Reduction | 35-45% reduction | [Deloitte Research](https://www.netguru.com/blog/ai-predictive-maintenance) |
+| Unexpected Breakdowns | 70-75% elimination | [Deloitte Research](https://www.netguru.com/blog/ai-predictive-maintenance) |
+| Maintenance Cost Reduction | 25-30% reduction | [Deloitte Research](https://www.netguru.com/blog/ai-predictive-maintenance) |
+| Prediction Accuracy | Up to 90% | IBM, 2024 |
+| Typical ROI Timeline | 12-24 months | [Industry Analysis](https://www.netguru.com/blog/ai-predictive-maintenance) |
+
+### Specific Case Studies
+
+| Company | Technology | Results | Source |
+|---------|------------|---------|--------|
+| **Aker BP** | Cognite Data Fusion | $6.5M OpEx savings, 1,300 hours saved, 30% maintenance reduction, 70% fewer shutdowns, 40% increased pump availability | [Cognite](https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-siemens-condition-monitoring) |
+| **Aker BP** | Cognite ML | $6M annual savings from oil-in-water monitoring alone | [Cognite](https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-hybrid-machine-learning) |
+| **Aker BP** | Cognite DataOps | 100,000 metric tons CO2 reduction/year at Skarv field | [Cognite](https://www.cognite.com/en/resources/customer-stories/dataops-oil-gas-reducing-co2-emissions) |
+| **Shell** | C3 AI | Monitored 10,000+ assets, 20B data points/week, $2M saved from 2 prevented failures | [Think AI Corp](https://thinkaicorp.com/case-study-cutting-machine-downtime-with-predictive-maintenance-and-ai/) |
+| **Fortune 500 Manufacturer** | AI Predictive Maintenance | 45% downtime reduction, $2.8M annual savings | [Netguru](https://www.netguru.com/blog/ai-predictive-maintenance) |
+| **Midwest Steel Manufacturer** | IoT + ML | 30% downtime reduction, $850K annual savings, 11-month ROI, 31% OEE improvement | [OxMaint](https://oxmaint.com/case-study/post/predictive-maintenance-downtime-reduction) |
+| **Semiconductor Fab** | AI Vibration Monitoring | 72% decrease in unscheduled downtime | [Ademero](https://www.ademero.com/ai-resources/case-studies/manufacturing-predictive-maintenance) |
+| **Chevron** | Seeq Analytics | Data analysis reduced from 4 months to 30 minutes | [Microsoft Case Study](https://partner.microsoft.com/en-us/case-studies/seeq) |
+
+### Machine Health Platform Results
+
+[Augury's 2024 Machine Health Report](https://www.businesswire.com/news/home/20240807908808/en/Augurys-2024-Machine-Health-Is-Business-Health-Report-Outlines-the-Current-State-of-Asset-Maintenance-and-Its-Top-Roadblocks) and Forrester TEI Study findings:
+
+| Metric | Result |
+|--------|--------|
+| ROI | 310% with <6 month payback |
+| Customer ROI Range | 3-10x, often 5-20x |
+| Pilot Results | 2.5x ROI in 8 months on 40-machine pilot |
+
+### Why Health-Centric is Faster (3 Years)
+
+According to [MIT Sloan Management Review](https://sloanreview.mit.edu/article/a-maintenance-revolution-reducing-downtime-with-ai-tools/):
+- Pre-trained industry-specific AI models accelerate deployment
+- Cloud-based analytics eliminate IT infrastructure overhead
+- Sensor costs have dropped 60% since 2020
+- Average ROI timeline has shrunk from 18 months to <6 months
+
+---
+
+## Comparison Summary
+
+| Factor | Traditional (ISO 55000) | Health-Centric (AI/ML) |
+|--------|------------------------|------------------------|
+| **Time to Value** | 3-5 years | 6-18 months |
+| **Primary Focus** | Governance & Framework | Technology & Data |
+| **Maintenance Savings** | 15% (process improvement) | 25-30% (predictive) |
+| **Downtime Impact** | Incremental improvement | 35-70% reduction |
+| **Best For** | Regulatory compliance, long-term governance | Quick wins, operational efficiency |
+| **Risk** | Slow ROI, change fatigue | Data quality, legacy system integration |
+
+---
+
 ## Code Reference
 
 The calculation logic is implemented in `index.html`:
