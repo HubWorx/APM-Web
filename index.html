@@ -184,6 +184,190 @@
             </div>
         </div>
 
+        <!-- Power Generation Configuration -->
+        <div id="step-powergen-config" class="hidden">
+            <div class="text-center mb-6">
+                <div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm mb-4">Power Generation Industry</div>
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">Configure Your Power Business</h2>
+                <p class="text-gray-300">Help us tailor the APM value analysis to your specific situation</p>
+            </div>
+
+            <div class="feature-badge bg-dark-surface p-5 md:p-8 max-w-5xl mx-auto">
+                <!-- Company Type -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-orange mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-orange text-black rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                        Company Type
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button id="pg-type-ipp" class="pg-config-btn feature-badge bg-dark-card p-4 text-left hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm mb-1">Independent Power Producer (IPP)</h4>
+                            <p class="text-xs text-gray-400">Own and operate generation assets, sell power competitively</p>
+                            <div class="mt-2 text-xs text-orange">Focus: Maximize margins & availability</div>
+                        </button>
+                        <button id="pg-type-utility" class="pg-config-btn feature-badge bg-dark-card p-4 text-left hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm mb-1">Regulated Utility</h4>
+                            <p class="text-xs text-gray-400">Vertically integrated with transmission & distribution</p>
+                            <div class="mt-2 text-xs text-orange">Focus: Reliability & rate case performance</div>
+                        </button>
+                        <button id="pg-type-om" class="pg-config-btn feature-badge bg-dark-card p-4 text-left hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm mb-1">O&M Contractor</h4>
+                            <p class="text-xs text-gray-400">Operate assets owned by others under contract</p>
+                            <div class="mt-2 text-xs text-orange">Focus: Contract KPIs & cost control</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Revenue Model -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-orange mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-orange text-black rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                        Revenue Model
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button id="pg-rev-merchant" class="pg-config-btn feature-badge bg-dark-card p-4 text-left hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm mb-1">Merchant</h4>
+                            <p class="text-xs text-gray-400">Sell into wholesale markets at spot/day-ahead prices</p>
+                            <div class="mt-2 text-xs text-orange">High price sensitivity, availability critical</div>
+                        </button>
+                        <button id="pg-rev-ppa" class="pg-config-btn feature-badge bg-dark-card p-4 text-left hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm mb-1">PPA / Contracted</h4>
+                            <p class="text-xs text-gray-400">Long-term power purchase agreements with fixed pricing</p>
+                            <div class="mt-2 text-xs text-orange">Predictable revenue, penalty avoidance focus</div>
+                        </button>
+                        <button id="pg-rev-regulated" class="pg-config-btn feature-badge bg-dark-card p-4 text-left hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm mb-1">Cost-of-Service / Regulated</h4>
+                            <p class="text-xs text-gray-400">Rates set by regulators based on prudent costs</p>
+                            <div class="mt-2 text-xs text-orange">Cost efficiency drives allowed returns</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Asset Type -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-orange mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-orange text-black rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                        Primary Asset Type
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <button id="pg-asset-baseload" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <div class="text-2xl mb-2">&#9881;</div>
+                            <h4 class="font-bold text-white text-sm">Baseload Thermal</h4>
+                            <p class="text-xs text-gray-400 mt-1">CCGT, Coal, Nuclear</p>
+                            <p class="text-xs text-orange mt-2">High CF, low cycling</p>
+                        </button>
+                        <button id="pg-asset-peaker" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <div class="text-2xl mb-2">&#9889;</div>
+                            <h4 class="font-bold text-white text-sm">Peaker / Mid-Merit</h4>
+                            <p class="text-xs text-gray-400 mt-1">Simple cycle GT, Recip</p>
+                            <p class="text-xs text-orange mt-2">Fast start, high cycling</p>
+                        </button>
+                        <button id="pg-asset-wind" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <div class="text-2xl mb-2">&#127744;</div>
+                            <h4 class="font-bold text-white text-sm">Wind</h4>
+                            <p class="text-xs text-gray-400 mt-1">Onshore / Offshore</p>
+                            <p class="text-xs text-orange mt-2">Gearbox, blades critical</p>
+                        </button>
+                        <button id="pg-asset-solar" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <div class="text-2xl mb-2">&#9728;</div>
+                            <h4 class="font-bold text-white text-sm">Solar</h4>
+                            <p class="text-xs text-gray-400 mt-1">Utility-scale PV</p>
+                            <p class="text-xs text-orange mt-2">Inverters, trackers focus</p>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+                        <button id="pg-asset-hydro" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <div class="text-2xl mb-2">&#128167;</div>
+                            <h4 class="font-bold text-white text-sm">Hydro</h4>
+                            <p class="text-xs text-gray-400 mt-1">Run-of-river, Storage</p>
+                            <p class="text-xs text-orange mt-2">Long-life, turbine focus</p>
+                        </button>
+                        <button id="pg-asset-storage" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <div class="text-2xl mb-2">&#128267;</div>
+                            <h4 class="font-bold text-white text-sm">Battery Storage</h4>
+                            <p class="text-xs text-gray-400 mt-1">BESS, Grid services</p>
+                            <p class="text-xs text-orange mt-2">Degradation management</p>
+                        </button>
+                        <button id="pg-asset-mixed" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all col-span-2">
+                            <div class="text-2xl mb-2">&#128200;</div>
+                            <h4 class="font-bold text-white text-sm">Mixed Fleet</h4>
+                            <p class="text-xs text-gray-400 mt-1">Multiple technology types</p>
+                            <p class="text-xs text-orange mt-2">Portfolio optimization</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Region / Gas Price -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-orange mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-orange text-black rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                        Region (affects fuel/spark spread economics)
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <button id="pg-region-na" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm">North America</h4>
+                            <p class="text-xs text-gray-400 mt-1">Henry Hub indexed</p>
+                            <p class="text-xs text-green-400 mt-2">$2-4/MMBtu</p>
+                        </button>
+                        <button id="pg-region-europe" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm">Europe</h4>
+                            <p class="text-xs text-gray-400 mt-1">TTF/NBP indexed</p>
+                            <p class="text-xs text-yellow-400 mt-2">$8-15/MMBtu</p>
+                        </button>
+                        <button id="pg-region-asia" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm">Asia Pacific</h4>
+                            <p class="text-xs text-gray-400 mt-1">JKM/LNG indexed</p>
+                            <p class="text-xs text-orange mt-2">$10-18/MMBtu</p>
+                        </button>
+                        <button id="pg-region-other" class="pg-config-btn feature-badge bg-dark-card p-4 text-center hover:border-orange border-2 border-transparent transition-all">
+                            <h4 class="font-bold text-white text-sm">Other / Renewable</h4>
+                            <p class="text-xs text-gray-400 mt-1">No fuel cost exposure</p>
+                            <p class="text-xs text-blue-400 mt-2">N/A</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Configuration Summary -->
+                <div id="pg-config-summary" class="bg-dark-card rounded-lg p-4 mb-6 hidden">
+                    <h4 class="text-sm font-bold text-orange mb-3">Your Configuration</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                        <div>
+                            <p class="text-gray-500">Company Type</p>
+                            <p id="pg-sum-type" class="text-white font-bold">-</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Revenue Model</p>
+                            <p id="pg-sum-rev" class="text-white font-bold">-</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Asset Type</p>
+                            <p id="pg-sum-asset" class="text-white font-bold">-</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Region</p>
+                            <p id="pg-sum-region" class="text-white font-bold">-</p>
+                        </div>
+                    </div>
+                    <div class="mt-3 p-3 bg-dark-surface rounded">
+                        <p class="text-xs text-gray-400 mb-1">Value Driver Focus:</p>
+                        <p id="pg-sum-focus" class="text-sm text-orange font-bold">Select all options above to see your tailored focus areas</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex justify-between items-center mt-8">
+                    <button onclick="goToStep(1)" class="feature-badge badge-pill bg-dark-card text-white px-6 py-3 text-sm font-bold hover:bg-orange hover:text-black transition-all nav-btn">
+                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                        Back
+                    </button>
+                    <button id="btn-pg-continue" onclick="applyPowerGenConfig()" class="feature-badge badge-pill bg-dark-card text-white px-6 md:px-10 py-3 text-sm md:text-base font-bold hover:bg-orange hover:text-black transition-all nav-btn opacity-50 cursor-not-allowed" disabled>
+                        Continue to Analysis
+                        <svg class="w-5 h-5 inline ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Step 2: Traditional Approach -->
         <div id="step2" class="hidden">
             <div class="text-center mb-6">
@@ -1664,6 +1848,56 @@
         let currentStep = 1;
         let charts = {};
 
+        // Power Generation configuration state
+        let pgConfig = {
+            companyType: null,    // 'ipp', 'utility', 'om'
+            revenueModel: null,   // 'merchant', 'ppa', 'regulated'
+            assetType: null,      // 'baseload', 'peaker', 'wind', 'solar', 'hydro', 'storage', 'mixed'
+            region: null          // 'na', 'europe', 'asia', 'other'
+        };
+
+        // Power Generation modifiers based on configuration
+        const PG_MODIFIERS = {
+            companyType: {
+                ipp: { roceMultiplier: 1.15, maintenanceFocus: 1.2, label: 'IPP' },
+                utility: { roceMultiplier: 0.9, maintenanceFocus: 0.9, label: 'Utility' },
+                om: { roceMultiplier: 0.85, maintenanceFocus: 1.1, label: 'O&M Contractor' }
+            },
+            revenueModel: {
+                merchant: { roceMultiplier: 1.2, downtimeSensitivity: 1.3, label: 'Merchant' },
+                ppa: { roceMultiplier: 1.0, downtimeSensitivity: 1.1, label: 'PPA/Contracted' },
+                regulated: { roceMultiplier: 0.85, downtimeSensitivity: 0.9, label: 'Regulated' }
+            },
+            assetType: {
+                baseload: { roceMultiplier: 1.0, maintenanceComplexity: 1.2, label: 'Baseload Thermal' },
+                peaker: { roceMultiplier: 1.25, maintenanceComplexity: 1.0, label: 'Peaker/Mid-Merit' },
+                wind: { roceMultiplier: 1.1, maintenanceComplexity: 1.15, label: 'Wind' },
+                solar: { roceMultiplier: 0.95, maintenanceComplexity: 0.8, label: 'Solar' },
+                hydro: { roceMultiplier: 0.9, maintenanceComplexity: 0.7, label: 'Hydro' },
+                storage: { roceMultiplier: 1.3, maintenanceComplexity: 0.9, label: 'Battery Storage' },
+                mixed: { roceMultiplier: 1.05, maintenanceComplexity: 1.1, label: 'Mixed Fleet' }
+            },
+            region: {
+                na: { fuelCostImpact: 0.9, label: 'North America' },
+                europe: { fuelCostImpact: 1.2, label: 'Europe' },
+                asia: { fuelCostImpact: 1.3, label: 'Asia Pacific' },
+                other: { fuelCostImpact: 1.0, label: 'Other/Renewable' }
+            }
+        };
+
+        // Value focus messages based on configuration
+        const PG_FOCUS_MESSAGES = {
+            'ipp-merchant-peaker': 'Maximum availability during peak pricing windows; fast-start reliability; spark spread optimization',
+            'ipp-merchant-baseload': 'High capacity factor maintenance; heat rate optimization; forced outage rate reduction',
+            'ipp-ppa-wind': 'Gearbox and blade reliability; availability guarantee compliance; curtailment minimization',
+            'ipp-ppa-solar': 'Inverter reliability; tracker uptime; soiling and degradation management',
+            'utility-regulated-baseload': 'Prudent cost management for rate cases; regulatory compliance; long-term reliability',
+            'utility-regulated-mixed': 'Portfolio optimization; resource adequacy; integrated system reliability',
+            'om-ppa-baseload': 'Contract KPI achievement; availability bonuses; cost control within budget',
+            'om-ppa-wind': 'Turbine availability targets; warranty compliance; spare parts optimization',
+            'default': 'Availability optimization; O&M cost reduction; asset life extension'
+        };
+
         // Chart.js defaults
         Chart.defaults.color = '#ffffff';
         Chart.defaults.borderColor = '#333333';
@@ -1732,7 +1966,7 @@
 
         // Event listeners
         document.getElementById('btn-oilgas').addEventListener('click', function() { selectIndustry('oilgas'); });
-        document.getElementById('btn-powergen').addEventListener('click', function() { selectIndustry('powergen'); });
+        document.getElementById('btn-powergen').addEventListener('click', function() { showPowerGenConfig(); });
         document.getElementById('btn-manufacturing').addEventListener('click', function() { showManufacturing(); });
         document.getElementById('btn-calc').addEventListener('click', calculate);
 
@@ -1740,6 +1974,131 @@
             document.getElementById('step1').classList.add('hidden');
             document.getElementById('step-manufacturing').classList.remove('hidden');
         }
+
+        function showPowerGenConfig() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step-powergen-config').classList.remove('hidden');
+            // Reset configuration
+            pgConfig = { companyType: null, revenueModel: null, assetType: null, region: null };
+            document.querySelectorAll('.pg-config-btn').forEach(btn => btn.classList.remove('border-orange'));
+            document.getElementById('pg-config-summary').classList.add('hidden');
+            document.getElementById('btn-pg-continue').disabled = true;
+            document.getElementById('btn-pg-continue').classList.add('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Power Generation configuration button handlers
+        function setupPgConfigButtons() {
+            // Company Type buttons
+            ['ipp', 'utility', 'om'].forEach(type => {
+                document.getElementById('pg-type-' + type).addEventListener('click', function() {
+                    pgConfig.companyType = type;
+                    document.querySelectorAll('[id^="pg-type-"]').forEach(btn => btn.classList.remove('border-orange'));
+                    this.classList.add('border-orange');
+                    updatePgConfigSummary();
+                });
+            });
+
+            // Revenue Model buttons
+            ['merchant', 'ppa', 'regulated'].forEach(rev => {
+                document.getElementById('pg-rev-' + rev).addEventListener('click', function() {
+                    pgConfig.revenueModel = rev;
+                    document.querySelectorAll('[id^="pg-rev-"]').forEach(btn => btn.classList.remove('border-orange'));
+                    this.classList.add('border-orange');
+                    updatePgConfigSummary();
+                });
+            });
+
+            // Asset Type buttons
+            ['baseload', 'peaker', 'wind', 'solar', 'hydro', 'storage', 'mixed'].forEach(asset => {
+                document.getElementById('pg-asset-' + asset).addEventListener('click', function() {
+                    pgConfig.assetType = asset;
+                    document.querySelectorAll('[id^="pg-asset-"]').forEach(btn => btn.classList.remove('border-orange'));
+                    this.classList.add('border-orange');
+                    updatePgConfigSummary();
+                });
+            });
+
+            // Region buttons
+            ['na', 'europe', 'asia', 'other'].forEach(region => {
+                document.getElementById('pg-region-' + region).addEventListener('click', function() {
+                    pgConfig.region = region;
+                    document.querySelectorAll('[id^="pg-region-"]').forEach(btn => btn.classList.remove('border-orange'));
+                    this.classList.add('border-orange');
+                    updatePgConfigSummary();
+                });
+            });
+        }
+
+        function updatePgConfigSummary() {
+            const summary = document.getElementById('pg-config-summary');
+            const allSelected = pgConfig.companyType && pgConfig.revenueModel && pgConfig.assetType && pgConfig.region;
+
+            if (pgConfig.companyType || pgConfig.revenueModel || pgConfig.assetType || pgConfig.region) {
+                summary.classList.remove('hidden');
+            }
+
+            document.getElementById('pg-sum-type').textContent = pgConfig.companyType ? PG_MODIFIERS.companyType[pgConfig.companyType].label : '-';
+            document.getElementById('pg-sum-rev').textContent = pgConfig.revenueModel ? PG_MODIFIERS.revenueModel[pgConfig.revenueModel].label : '-';
+            document.getElementById('pg-sum-asset').textContent = pgConfig.assetType ? PG_MODIFIERS.assetType[pgConfig.assetType].label : '-';
+            document.getElementById('pg-sum-region').textContent = pgConfig.region ? PG_MODIFIERS.region[pgConfig.region].label : '-';
+
+            // Update focus message
+            if (allSelected) {
+                const focusKey = pgConfig.companyType + '-' + pgConfig.revenueModel + '-' + pgConfig.assetType;
+                const focusMsg = PG_FOCUS_MESSAGES[focusKey] || PG_FOCUS_MESSAGES['default'];
+                document.getElementById('pg-sum-focus').textContent = focusMsg;
+
+                // Enable continue button
+                document.getElementById('btn-pg-continue').disabled = false;
+                document.getElementById('btn-pg-continue').classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                document.getElementById('pg-sum-focus').textContent = 'Select all options above to see your tailored focus areas';
+                document.getElementById('btn-pg-continue').disabled = true;
+                document.getElementById('btn-pg-continue').classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function applyPowerGenConfig() {
+            // Calculate adjusted ROCE values based on configuration
+            const typeModifier = PG_MODIFIERS.companyType[pgConfig.companyType].roceMultiplier;
+            const revModifier = PG_MODIFIERS.revenueModel[pgConfig.revenueModel].roceMultiplier;
+            const assetModifier = PG_MODIFIERS.assetType[pgConfig.assetType].roceMultiplier;
+            const regionModifier = PG_MODIFIERS.region[pgConfig.region].fuelCostImpact;
+
+            // Combined modifier (geometric mean to avoid extreme values)
+            const combinedModifier = Math.pow(typeModifier * revModifier * assetModifier, 1/3);
+
+            // Apply regional modifier for fossil assets (fuel cost impact)
+            const isFossil = ['baseload', 'peaker'].includes(pgConfig.assetType);
+            const finalModifier = isFossil ? combinedModifier * (2 - regionModifier) : combinedModifier;
+
+            // Store original values and apply modifiers
+            DATA.powergen.configuredTrad = {
+                ...DATA.powergen.trad,
+                total: Math.round(DATA.powergen.trad.total * finalModifier * 10) / 10
+            };
+            DATA.powergen.configuredHealth = {
+                ...DATA.powergen.health,
+                total: Math.round(DATA.powergen.health.total * finalModifier * 10) / 10
+            };
+            DATA.powergen.configuredHolistic = {
+                ...DATA.powergen.holistic,
+                total: Math.round(DATA.powergen.holistic.total * finalModifier * 10) / 10
+            };
+
+            // Store config description for display
+            DATA.powergen.configDescription = PG_MODIFIERS.companyType[pgConfig.companyType].label + ' | ' +
+                PG_MODIFIERS.revenueModel[pgConfig.revenueModel].label + ' | ' +
+                PG_MODIFIERS.assetType[pgConfig.assetType].label + ' | ' +
+                PG_MODIFIERS.region[pgConfig.region].label;
+
+            // Hide config page and proceed to industry selection
+            document.getElementById('step-powergen-config').classList.add('hidden');
+            selectIndustry('powergen');
+        }
+
+        // Initialize PG config buttons
+        setupPgConfigButtons();
 
         // Maintenance percentage slider
         const maintSlider = document.getElementById('input-maint-pct');
@@ -1764,13 +2123,31 @@
         function selectIndustry(ind) {
             currentIndustry = ind;
 
-            // Update displays with industry data
-            document.getElementById('display-trad-roce').textContent = '+' + DATA[ind].trad.total + '%';
-            document.getElementById('display-holistic-roce').textContent = '+' + DATA[ind].holistic.total + '%';
+            // Get ROCE values - use configured values for powergen if available
+            let tradTotal, healthTotal, holisticTotal;
+            if (ind === 'powergen' && DATA.powergen.configuredTrad) {
+                tradTotal = DATA.powergen.configuredTrad.total;
+                healthTotal = DATA.powergen.configuredHealth.total;
+                holisticTotal = DATA.powergen.configuredHolistic.total;
+            } else {
+                tradTotal = DATA[ind].trad.total;
+                healthTotal = DATA[ind].health.total;
+                holisticTotal = DATA[ind].holistic.total;
+            }
 
-            const badge = ind === 'oilgas'
-                ? '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>'
-                : '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
+            // Update displays with industry data
+            document.getElementById('display-trad-roce').textContent = '+' + tradTotal + '%';
+            document.getElementById('display-holistic-roce').textContent = '+' + holisticTotal + '%';
+
+            // Create badge with configuration details for power gen
+            let badge;
+            if (ind === 'oilgas') {
+                badge = '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Oil & Gas Industry</div>';
+            } else if (DATA.powergen.configDescription) {
+                badge = '<div class="inline-block border-2 border-orange text-white px-3 py-2 rounded-full font-bold text-xs md:text-sm">' + DATA.powergen.configDescription + '</div>';
+            } else {
+                badge = '<div class="inline-block border-2 border-orange text-white px-4 py-2 rounded-full font-bold text-sm">Power Generation Industry</div>';
+            }
             document.getElementById('badge2').innerHTML = badge;
 
             // Update Step 2 title based on industry
@@ -1829,12 +2206,23 @@
             // Draw charts when entering step 5
             if (step === 5 && currentIndustry) {
                 setTimeout(function() {
-                    document.getElementById('display-comp-trad').textContent = '+' + DATA[currentIndustry].trad.total + '%';
-                    document.getElementById('display-comp-health').textContent = '+' + DATA[currentIndustry].health.total + '%';
-                    document.getElementById('display-comp-holistic').textContent = '+' + DATA[currentIndustry].holistic.total + '%';
-                    drawChart('chart2', DATA[currentIndustry].trad, false);
-                    drawChart('chart3', DATA[currentIndustry].health, false);
-                    drawChart('chart4', DATA[currentIndustry].holistic, false);
+                    // Use configured values for powergen if available
+                    let tradData, healthData, holisticData;
+                    if (currentIndustry === 'powergen' && DATA.powergen.configuredTrad) {
+                        tradData = DATA.powergen.configuredTrad;
+                        healthData = DATA.powergen.configuredHealth;
+                        holisticData = DATA.powergen.configuredHolistic;
+                    } else {
+                        tradData = DATA[currentIndustry].trad;
+                        healthData = DATA[currentIndustry].health;
+                        holisticData = DATA[currentIndustry].holistic;
+                    }
+                    document.getElementById('display-comp-trad').textContent = '+' + tradData.total + '%';
+                    document.getElementById('display-comp-health').textContent = '+' + healthData.total + '%';
+                    document.getElementById('display-comp-holistic').textContent = '+' + holisticData.total + '%';
+                    drawChart('chart2', tradData, false);
+                    drawChart('chart3', healthData, false);
+                    drawChart('chart4', holisticData, false);
                 }, 100);
             }
         }
@@ -1876,6 +2264,7 @@
                 document.getElementById('step' + i).classList.add('hidden');
             }
             document.getElementById('step-manufacturing').classList.add('hidden');
+            document.getElementById('step-powergen-config').classList.add('hidden');
         }
 
         // Tab switching for Learn More page
@@ -1949,9 +2338,17 @@
             // Calculate current ROCE
             const currentROCE = (prof / cap) * 100;
 
-            const tradROCE = DATA[currentIndustry].trad.total;
-            const healthROCE = DATA[currentIndustry].health.total;
-            const holisticROCE = DATA[currentIndustry].holistic.total;
+            // Get ROCE values - use configured values for powergen if available
+            let tradROCE, healthROCE, holisticROCE;
+            if (currentIndustry === 'powergen' && DATA.powergen.configuredTrad) {
+                tradROCE = DATA.powergen.configuredTrad.total;
+                healthROCE = DATA.powergen.configuredHealth.total;
+                holisticROCE = DATA.powergen.configuredHolistic.total;
+            } else {
+                tradROCE = DATA[currentIndustry].trad.total;
+                healthROCE = DATA[currentIndustry].health.total;
+                holisticROCE = DATA[currentIndustry].holistic.total;
+            }
 
             // Downtime reduction factors (as % of revenue)
             const DOWNTIME_FACTORS = {
