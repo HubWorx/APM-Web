@@ -1980,7 +1980,11 @@
             document.getElementById('step-powergen-config').classList.remove('hidden');
             // Reset configuration
             pgConfig = { companyType: null, revenueModel: null, assetType: null, region: null };
-            document.querySelectorAll('.pg-config-btn').forEach(btn => btn.classList.remove('border-orange'));
+            // Reset all button styles
+            document.querySelectorAll('.pg-config-btn').forEach(btn => {
+                btn.classList.remove('border-orange', 'bg-dark-surface');
+                btn.classList.add('border-transparent', 'bg-dark-card');
+            });
             document.getElementById('pg-config-summary').classList.add('hidden');
             document.getElementById('btn-pg-continue').disabled = true;
             document.getElementById('btn-pg-continue').classList.add('opacity-50', 'cursor-not-allowed');
@@ -1988,12 +1992,23 @@
 
         // Power Generation configuration button handlers
         function setupPgConfigButtons() {
+            // Helper function to select a button
+            function selectButton(btn, groupSelector) {
+                // Reset all buttons in group
+                document.querySelectorAll(groupSelector).forEach(b => {
+                    b.classList.remove('border-orange', 'bg-dark-surface');
+                    b.classList.add('border-transparent', 'bg-dark-card');
+                });
+                // Highlight selected button
+                btn.classList.remove('border-transparent', 'bg-dark-card');
+                btn.classList.add('border-orange', 'bg-dark-surface');
+            }
+
             // Company Type buttons
             ['ipp', 'utility', 'om'].forEach(type => {
                 document.getElementById('pg-type-' + type).addEventListener('click', function() {
                     pgConfig.companyType = type;
-                    document.querySelectorAll('[id^="pg-type-"]').forEach(btn => btn.classList.remove('border-orange'));
-                    this.classList.add('border-orange');
+                    selectButton(this, '[id^="pg-type-"]');
                     updatePgConfigSummary();
                 });
             });
@@ -2002,8 +2017,7 @@
             ['merchant', 'ppa', 'regulated'].forEach(rev => {
                 document.getElementById('pg-rev-' + rev).addEventListener('click', function() {
                     pgConfig.revenueModel = rev;
-                    document.querySelectorAll('[id^="pg-rev-"]').forEach(btn => btn.classList.remove('border-orange'));
-                    this.classList.add('border-orange');
+                    selectButton(this, '[id^="pg-rev-"]');
                     updatePgConfigSummary();
                 });
             });
@@ -2012,8 +2026,7 @@
             ['baseload', 'peaker', 'wind', 'solar', 'hydro', 'storage', 'mixed'].forEach(asset => {
                 document.getElementById('pg-asset-' + asset).addEventListener('click', function() {
                     pgConfig.assetType = asset;
-                    document.querySelectorAll('[id^="pg-asset-"]').forEach(btn => btn.classList.remove('border-orange'));
-                    this.classList.add('border-orange');
+                    selectButton(this, '[id^="pg-asset-"]');
                     updatePgConfigSummary();
                 });
             });
@@ -2022,8 +2035,7 @@
             ['na', 'europe', 'asia', 'other'].forEach(region => {
                 document.getElementById('pg-region-' + region).addEventListener('click', function() {
                     pgConfig.region = region;
-                    document.querySelectorAll('[id^="pg-region-"]').forEach(btn => btn.classList.remove('border-orange'));
-                    this.classList.add('border-orange');
+                    selectButton(this, '[id^="pg-region-"]');
                     updatePgConfigSummary();
                 });
             });
