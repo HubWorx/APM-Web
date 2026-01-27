@@ -380,7 +380,7 @@
                     <p class="text-white"><span class="text-orange font-bold">The Old Way:</span> Framework-first, technology-last approach taking 4-5 years</p>
                 </div>
                 <div id="powergen-context" class="border-l-4 border-red-500 bg-dark-card p-4 mb-6 hidden">
-                    <p class="text-white"><span class="text-red-500 font-bold">The Old Way:</span> Laser focused on center line reliability with predictive maintenance first. Limited adoption &amp; impact - recommendations lack asset health context.</p>
+                    <p id="powergen-context-text" class="text-white"><span class="text-red-500 font-bold">The Old Way:</span> Laser focused on center line reliability with predictive maintenance first. Limited adoption &amp; impact - recommendations lack asset health context.</p>
                 </div>
                 <div class="mb-6 chart-container p-4">
                     <canvas id="chart1" height="260"></canvas>
@@ -725,6 +725,10 @@
             </div>
 
             <div class="feature-badge bg-dark-surface p-5 md:p-8 mb-6">
+                <!-- Customized context for Power Generation -->
+                <div id="step3-pg-context" class="border-l-4 border-green-500 bg-dark-card p-4 mb-6 hidden">
+                    <p id="step3-pg-context-text" class="text-white"></p>
+                </div>
                 <!-- Technology Badges -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-8">
                     <div class="feature-badge bg-dark-card p-4 text-center">
@@ -1898,6 +1902,48 @@
             'default': 'Availability optimization; O&M cost reduction; asset life extension'
         };
 
+        // Customized context messages based on PG configuration
+        const PG_CONTEXT_MESSAGES = {
+            // Traditional approach challenges by company type and asset type
+            trad: {
+                'ipp-baseload': '<span class="text-red-500 font-bold">The Challenge:</span> As an IPP running baseload assets, traditional approaches focus on scheduled overhauls and time-based maintenance. Heat rate degradation goes undetected between major inspections, eroding margins in competitive markets.',
+                'ipp-peaker': '<span class="text-red-500 font-bold">The Challenge:</span> Peaker economics demand instant availability when prices spike. Traditional maintenance schedules don\'t account for cycling stress or market conditions - you maintain on calendar, not on need or opportunity.',
+                'ipp-wind': '<span class="text-red-500 font-bold">The Challenge:</span> Traditional wind O&M relies on scheduled inspections and reactive repairs. Gearbox and blade issues develop between visits, leading to costly unplanned downtime and availability penalties.',
+                'ipp-solar': '<span class="text-red-500 font-bold">The Challenge:</span> Traditional solar maintenance uses periodic inspections and basic monitoring. Inverter failures and tracker issues cause production losses that could be predicted and prevented.',
+                'utility-baseload': '<span class="text-red-500 font-bold">The Challenge:</span> Regulated utilities face rate case scrutiny on maintenance spend. Traditional approaches struggle to justify proactive investments - costs are visible, avoided failures are not.',
+                'utility-mixed': '<span class="text-red-500 font-bold">The Challenge:</span> Managing a mixed fleet with traditional methods means siloed maintenance practices per technology. No unified view of fleet health or portfolio-level optimization.',
+                'om-baseload': '<span class="text-red-500 font-bold">The Challenge:</span> O&M contracts have tight KPIs but traditional approaches make availability targets a gamble. You\'re accountable for performance but lack predictive visibility into asset health.',
+                'om-wind': '<span class="text-red-500 font-bold">The Challenge:</span> Wind O&M contracts demand high availability with fixed budgets. Traditional reactive maintenance means surprise costs and missed targets.',
+                'default': '<span class="text-red-500 font-bold">The Old Way:</span> Laser focused on center line reliability with predictive maintenance first. Limited adoption & impact - recommendations lack asset health context.'
+            },
+            // Health-centric approach benefits by configuration
+            health: {
+                'ipp-merchant': '<span class="text-green-500 font-bold">The Opportunity:</span> AI-driven health monitoring enables dispatch decisions based on real asset condition. Optimize run hours when margins are high, schedule maintenance during low-price periods.',
+                'ipp-ppa': '<span class="text-green-500 font-bold">The Opportunity:</span> Machine learning predicts failures before they cause availability penalties. Meet PPA commitments with confidence while optimizing maintenance costs.',
+                'utility-regulated': '<span class="text-green-500 font-bold">The Opportunity:</span> Document every avoided failure and prevented outage. Build data-driven rate cases showing prudent, proactive asset management.',
+                'om-ppa': '<span class="text-green-500 font-bold">The Opportunity:</span> Real-time asset health visibility transforms O&M from reactive to predictive. Hit availability targets consistently while controlling costs.',
+                'default': '<span class="text-green-500 font-bold">The New Way:</span> AI and machine learning enable condition-based maintenance with rapid deployment. Quick wins in months, not years.'
+            }
+        };
+
+        // Function to get customized context message for Traditional approach
+        function getPgContextMessage() {
+            if (!pgConfig.companyType || !pgConfig.assetType) {
+                return PG_CONTEXT_MESSAGES.trad.default;
+            }
+            const key = pgConfig.companyType + '-' + pgConfig.assetType;
+            return PG_CONTEXT_MESSAGES.trad[key] || PG_CONTEXT_MESSAGES.trad.default;
+        }
+
+        // Function to get customized context message for Health-Centric approach
+        function getPgHealthContextMessage() {
+            if (!pgConfig.companyType || !pgConfig.revenueModel) {
+                return PG_CONTEXT_MESSAGES.health.default;
+            }
+            const key = pgConfig.companyType + '-' + pgConfig.revenueModel;
+            return PG_CONTEXT_MESSAGES.health[key] || PG_CONTEXT_MESSAGES.health.default;
+        }
+
         // Chart.js defaults
         Chart.defaults.color = '#ffffff';
         Chart.defaults.borderColor = '#333333';
@@ -2185,6 +2231,12 @@
                 roceDetailsPowergen.classList.remove('hidden');
                 tradCasesOilgas.classList.add('hidden');
                 tradCasesPowergen.classList.remove('hidden');
+
+                // Customize context message based on PG configuration
+                if (pgConfig.companyType && pgConfig.assetType) {
+                    const contextText = document.getElementById('powergen-context-text');
+                    contextText.innerHTML = getPgContextMessage();
+                }
             } else {
                 oilgasContext.classList.remove('hidden');
                 powergenContext.classList.add('hidden');
@@ -2213,6 +2265,16 @@
             // Draw charts when entering step 2
             if (step === 2 && currentIndustry) {
                 setTimeout(function() { drawChart('chart1', DATA[currentIndustry].trad, true); }, 100);
+            }
+
+            // Show customized context for Step 3 (Health-Centric) for Power Gen
+            if (step === 3 && currentIndustry === 'powergen' && pgConfig.companyType) {
+                const step3Context = document.getElementById('step3-pg-context');
+                const step3ContextText = document.getElementById('step3-pg-context-text');
+                step3Context.classList.remove('hidden');
+                step3ContextText.innerHTML = getPgHealthContextMessage();
+            } else if (step === 3) {
+                document.getElementById('step3-pg-context').classList.add('hidden');
             }
 
             // Draw charts when entering step 5
