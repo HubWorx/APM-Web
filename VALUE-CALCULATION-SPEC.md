@@ -146,6 +146,109 @@ Holistic approach:
 
 ---
 
+## Power Generation Configuration Modifiers
+
+For Power Generation, ROCE values are adjusted based on four configuration parameters selected by the user. This enables more accurate value projections based on the specific business model.
+
+### Configuration Parameters
+
+#### 1. Company Type
+
+| Type | Description | ROCE Modifier |
+|------|-------------|---------------|
+| **IPP** | Independent Power Producer - own and operate assets, sell competitively | +15% (1.15x) |
+| **Utility** | Regulated utility - vertically integrated with T&D | -10% (0.90x) |
+| **O&M Contractor** | Operate assets owned by others under contract | -15% (0.85x) |
+
+**Rationale**: IPPs have more upside from operational improvements due to competitive markets. Utilities have regulated returns limiting upside. O&M contractors have fixed-fee structures limiting value capture.
+
+#### 2. Revenue Model
+
+| Model | Description | ROCE Modifier |
+|-------|-------------|---------------|
+| **Merchant** | Sell into wholesale markets at spot/day-ahead prices | +20% (1.20x) |
+| **PPA/Contracted** | Long-term power purchase agreements with fixed pricing | Baseline (1.00x) |
+| **Regulated** | Cost-of-service rates set by regulators | -15% (0.85x) |
+
+**Rationale**: Merchant generators have highest sensitivity to availability (high prices during outages). PPA generators have moderate sensitivity (availability penalties). Regulated utilities have cost-plus returns.
+
+#### 3. Asset Type
+
+| Type | Description | ROCE Modifier | Maintenance Complexity |
+|------|-------------|---------------|----------------------|
+| **Baseload Thermal** | CCGT, Coal, Nuclear - high capacity factor | Baseline (1.00x) | 1.2x |
+| **Peaker/Mid-Merit** | Simple cycle GT, Reciprocating engines | +25% (1.25x) | 1.0x |
+| **Wind** | Onshore/Offshore wind turbines | +10% (1.10x) | 1.15x |
+| **Solar** | Utility-scale photovoltaic | -5% (0.95x) | 0.8x |
+| **Hydro** | Run-of-river, Storage hydro | -10% (0.90x) | 0.7x |
+| **Battery Storage** | BESS, Grid services | +30% (1.30x) | 0.9x |
+| **Mixed Fleet** | Multiple technology types | +5% (1.05x) | 1.1x |
+
+**Rationale**: Peakers and storage have highest value sensitivity to availability (needed during high-price periods). Solar and hydro have lower maintenance intensity and more predictable operations.
+
+#### 4. Region (Fuel Cost Impact)
+
+| Region | Gas Price Benchmark | Fuel Cost Factor |
+|--------|--------------------|--------------------|
+| **North America** | Henry Hub ($2-4/MMBtu) | 0.9x (lower fuel sensitivity) |
+| **Europe** | TTF/NBP ($8-15/MMBtu) | 1.2x (higher fuel sensitivity) |
+| **Asia Pacific** | JKM/LNG ($10-18/MMBtu) | 1.3x (highest fuel sensitivity) |
+| **Other/Renewable** | N/A | 1.0x (no fuel exposure) |
+
+**Rationale**: Higher fuel costs increase the value of heat rate improvements and efficiency gains. Renewable assets have no fuel cost exposure.
+
+### Modifier Calculation Formula
+
+The final ROCE modifier is calculated as follows:
+
+```
+Step 1: Calculate combined modifier (geometric mean)
+combinedModifier = (typeModifier × revModifier × assetModifier) ^ (1/3)
+
+Step 2: Apply regional adjustment for fossil assets only
+if (assetType == 'baseload' OR assetType == 'peaker'):
+    finalModifier = combinedModifier × (2 - regionFuelFactor)
+else:
+    finalModifier = combinedModifier
+
+Step 3: Apply to base ROCE values
+adjustedROCE = baseROCE × finalModifier
+```
+
+### Example: IPP Merchant Peaker in North America
+
+**Configuration:**
+- Company Type: IPP (1.15x)
+- Revenue Model: Merchant (1.20x)
+- Asset Type: Peaker (1.25x)
+- Region: North America (0.9x fuel factor)
+
+**Calculation:**
+```
+Combined = (1.15 × 1.20 × 1.25) ^ (1/3) = 1.198
+Regional Adjustment = 1.198 × (2 - 0.9) = 1.198 × 1.1 = 1.318
+
+Base Traditional ROCE: +13.9%
+Adjusted Traditional ROCE: 13.9% × 1.318 = +18.3%
+
+Base Health-Centric ROCE: +29.8%
+Adjusted Health-Centric ROCE: 29.8% × 1.318 = +39.3%
+
+Base Holistic ROCE: +38.3%
+Adjusted Holistic ROCE: 38.3% × 1.318 = +50.5%
+```
+
+### Configuration Impact Summary
+
+| Configuration | Typical Modifier Range | Best Suited For |
+|---------------|----------------------|-----------------|
+| IPP + Merchant + Peaker | 1.25-1.35x | Maximum value from availability |
+| IPP + PPA + Wind | 1.05-1.15x | Availability penalty avoidance |
+| Utility + Regulated + Mixed | 0.75-0.85x | Rate case cost justification |
+| O&M + PPA + Baseload | 0.80-0.90x | Contract KPI achievement |
+
+---
+
 ## Example Calculation
 
 **Inputs:**
@@ -300,10 +403,28 @@ According to [MIT Sloan Management Review](https://sloanreview.mit.edu/article/a
 ## Code Reference
 
 The calculation logic is implemented in `index.html`:
-- Data constants: Lines 1536-1595
-- Calculate function: Lines 1789-1900+
 
-Key variables:
-- `DATA[industry].approach.total` - ROCE improvement percentages
-- `MAINTENANCE_SAVINGS` - Savings factors by approach
-- `DOWNTIME_FACTORS` - Revenue percentage for downtime value
+### Core Data & Constants
+- `DATA` object: Base ROCE values per industry and approach
+- `MAINTENANCE_SAVINGS`: Savings factors (0.15, 0.30, 0.40)
+- `DOWNTIME_FACTORS`: Revenue percentages (0.005, 0.015, 0.025)
+
+### Power Generation Configuration
+- `pgConfig` object: Stores user selections (companyType, revenueModel, assetType, region)
+- `PG_MODIFIERS`: ROCE modifiers per configuration option
+- `PG_FOCUS_MESSAGES`: Customized value driver messages
+- `PG_CONTEXT_MESSAGES`: Customized journey context messages
+
+### Key Functions
+- `calculate()`: Main ROI calculation using inputs and ROCE values
+- `applyPowerGenConfig()`: Applies configuration modifiers to base ROCE values
+- `selectIndustry()`: Sets up industry-specific displays and applies PG config if available
+- `getPgContextMessage()`: Returns customized Traditional approach messaging
+- `getPgHealthContextMessage()`: Returns customized Health-Centric messaging
+
+### Configured Values Storage
+When Power Generation is configured, adjusted values are stored in:
+- `DATA.powergen.configuredTrad.total`
+- `DATA.powergen.configuredHealth.total`
+- `DATA.powergen.configuredHolistic.total`
+- `DATA.powergen.configDescription` (display string)
